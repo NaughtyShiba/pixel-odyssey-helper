@@ -1,3 +1,39 @@
+type ItemName =
+  | "vamp_blade_1"
+  | "vamp_blade_2"
+  | "vamp_blade_3"
+  | "dracula_cloak"
+  | "platinum_shield"
+  | "platinum_helmet"
+  | "platinum_chestplate"
+  | "platinum_greaves"
+  | "platinum_boots"
+  | "platinum_ingot"
+  | "platinum_ore"
+  | "gold_mining_necklace"
+  | "silver_dagger"
+  | "silver_pickaxe"
+  | "silver_ingot"
+  | "silver_ore"
+  | "golden_pickaxe"
+  | "gold_ingot"
+  | "gold_ore"
+  | "copper_pickaxe"
+  | "copper_ingot"
+  | "copper_ore"
+  | "iron_pickaxe"
+  | "iron_ingot"
+  | "chainmail_shirt"
+  | "iron_ore"
+  | "chain"
+  | "shirt"
+  | "coal"
+  | "nail"
+  | "sandals"
+  | "bat_wing"
+  | "emerald"
+  | "branch";
+
 export type Type =
   | "tool"
   | "ring"
@@ -9,22 +45,77 @@ export type Type =
   | "potion"
   | "charm"
   | "ore"
-  | "material";
-// type Tag = "equipment" | "combat" | "tools" | "necklace"
-type Stat = "mining";
+  | "material"
+  | "monster-drop";
+type Stat =
+  | "attack"
+  | "mining"
+  | "defense"
+  | "mana"
+  | "health"
+  | "speed"
+  | "air_damage";
 
 export interface Item {
   type: Type;
   icon?: string;
   label: string;
-  craft?: Record<string, number>;
-  // tags?: Tag[];
-  stats?: Record<Stat, number>;
+  craft?: Partial<Record<ItemName, number>>;
+  stats?: Partial<Record<Stat, number>>;
 }
-export const items: Record<string, Item> = {
+
+export const items: Record<ItemName, Item> = {
+  vamp_blade_1: {
+    type: "combat_equipment",
+    label: "Vamp Blade Tier 1",
+    stats: {
+      attack: 50,
+      health: 50,
+    },
+    craft: {
+      dracula_cloak: 1,
+      bat_wing: 100,
+    },
+  },
+  vamp_blade_2: {
+    type: "combat_equipment",
+    label: "Vamp Blade +1",
+    stats: {
+      attack: 70,
+      health: 70,
+    },
+    craft: {
+      vamp_blade_1: 2,
+      bat_wing: 250,
+    },
+  },
+  vamp_blade_3: {
+    type: "combat_equipment",
+    label: "Vamp Blade +2",
+    stats: {
+      attack: 90,
+      health: 90,
+    },
+    craft: {
+      vamp_blade_2: 2,
+      bat_wing: 500,
+    },
+  },
+  dracula_cloak: {
+    type: "combat_equipment",
+    label: "Dracula's Cloak",
+    stats: {
+      defense: 40,
+      mana: 7,
+    },
+  },
   platinum_shield: {
     type: "combat_equipment",
     label: "Platinum Shield",
+    stats: {
+      defense: 99,
+      mana: 10,
+    },
     craft: {
       coal: 10,
       platinum_ingot: 25,
@@ -33,6 +124,10 @@ export const items: Record<string, Item> = {
   platinum_helmet: {
     type: "combat_equipment",
     label: "Platinum Helmet",
+    stats: {
+      defense: 40,
+      health: 45,
+    },
     craft: {
       platinum_ingot: 10,
       iron_ingot: 20,
@@ -41,6 +136,10 @@ export const items: Record<string, Item> = {
   platinum_chestplate: {
     type: "combat_equipment",
     label: "Platinum Chestplate",
+    stats: {
+      defense: 80,
+      health: 40,
+    },
     craft: {
       chainmail_shirt: 4,
       platinum_ingot: 10,
@@ -49,6 +148,10 @@ export const items: Record<string, Item> = {
   platinum_greaves: {
     type: "combat_equipment",
     label: "Platinum Greaves",
+    stats: {
+      speed: 30,
+      defense: 50,
+    },
     craft: {
       platinum_ingot: 8,
       nail: 10,
@@ -57,6 +160,10 @@ export const items: Record<string, Item> = {
   platinum_boots: {
     type: "combat_equipment",
     label: "Platinum Boots",
+    stats: {
+      defense: 35,
+      speed: 25,
+    },
     craft: {
       platinum_ingot: 12,
       sandals: 1,
@@ -85,6 +192,18 @@ export const items: Record<string, Item> = {
       emerald: 4,
     },
   },
+  silver_dagger: {
+    type: "combat_equipment",
+    label: "Silver Dagger",
+    stats: {
+      attack: 37,
+      speed: 24,
+    },
+    craft: {
+      silver_ingot: 20,
+      copper_ingot: 10,
+    },
+  },
   silver_pickaxe: {
     type: "tool",
     label: "Silver Pickaxe",
@@ -111,6 +230,9 @@ export const items: Record<string, Item> = {
   golden_pickaxe: {
     type: "tool",
     label: "Golden Pickaxe",
+    stats: {
+      mining: 12,
+    },
     craft: {
       gold_ingot: 25,
       copper_pickaxe: 2,
@@ -131,6 +253,9 @@ export const items: Record<string, Item> = {
   copper_pickaxe: {
     type: "tool",
     label: "Copper Pickaxe",
+    stats: {
+      mining: 8,
+    },
     craft: {
       iron_pickaxe: 3,
       copper_ingot: 20,
@@ -151,6 +276,9 @@ export const items: Record<string, Item> = {
   iron_pickaxe: {
     type: "tool",
     label: "Iron Pickaxe",
+    stats: {
+      mining: 4,
+    },
     craft: {
       iron_ingot: 5,
       branch: 5,
@@ -167,6 +295,10 @@ export const items: Record<string, Item> = {
   chainmail_shirt: {
     type: "combat_equipment",
     label: "Chainmail Shirt",
+    stats: {
+      defense: 10,
+      health: 15,
+    },
     craft: {
       coal: 5,
       chain: 15,
@@ -184,6 +316,9 @@ export const items: Record<string, Item> = {
   shirt: {
     type: "combat_equipment",
     label: "Shirt",
+    stats: {
+      defense: 5,
+    },
   },
   coal: {
     type: "ore",
@@ -196,6 +331,14 @@ export const items: Record<string, Item> = {
   sandals: {
     type: "combat_equipment",
     label: "Sandals",
+    stats: {
+      defense: 5,
+      air_damage: 5,
+    },
+  },
+  bat_wing: {
+    type: "monster-drop",
+    label: "Bat Wing",
   },
   emerald: {
     type: "basic",
