@@ -77,6 +77,9 @@ export const items: Record<string, Item> = {
   gold_mining_necklace: {
     type: "skill_necklace",
     label: "Gold Mining Necklace",
+    stats: {
+      mining: 7,
+    },
     craft: {
       gold_ingot: 40,
       emerald: 4,
