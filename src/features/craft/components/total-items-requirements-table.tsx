@@ -7,7 +7,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ItemName, items } from "@/data/items.mjs";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { calculateTotalRequiredItems } from "../utils.mts";
 import { Input } from "@/components/ui/input";
 
@@ -17,13 +17,9 @@ interface Props {
 export function TotalItemsRequirementsTable(props: Props) {
   const item = props.selectedItem ? items[props.selectedItem] : null;
   const [amount, setAmount] = useState(1);
-  const requirements = useMemo(
-    () =>
-      props.selectedItem
-        ? calculateTotalRequiredItems(props.selectedItem, amount)
-        : {},
-    [props.selectedItem, amount],
-  );
+  const requirements = props.selectedItem
+    ? calculateTotalRequiredItems(props.selectedItem, amount)
+    : {};
 
   if (!item || !item.craft || Object.keys(requirements).length === 0)
     return null;

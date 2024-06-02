@@ -7,7 +7,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { type Type, items, ItemName } from "@/data/items.mjs";
-import { useMemo } from "react";
 import { calculateOptimalPerfectRefine } from "../utils.mts";
 
 const refinableItemTypes: Type[] = [
@@ -24,16 +23,13 @@ interface Props {
 export function OptimalPerfectRefineTable(props: Props) {
   const item = props.selectedItem ? items[props.selectedItem] : null;
 
-  const optimalRefine = useMemo(
-    () =>
-      item?.type && item?.stats
-        ? calculateOptimalPerfectRefine({
-            type: item.type,
-            levelOneStats: Object.values(item.stats),
-          })
-        : {},
-    [item],
-  );
+  const optimalRefine =
+    item?.type && item?.stats
+      ? calculateOptimalPerfectRefine({
+          type: item.type,
+          levelOneStats: Object.values(item.stats),
+        })
+      : {};
   if (item?.type && !refinableItemTypes.includes(item.type))
     return <div>Item is not refinable</div>;
   if (!item || Object.keys(optimalRefine).length === 0) return null;

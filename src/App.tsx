@@ -34,20 +34,11 @@ function App() {
             <TabsTrigger value="refine">Refine</TabsTrigger>
           </TabsList>
           <TabsContent value="craft" className="flex flex-col gap-2">
-            <CraftRequirementsTable
-              selectedItem={selectedItem}
-              key={selectedItem}
-            />
-            <TotalItemsRequirementsTable
-              selectedItem={selectedItem}
-              key={selectedItem}
-            />
+            <CraftRequirementsTable selectedItem={selectedItem} />
+            <TotalItemsRequirementsTable selectedItem={selectedItem} />
           </TabsContent>
           <TabsContent value="refine" className="flex flex-col gap-2">
-            <OptimalPerfectRefineTable
-              selectedItem={selectedItem}
-              key={selectedItem}
-            />
+            <OptimalPerfectRefineTable selectedItem={selectedItem} />
           </TabsContent>
         </Tabs>
       </div>
