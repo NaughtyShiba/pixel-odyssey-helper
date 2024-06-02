@@ -5,9 +5,10 @@ import { OptimalPerfectRefineTable } from "./features/refine/components/optimal-
 import { CraftRequirementsTable } from "./features/craft/components/craft-requirements-table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { TotalItemsRequirementsTable } from "./features/craft/components/total-items-requirements-table";
+import { ItemName } from "./data/items.mts";
 
 function App() {
-  const [selectedItem, selectItem] = useState("");
+  const [selectedItem, selectItem] = useState<ItemName | null>(null);
 
   return (
     <>
@@ -18,17 +19,26 @@ function App() {
             className="flex-basis-1/2 w-1/2"
           />
         </div>
-        <Tabs defaultValue="craft">
+        <Tabs defaultValue="craft" key={selectedItem}>
           <TabsList>
             <TabsTrigger value="craft">Craft</TabsTrigger>
             <TabsTrigger value="refine">Refine</TabsTrigger>
           </TabsList>
           <TabsContent value="craft" className="flex flex-col gap-2">
-            <CraftRequirementsTable selectedItem={selectedItem} />
-            <TotalItemsRequirementsTable selectedItem={selectedItem} />
+            <CraftRequirementsTable
+              selectedItem={selectedItem}
+              key={selectedItem}
+            />
+            <TotalItemsRequirementsTable
+              selectedItem={selectedItem}
+              key={selectedItem}
+            />
           </TabsContent>
           <TabsContent value="refine" className="flex flex-col gap-2">
-            <OptimalPerfectRefineTable selectedItem={selectedItem} />
+            <OptimalPerfectRefineTable
+              selectedItem={selectedItem}
+              key={selectedItem}
+            />
           </TabsContent>
         </Tabs>
       </div>

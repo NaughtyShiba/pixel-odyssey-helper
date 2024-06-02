@@ -15,14 +15,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { items } from "@/data/items.mjs";
+import { ItemName, items } from "@/data/items.mjs";
 
-const craftableItems = Object.entries(items)
-  .filter(([, item]) => item.craft)
-  .map(([name, item]) => ({ value: name, label: item.label }));
+const craftableItems = Object.entries(items).map(([name, item]) => ({
+  value: name,
+  label: item.label,
+}));
 
 interface CraftRequirementsComboboxProps {
-  onChange(itemName: string): void;
+  onChange(itemName: ItemName | null): void;
   className?: string;
 }
 export function CraftRequirementsCombobox(
@@ -57,7 +58,9 @@ export function CraftRequirementsCombobox(
                 value={item.value}
                 onSelect={(currentValue: string) => {
                   setValue(currentValue === value ? "" : currentValue);
-                  props.onChange(currentValue === value ? "" : currentValue);
+                  props.onChange(
+                    currentValue === value ? null : (currentValue as ItemName),
+                  );
                   setOpen(false);
                 }}
               >

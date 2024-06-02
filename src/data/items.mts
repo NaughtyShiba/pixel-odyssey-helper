@@ -1,4 +1,5 @@
-type ItemName =
+export type ItemName =
+  | "scythe"
   | "vamp_blade_1"
   | "vamp_blade_2"
   | "vamp_blade_3"
@@ -65,6 +66,14 @@ export interface Item {
 }
 
 export const items: Record<ItemName, Item> = {
+  scythe: {
+    type: "combat_equipment",
+    label: "Scythe",
+    stats: {
+      attack: 45,
+      speed: 11,
+    },
+  },
   vamp_blade_1: {
     type: "combat_equipment",
     label: "Vamp Blade Tier 1",

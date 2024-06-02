@@ -6,14 +6,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { items } from "@/data/items.mjs";
+import { ItemName, items } from "@/data/items.mjs";
 
 interface Props {
-  selectedItem: string;
+  selectedItem: ItemName | null;
 }
 export function CraftRequirementsTable(props: Props) {
-  const item = items[props.selectedItem];
+  const item = props.selectedItem ? items[props.selectedItem] : null;
 
+  if (item && !item.craft) return <div>Item is not craftable</div>;
   if (!item || !item.craft) return null;
 
   return (

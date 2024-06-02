@@ -6,16 +6,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { items } from "@/data/items.mjs";
+import { ItemName, items } from "@/data/items.mjs";
 import { useMemo, useState } from "react";
 import { calculateTotalRequiredItems } from "../utils.mts";
 import { Input } from "@/components/ui/input";
 
 interface Props {
-  selectedItem: string;
+  selectedItem: ItemName | null;
 }
 export function TotalItemsRequirementsTable(props: Props) {
-  const item = items[props.selectedItem];
+  const item = props.selectedItem ? items[props.selectedItem] : null;
   const [amount, setAmount] = useState(1);
   const requirements = useMemo(
     () =>

@@ -27,9 +27,22 @@ export function calculateOptimalPerfectRefine(
   };
   const requiredForPerfectRefine: Record<
     number,
-    { minimumSourceItemLevelNeeded: number; totalItemsNeeded: number }
+    {
+      minimumSourceItemLevelNeeded: number;
+      totalItemsNeeded: number;
+      stats: number[];
+    }
   > = {
-    2: { minimumSourceItemLevelNeeded: 1, totalItemsNeeded },
+    1: {
+      minimumSourceItemLevelNeeded: 1,
+      totalItemsNeeded: 1,
+      stats: statsAtLevel[1],
+    },
+    2: {
+      minimumSourceItemLevelNeeded: 1,
+      totalItemsNeeded,
+      stats: statsAtLevel[2],
+    },
   };
 
   for (let level = 3; level < MAX_LEVEL + 1; level++) {
@@ -58,6 +71,7 @@ export function calculateOptimalPerfectRefine(
     requiredForPerfectRefine[level] = {
       minimumSourceItemLevelNeeded: minimalSourcePerfectRefineLevel,
       totalItemsNeeded,
+      stats: potentialNewStats,
     };
   }
   return requiredForPerfectRefine;
