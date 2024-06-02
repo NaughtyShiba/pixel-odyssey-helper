@@ -7,46 +7,57 @@ const RATE_PER_TYPE: Partial<Record<Type, number>> = {
   ring: 18,
   skill_necklace: 12.5,
   combat_necklace: 25,
-  combat_equipment: 25
-}
+  combat_equipment: 25,
+};
 interface CalculateOptimalPerfectRefineProps {
   levelOneStats: number[];
-  type: Type
+  type: Type;
 }
-export function calculateOptimalPerfectRefine(props: CalculateOptimalPerfectRefineProps) {
+export function calculateOptimalPerfectRefine(
+  props: CalculateOptimalPerfectRefineProps,
+) {
   const rate = RATE_PER_TYPE[props.type] ?? 1;
   let totalItemsNeeded = 2;
   const statsAtLevel: Record<number, number[]> = {
     1: props.levelOneStats,
-    2: props.levelOneStats.map((val) => val + Math.max(Math.floor(val / 100 * rate), MINIMAL_BONUS_INCREASE))
+    2: props.levelOneStats.map(
+      (val) =>
+        val + Math.max(Math.floor((val / 100) * rate), MINIMAL_BONUS_INCREASE),
+    ),
   };
   const requiredForPerfectRefine: Record<
     number,
-    { minimumSourceItemLevelNeeded: number, totalItemsNeeded: number }
+    { minimumSourceItemLevelNeeded: number; totalItemsNeeded: number }
   > = {
-    2: { minimumSourceItemLevelNeeded: 1, totalItemsNeeded }
+    2: { minimumSourceItemLevelNeeded: 1, totalItemsNeeded },
   };
 
   for (let level = 3; level < MAX_LEVEL + 1; level++) {
     let minimalSourcePerfectRefineLevel = 1;
     let potentialNewStats = statsAtLevel[level - 2];
     for (let tryLevel = 1; tryLevel < level; tryLevel++) {
-      let newStats = statsAtLevel[level - 1]
-        .map((val, statIndex) => {
-          const increaseBy = Math.max(Math.floor(statsAtLevel[tryLevel][statIndex] / 100 * rate), MINIMAL_BONUS_INCREASE);
-          return val + increaseBy
-        });
-      if (newStats.every((val, statIndex) => val > potentialNewStats[statIndex])) {
+      const newStats = statsAtLevel[level - 1].map((val, statIndex) => {
+        const increaseBy = Math.max(
+          Math.floor((statsAtLevel[tryLevel][statIndex] / 100) * rate),
+          MINIMAL_BONUS_INCREASE,
+        );
+        return val + increaseBy;
+      });
+      if (
+        newStats.every((val, statIndex) => val > potentialNewStats[statIndex])
+      ) {
         potentialNewStats = newStats;
         minimalSourcePerfectRefineLevel = tryLevel;
       }
     }
 
-    totalItemsNeeded += requiredForPerfectRefine[minimalSourcePerfectRefineLevel]?.totalItemsNeeded ?? 1;
+    totalItemsNeeded +=
+      requiredForPerfectRefine[minimalSourcePerfectRefineLevel]
+        ?.totalItemsNeeded ?? 1;
     statsAtLevel[level] = potentialNewStats;
     requiredForPerfectRefine[level] = {
       minimumSourceItemLevelNeeded: minimalSourcePerfectRefineLevel,
-      totalItemsNeeded
+      totalItemsNeeded,
     };
   }
   return requiredForPerfectRefine;
