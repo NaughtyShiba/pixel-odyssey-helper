@@ -1,4 +1,4 @@
-type Type = 
+export type Type = 
 | "tool"
 | "ring"
 | "skill_necklace"

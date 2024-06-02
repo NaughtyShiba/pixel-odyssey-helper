@@ -1,17 +1,20 @@
+import { Type } from "@/data/items.mjs";
+
 const MAX_LEVEL = 10;
 const MINIMAL_BONUS_INCREASE = 2;
-const RATE_PER_TYPE: Record<"tool" | "ring" | "necklace" | "combat", number> = {
+const RATE_PER_TYPE: Partial<Record<Type, number>> = {
   tool: 12.5,
   ring: 18,
-  necklace: 12.5,
-  combat: 25
+  skill_necklace: 12.5,
+  combat_necklace: 25,
+  combat_equipment: 25
 }
 interface CalculateOptimalPerfectRefineProps {
   levelOneStats: number[];
-  type: "tool" | "ring" | "necklace" | "combat"
+  type: Type
 }
 export function calculateOptimalPerfectRefine(props: CalculateOptimalPerfectRefineProps) {
-  const rate = RATE_PER_TYPE[props.type];
+  const rate = RATE_PER_TYPE[props.type] ?? 1;
   let totalItemsNeeded = 2;
   const statsAtLevel: Record<number, number[]> = {
     1: props.levelOneStats,
