@@ -5,10 +5,11 @@ import { calculateTotalRequiredItems } from './features/craft/utils.mts';
 import { Input } from './components/ui/input';
 import { items } from './data/items.mts';
 import { calculateOptimalPerfectRefine } from './features/refine/utils.mts';
+import { OptimalPerfectRefineTable } from './features/refine/components/optimal-perfect-refine-table';
 
 function App() {
   const [selectedItem, selectItem] = useState("");
-  const item = items[selectedItem];;
+  const item = items[selectedItem];
   const [amount, setAmount] = useState(1);
   const requirements = useMemo(() => selectedItem ? calculateTotalRequiredItems(selectedItem, amount) : {}, [selectedItem, amount]);
   const optimalRefine = useMemo(() => item?.type && item?.stats ? calculateOptimalPerfectRefine({ type: item.type, levelOneStats: Object.values(item.stats) }) : {}, [item]);
@@ -36,12 +37,7 @@ function App() {
             {Object.entries(requirements).map((item) => <li key={item[0]}>{item[1]}x {items[item[0]].label}</li>)}
           </ul>
         </div> : null}
-        {Object.keys(optimalRefine).length ? <div>
-          <div></div>
-          <ul>
-            {Object.entries(optimalRefine).map(([level, info]) => <li key={level}>{JSON.stringify(info)}</li>)}
-          </ul>
-        </div> : null}
+        <OptimalPerfectRefineTable selectedItem={selectedItem}  />
       </div>
     </>
   )
