@@ -22,13 +22,11 @@ const craftableItems = Object.entries(items).map(([name, item]) => ({
   label: item.label,
 }));
 
-interface CraftRequirementsComboboxProps {
+interface ItemSelectorProps {
   onChange(itemName: ItemName | null): void;
   className?: string;
 }
-export function CraftRequirementsCombobox(
-  props: CraftRequirementsComboboxProps,
-) {
+export function ItemSelector(props: ItemSelectorProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -43,13 +41,13 @@ export function CraftRequirementsCombobox(
         >
           {value
             ? craftableItems.find((item) => item.value === value)?.label
-            : "Select item..."}
+            : "Select an item..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-0">
         <Command>
-          <CommandInput placeholder="Search item..." />
+          <CommandInput placeholder="Search for an item..." />
           <CommandEmpty>No framework found.</CommandEmpty>
           <CommandGroup>
             {craftableItems.map((item) => (
