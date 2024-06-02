@@ -6,6 +6,7 @@ import { CraftRequirementsTable } from "./features/craft/components/craft-requir
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
 import { TotalItemsRequirementsTable } from "./features/craft/components/total-items-requirements-table";
 import { ItemName } from "./data/items.mts";
+import { ModeToggle } from "./features/theme/components/mode-toggle";
 
 function App() {
   const [selectedItem, selectItem] = useState<ItemName | null>(null);
@@ -13,6 +14,9 @@ function App() {
 
   return (
     <>
+      <nav className="flex justify-end">
+        <ModeToggle />
+      </nav>
       <div className="flex gap-4 flex-col">
         <div className="flex flex-row gap-2">
           <CraftRequirementsCombobox
