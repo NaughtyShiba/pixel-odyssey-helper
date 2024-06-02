@@ -57,7 +57,7 @@ export function calculateOptimalPerfectRefine(
         return val + increaseBy;
       });
       if (
-        newStats.every((val, statIndex) => val > potentialNewStats[statIndex])
+        newStats.find((val, statIndex) => val > potentialNewStats[statIndex])
       ) {
         potentialNewStats = newStats;
         minimalSourcePerfectRefineLevel = tryLevel;
