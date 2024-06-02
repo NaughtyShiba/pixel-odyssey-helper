@@ -31,7 +31,7 @@ export function CraftRequirementsTable(props: Props) {
           {Object.entries(item.craft).map(([itemName, amount]) => (
             <TableRow key={itemName}>
               <TableCell>{amount}</TableCell>
-              <TableCell>{itemName}</TableCell>
+              <TableCell>{items[itemName as ItemName].label}</TableCell>
             </TableRow>
           ))}
         </TableBody>
