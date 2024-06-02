@@ -1,15 +1,12 @@
-import { items } from "@/data/items.mts";
+import { ItemName, items } from "@/data/items.mts";
 
-export function calculateTotalRequiredItems(
-  item: keyof typeof items,
-  amount = 1,
-) {
+export function calculateTotalRequiredItems(item: ItemName, amount = 1) {
   const requiredItems: Record<string, number> = {};
-  const visitItem = (itemName: string, parentCount = 1) => {
+  const visitItem = (itemName: ItemName, parentCount = 1) => {
     const item = items[itemName];
     if (item.craft) {
       Object.entries(item.craft).forEach(([itemName, count]) =>
-        visitItem(itemName, parentCount * count),
+        visitItem(itemName as ItemName, parentCount * count),
       );
     } else {
       requiredItems[itemName] ??= 0;
