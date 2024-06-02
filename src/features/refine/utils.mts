@@ -28,18 +28,18 @@ export function calculateOptimalPerfectRefine(
   const requiredForPerfectRefine: Record<
     number,
     {
-      minimumSourceItemLevelNeeded: number;
+      minimumSourceItemLevelNeeded: string;
       totalItemsNeeded: number;
       stats: number[];
     }
   > = {
     1: {
-      minimumSourceItemLevelNeeded: 1,
+      minimumSourceItemLevelNeeded: "-",
       totalItemsNeeded: 1,
       stats: statsAtLevel[1],
     },
     2: {
-      minimumSourceItemLevelNeeded: 1,
+      minimumSourceItemLevelNeeded: "1",
       totalItemsNeeded,
       stats: statsAtLevel[2],
     },
@@ -69,7 +69,7 @@ export function calculateOptimalPerfectRefine(
         ?.totalItemsNeeded ?? 1;
     statsAtLevel[level] = potentialNewStats;
     requiredForPerfectRefine[level] = {
-      minimumSourceItemLevelNeeded: minimalSourcePerfectRefineLevel,
+      minimumSourceItemLevelNeeded: minimalSourcePerfectRefineLevel.toString(),
       totalItemsNeeded,
       stats: potentialNewStats,
     };
