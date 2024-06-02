@@ -9,6 +9,7 @@ import { ItemName } from "./data/items.mts";
 
 function App() {
   const [selectedItem, selectItem] = useState<ItemName | null>(null);
+  const [tab, setTab] = useState<"craft" | "refine">("craft");
 
   return (
     <>
@@ -19,7 +20,11 @@ function App() {
             className="flex-basis-1/2 w-1/2"
           />
         </div>
-        <Tabs defaultValue="craft" key={selectedItem}>
+        <Tabs
+          key={selectedItem}
+          onValueChange={(tab) => setTab(tab as "craft" | "refine")}
+          value={tab}
+        >
           <TabsList>
             <TabsTrigger value="craft">Craft</TabsTrigger>
             <TabsTrigger value="refine">Refine</TabsTrigger>
