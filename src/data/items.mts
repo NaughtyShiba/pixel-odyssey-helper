@@ -33,7 +33,8 @@ export type ItemName =
   | "sandals"
   | "bat_wing"
   | "emerald"
-  | "branch";
+  | "branch"
+  | "telescope";
 
 export type Type =
   | "tool"
@@ -78,6 +79,13 @@ export interface Item {
 }
 
 export const items: Record<ItemName, Item> = {
+  telescope: {
+    type: "tool",
+    label: "Telescope",
+    stats: {
+      luck: 5,
+    },
+  },
   scythe: {
     type: "combat_equipment",
     label: "Scythe",

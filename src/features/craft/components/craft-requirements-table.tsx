@@ -7,12 +7,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ItemName, items } from "@/data/items.mjs";
+import { useCraftAmount } from "../context";
+import { useItemSelection } from "@/features/items/context";
 
-interface Props {
-  selectedItem: ItemName | null;
-}
-export function CraftRequirementsTable(props: Props) {
-  const item = props.selectedItem ? items[props.selectedItem] : null;
+export function CraftRequirementsTable() {
+  const { selectedItem } = useItemSelection();
+  const item = selectedItem ? items[selectedItem] : null;
+  const craftAmount = useCraftAmount();
 
   if (item && !item.craft) return <div>Item is not craftable</div>;
   if (!item || !item.craft) return null;
@@ -30,7 +31,7 @@ export function CraftRequirementsTable(props: Props) {
         <TableBody>
           {Object.entries(item.craft).map(([itemName, amount]) => (
             <TableRow key={itemName}>
-              <TableCell>{amount}</TableCell>
+              <TableCell>{amount * craftAmount.amount}</TableCell>
               <TableCell>{items[itemName as ItemName].label}</TableCell>
             </TableRow>
           ))}

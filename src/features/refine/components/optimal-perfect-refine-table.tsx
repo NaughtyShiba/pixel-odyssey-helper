@@ -6,8 +6,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { type Type, items, ItemName } from "@/data/items.mjs";
+import { type Type, items } from "@/data/items.mjs";
 import { calculateOptimalPerfectRefine } from "../utils.mts";
+import { useItemSelection } from "@/features/items/context";
 
 const refinableItemTypes: Type[] = [
   "combat_equipment",
@@ -17,11 +18,9 @@ const refinableItemTypes: Type[] = [
   "tool",
 ];
 
-interface Props {
-  selectedItem: ItemName | null;
-}
-export function OptimalPerfectRefineTable(props: Props) {
-  const item = props.selectedItem ? items[props.selectedItem] : null;
+export function OptimalPerfectRefineTable() {
+  const { selectedItem } = useItemSelection();
+  const item = selectedItem ? items[selectedItem] : null;
 
   const optimalRefine =
     item?.type && item?.stats
