@@ -16,7 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ItemName, items } from "@/data/items.mjs";
+import { ItemName, ItemType, itemTypeLabel, items } from "@/data/items.mjs";
 import { useMediaQuery } from "@/lib/react/use-media-query.mjs";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
@@ -49,7 +49,7 @@ export function ItemSelector(props: ItemSelectorProps) {
       <CommandEmpty>No framework found.</CommandEmpty>
       <CommandList className="max-h-[400px] overflow-y-scroll">
         {Object.entries(groupedCraftableItems).map(([group, items]) => (
-          <CommandGroup heading={group}>
+          <CommandGroup heading={itemTypeLabel[group as ItemType]}>
             {items.map((item) => (
               <CommandItem
                 key={item.value}

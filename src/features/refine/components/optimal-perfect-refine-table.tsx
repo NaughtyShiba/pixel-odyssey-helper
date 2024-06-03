@@ -6,11 +6,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { type Type, items } from "@/data/items.mjs";
+import { type ItemType, items } from "@/data/items.mjs";
 import { calculateOptimalPerfectRefine } from "../utils.mts";
 import { useItemSelection } from "@/features/items/context";
+import { StatType, stats } from "@/data/stats.mjs";
 
-const refinableItemTypes: Type[] = [
+const refinableItemTypes: ItemType[] = [
   "combat_equipment",
   "combat_necklace",
   "ring",
@@ -44,7 +45,7 @@ export function OptimalPerfectRefineTable() {
           <TableHead>Sacrificed Item Level</TableHead>
           <TableHead>Total Level 1 Items needed</TableHead>
           {Object.keys(item.stats!).map((stat) => (
-            <TableHead key={stat}>{stat}</TableHead>
+            <TableHead key={stat}>{stats[stat as StatType].label}</TableHead>
           ))}
         </TableRow>
       </TableHeader>

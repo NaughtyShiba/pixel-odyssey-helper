@@ -1,3 +1,5 @@
+import { StatType } from "./stats.mts";
+
 export type ItemName =
   | "scythe"
   | "vamp_blade_1"
@@ -38,7 +40,7 @@ export type ItemName =
   | "santa_hat"
   | "bunny_ears";
 
-export type Type =
+export type ItemType =
   | "tool"
   | "ring"
   | "skill_necklace"
@@ -52,34 +54,28 @@ export type Type =
   | "material"
   | "monster-drop";
 
-export type Stat =
-  | "attack"
-  | "defense"
-  | "mana"
-  | "health"
-  | "speed"
-  | "luck"
-  | "air_damage"
-  | "air_defense"
-  | "fire_damage"
-  | "fire_defense"
-  | "earth_damage"
-  | "earth_defense"
-  | "water_damage"
-  | "water_defense"
-  | "crit_damage"
-  | "crit_chance"
-  | "mining"
-  | "berry"
-  | "mush";
-
 export interface Item {
-  type: Type;
+  type: ItemType;
   icon?: string;
   label: string;
   craft?: Partial<Record<ItemName, number>>;
-  stats?: Partial<Record<Stat, number>>;
+  stats?: Partial<Record<StatType, number>>;
 }
+
+export const itemTypeLabel: Record<ItemType, string> = {
+  tool: "Tool",
+  "monster-drop": "Monster Drop",
+  basic: "Basic",
+  charm: "Charm",
+  combat_equipment: "Combat Equipment",
+  combat_necklace: "Combat Necklace",
+  ingot: "Ingot",
+  material: "Material",
+  ore: "Ore",
+  potion: "Potion",
+  ring: "Ring",
+  skill_necklace: "Skill Necklace",
+};
 
 export const items: Record<ItemName, Item> = {
   santa_hat: {
