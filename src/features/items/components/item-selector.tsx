@@ -9,6 +9,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "@/components/ui/command";
 import {
   Popover,
@@ -17,10 +18,19 @@ import {
 } from "@/components/ui/popover";
 import { ItemName, items } from "@/data/items.mjs";
 
-const craftableItems = Object.entries(items).map(([name, item]) => ({
-  value: name,
-  label: item.label,
-}));
+const craftableItems = Object.entries(items)
+  .map(([name, item]) => ({
+    value: name,
+    label: item.label,
+    category: item.type,
+  }))
+  .sort((a, b) => a.category.localeCompare(b.category))
+  .sort((a, b) => a.label.localeCompare(b.label));
+
+const groupedCraftableItems = Object.groupBy(
+  craftableItems,
+  (item) => item.category,
+);
 
 interface ItemSelectorProps {
   onChange(itemName: ItemName | null): void;
@@ -49,29 +59,35 @@ export function ItemSelector(props: ItemSelectorProps) {
         <Command>
           <CommandInput placeholder="Search for an item..." />
           <CommandEmpty>No framework found.</CommandEmpty>
-          <CommandGroup>
-            {craftableItems.map((item) => (
-              <CommandItem
-                key={item.value}
-                value={item.value}
-                onSelect={(currentValue: string) => {
-                  setValue(currentValue === value ? "" : currentValue);
-                  props.onChange(
-                    currentValue === value ? null : (currentValue as ItemName),
-                  );
-                  setOpen(false);
-                }}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === item.value ? "opacity-100" : "opacity-0",
-                  )}
-                />
-                {item.label}
-              </CommandItem>
+          <CommandList className="max-h-[400px] overflow-y-scroll">
+            {Object.entries(groupedCraftableItems).map(([group, items]) => (
+              <CommandGroup heading={group}>
+                {items.map((item) => (
+                  <CommandItem
+                    key={item.value}
+                    value={item.value}
+                    onSelect={(currentValue: string) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      props.onChange(
+                        currentValue === value
+                          ? null
+                          : (currentValue as ItemName),
+                      );
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        value === item.value ? "opacity-100" : "opacity-0",
+                      )}
+                    />
+                    {item.label}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
             ))}
-          </CommandGroup>
+          </CommandList>
         </Command>
       </PopoverContent>
     </Popover>

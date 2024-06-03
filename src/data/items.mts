@@ -51,6 +51,7 @@ export type Type =
   | "ore"
   | "material"
   | "monster-drop";
+
 export type Stat =
   | "attack"
   | "defense"
