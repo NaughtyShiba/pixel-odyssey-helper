@@ -1,8 +1,10 @@
+import { Input } from "@/components/ui/input";
 import {
   MonsterHunterTalentName,
   monsterHunterTalents,
 } from "@/data/monster-hunter.mjs";
 import { TalentName, talents } from "@/data/talents.mjs";
+import { useBuilder } from "../context";
 
 const talentsImages: Record<TalentName, string> = {
   strength: new URL("@/assets/talents/str.png", import.meta.url).href,
@@ -68,22 +70,57 @@ const monsterHunterTalentsImages: Record<MonsterHunterTalentName, string> = {
 };
 
 export function Talents() {
+  const { state, dispatch } = useBuilder();
   return (
     <>
       <div className="grid grid-cols-5">
         {Object.keys(talents).map((talent) => (
-          <div className="w-8 h-8" key={talent}>
-            <img src={talentsImages[talent as TalentName]} />
+          <div className="flex" key={talent}>
+            <img
+              className="w-8 h-8"
+              src={talentsImages[talent as TalentName]}
+            />
+            <Input
+              type="number"
+              min="1"
+              max="99"
+              value={state.talentsLevels[talent as TalentName]}
+              onChange={(e) => {
+                dispatch({
+                  type: "set_talent",
+                  property: talent as TalentName,
+                  value: parseInt(e.target.value),
+                });
+              }}
+            />
           </div>
         ))}
       </div>
       <div className="grid grid-cols-5">
         {Object.keys(monsterHunterTalents).map((talent) => (
-          <div className="w-8 h-8" key={talent}>
+          <div className="flex" key={talent}>
             <img
+              className="w-8 h-8"
               src={
                 monsterHunterTalentsImages[talent as MonsterHunterTalentName]
               }
+            />
+            <Input
+              type="number"
+              min="1"
+              max="99"
+              value={
+                state.monsterHunterTalentsLevels[
+                  talent as MonsterHunterTalentName
+                ]
+              }
+              onChange={(e) => {
+                dispatch({
+                  type: "set_monster_hunter",
+                  property: talent as MonsterHunterTalentName,
+                  value: parseInt(e.target.value),
+                });
+              }}
             />
           </div>
         ))}
