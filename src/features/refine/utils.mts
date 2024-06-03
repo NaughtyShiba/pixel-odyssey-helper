@@ -1,28 +1,47 @@
-import { Type } from "@/data/items.mjs";
+import { Stat, Type } from "@/data/items.mjs";
 
 const MAX_LEVEL = 10;
 const MINIMAL_BONUS_INCREASE = 2;
-const RATE_PER_TYPE: Partial<Record<Type, number>> = {
-  tool: 12.5,
-  ring: 18,
-  skill_necklace: 12.5,
-  combat_necklace: 25,
-  combat_equipment: 25,
+const RATE_PER_STAT: Partial<Record<Stat, number>> = {
+  air_damage: 25,
+  air_defense: 25,
+  attack: 25,
+  defense: 25,
+  earth_damage: 25,
+  earth_defense: 25,
+  fire_damage: 25,
+  fire_defense: 25,
+  health: 25,
+  luck: 25,
+  mana: 25,
+  speed: 25,
+  water_damage: 25,
+  water_defense: 25,
+  crit_chance: 18,
+  crit_damage: 18,
+  mining: 12.5,
+  berry: 12.5,
+  mush: 12.5,
 };
 interface CalculateOptimalPerfectRefineProps {
-  levelOneStats: number[];
+  levelOneStats: Partial<Record<Stat, number>>;
   type: Type;
 }
 export function calculateOptimalPerfectRefine(
   props: CalculateOptimalPerfectRefineProps,
 ) {
-  const rate = RATE_PER_TYPE[props.type] ?? 1;
   let totalItemsNeeded = 2;
-  const statsAtLevel: Record<number, number[]> = {
+  const statsAtLevel: Record<number, Partial<Record<Stat, number>>> = {
     1: props.levelOneStats,
-    2: props.levelOneStats.map(
-      (val) =>
-        val + Math.max(Math.floor((val / 100) * rate), MINIMAL_BONUS_INCREASE),
+    2: Object.fromEntries(
+      Object.entries(props.levelOneStats).map(([stat, val]) => [
+        stat,
+        val +
+          Math.max(
+            Math.floor((val / 100) * RATE_PER_STAT[stat as Stat]!),
+            MINIMAL_BONUS_INCREASE,
+          ),
+      ]),
     ),
   };
   const requiredForPerfectRefine: Record<
@@ -30,7 +49,7 @@ export function calculateOptimalPerfectRefine(
     {
       minimumSourceItemLevelNeeded: string;
       totalItemsNeeded: number;
-      stats: number[];
+      stats: Partial<Record<Stat, number>>;
     }
   > = {
     1: {
@@ -49,15 +68,30 @@ export function calculateOptimalPerfectRefine(
     let minimalSourcePerfectRefineLevel = 1;
     let potentialNewStats = statsAtLevel[level - 2];
     for (let tryLevel = 1; tryLevel < level; tryLevel++) {
-      const newStats = statsAtLevel[level - 1].map((val, statIndex) => {
-        const increaseBy = Math.max(
-          Math.floor((statsAtLevel[tryLevel][statIndex] / 100) * rate),
-          MINIMAL_BONUS_INCREASE,
-        );
-        return val + increaseBy;
-      });
+      // const newStats = statsAtLevel[level - 1].map((val, statIndex) => {
+      //   const increaseBy = Math.max(
+      //     Math.floor((statsAtLevel[tryLevel][statIndex] / 100) * rate),
+      //     MINIMAL_BONUS_INCREASE,
+      //   );
+      //   return val + increaseBy;
+      // });
+      const newStats = Object.fromEntries(
+        Object.entries(statsAtLevel[level - 1]).map(([stat, val]) => [
+          stat,
+          val +
+            Math.max(
+              Math.floor(
+                (statsAtLevel[tryLevel][stat as Stat]! / 100) *
+                  RATE_PER_STAT[stat as Stat]!,
+              ),
+              MINIMAL_BONUS_INCREASE,
+            ),
+        ]),
+      );
       if (
-        newStats.find((val, statIndex) => val > potentialNewStats[statIndex])
+        Object.entries(newStats).find(
+          ([stat, val]) => val > potentialNewStats[stat as Stat]!,
+        )
       ) {
         potentialNewStats = newStats;
         minimalSourcePerfectRefineLevel = tryLevel;

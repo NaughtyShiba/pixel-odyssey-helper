@@ -27,7 +27,7 @@ export function OptimalPerfectRefineTable(props: Props) {
     item?.type && item?.stats
       ? calculateOptimalPerfectRefine({
           type: item.type,
-          levelOneStats: Object.values(item.stats),
+          levelOneStats: item.stats,
         })
       : {};
   if (item?.type && !refinableItemTypes.includes(item.type))
@@ -55,7 +55,7 @@ export function OptimalPerfectRefineTable(props: Props) {
             <TableCell>{targetLevel}</TableCell>
             <TableCell>{info.minimumSourceItemLevelNeeded}</TableCell>
             <TableCell>{info.totalItemsNeeded}</TableCell>
-            {info.stats.map((stat) => (
+            {Object.values(info.stats).map((stat) => (
               <TableCell key={stat}>{stat}</TableCell>
             ))}
           </TableRow>

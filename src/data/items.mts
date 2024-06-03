@@ -48,14 +48,26 @@ export type Type =
   | "ore"
   | "material"
   | "monster-drop";
-type Stat =
+export type Stat =
   | "attack"
-  | "mining"
   | "defense"
   | "mana"
   | "health"
   | "speed"
-  | "air_damage";
+  | "luck"
+  | "air_damage"
+  | "air_defense"
+  | "fire_damage"
+  | "fire_defense"
+  | "earth_damage"
+  | "earth_defense"
+  | "water_damage"
+  | "water_defense"
+  | "crit_damage"
+  | "crit_chance"
+  | "mining"
+  | "berry"
+  | "mush";
 
 export interface Item {
   type: Type;
