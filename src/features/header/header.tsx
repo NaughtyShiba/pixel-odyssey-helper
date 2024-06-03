@@ -14,6 +14,12 @@ export function Header() {
         >
           Items Information
         </Link>
+        <Link
+          to="/builder"
+          className="text-foreground transition-colors hover:text-foreground"
+        >
+          Builder
+        </Link>
       </nav>
       <Sheet>
         <SheetTrigger asChild>
@@ -26,6 +32,9 @@ export function Header() {
           <nav className="grid gap-6 text-lg font-medium">
             <Link to="/" className="hover:text-foreground">
               Items Information
+            </Link>
+            <Link to="/builder" className="hover:text-foreground">
+              Builder
             </Link>
           </nav>
         </SheetContent>
