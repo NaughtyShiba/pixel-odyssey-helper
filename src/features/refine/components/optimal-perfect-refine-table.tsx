@@ -19,6 +19,34 @@ const refinableItemTypes: ItemType[] = [
   "tool",
 ];
 
+const images: Record<StatType, string> = {
+  air_damage: new URL("@/assets/icons/elements_air.png", import.meta.url).href,
+  air_defense: new URL("@/assets/icons/elements_air.png", import.meta.url).href,
+  attack: new URL("@/assets/icons/strength.png", import.meta.url).href,
+  defense: new URL("@/assets/icons/resistance.png", import.meta.url).href,
+  earth_damage: new URL("@/assets/icons/elements_earth.png", import.meta.url)
+    .href,
+  earth_defense: new URL("@/assets/icons/elements_earth.png", import.meta.url)
+    .href,
+  fire_damage: new URL("@/assets/icons/elements_fire.png", import.meta.url)
+    .href,
+  fire_defense: new URL("@/assets/icons/elements_fire.png", import.meta.url)
+    .href,
+  health: new URL("@/assets/icons/hp.png", import.meta.url).href,
+  luck: new URL("@/assets/icons/luck.png", import.meta.url).href,
+  mana: new URL("@/assets/icons/mana.png", import.meta.url).href,
+  speed: new URL("@/assets/icons/speed.png", import.meta.url).href,
+  water_damage: new URL("@/assets/icons/elements_fire.png", import.meta.url)
+    .href,
+  water_defense: new URL("@/assets/icons/elements_fire.png", import.meta.url)
+    .href,
+  crit_chance: "",
+  crit_damage: "",
+  mining: new URL("@/assets/icons/mining.png", import.meta.url).href,
+  berry: "",
+  mush: "",
+};
+
 export function OptimalPerfectRefineTable() {
   const { selectedItem } = useItemSelection();
   const item = selectedItem ? items[selectedItem] : null;
@@ -45,7 +73,14 @@ export function OptimalPerfectRefineTable() {
           <TableHead>Sacrificed Item Level</TableHead>
           <TableHead>Total Level 1 Items needed</TableHead>
           {Object.keys(item.stats!).map((stat) => (
-            <TableHead key={stat}>{stats[stat as StatType].label}</TableHead>
+            <TableHead key={stat}>
+              <span className="flex gap-1">
+                {images[stat as StatType] ? (
+                  <img className="w-4 h-4" src={images[stat as StatType]} />
+                ) : null}
+                {stats[stat as StatType].label}
+              </span>
+            </TableHead>
           ))}
         </TableRow>
       </TableHeader>
