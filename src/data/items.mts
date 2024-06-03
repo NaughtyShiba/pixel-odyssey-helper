@@ -34,7 +34,9 @@ export type ItemName =
   | "bat_wing"
   | "emerald"
   | "branch"
-  | "telescope";
+  | "telescope"
+  | "santa_hat"
+  | "bunny_ears";
 
 export type Type =
   | "tool"
@@ -79,6 +81,22 @@ export interface Item {
 }
 
 export const items: Record<ItemName, Item> = {
+  santa_hat: {
+    type: "combat_equipment",
+    label: "Santa Hat",
+    stats: {
+      defense: 25,
+      luck: 8,
+    },
+  },
+  bunny_ears: {
+    type: "combat_equipment",
+    label: "Bunny Ears",
+    stats: {
+      defense: 15,
+      speed: 20,
+    },
+  },
   telescope: {
     type: "tool",
     label: "Telescope",
