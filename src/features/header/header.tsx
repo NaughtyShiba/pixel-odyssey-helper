@@ -12,13 +12,7 @@ export function Header() {
           to="/"
           className="text-foreground transition-colors hover:text-foreground"
         >
-          Craft Info
-        </Link>
-        <Link
-          to="/refine"
-          className="text-foreground transition-colors hover:text-foreground"
-        >
-          Refine Info
+          Items Information
         </Link>
       </nav>
       <Sheet>
@@ -31,10 +25,7 @@ export function Header() {
         <SheetContent side="left">
           <nav className="grid gap-6 text-lg font-medium">
             <Link to="/" className="hover:text-foreground">
-              Craft Info
-            </Link>
-            <Link to="/refine" className="hover:text-foreground">
-              Refine Info
+              Items Information
             </Link>
           </nav>
         </SheetContent>

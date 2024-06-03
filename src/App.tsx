@@ -1,8 +1,7 @@
 import "./style.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CraftInfoRoute from "./routes/index/route";
+import IndexRoute from "./routes/index/route";
 import RootLayout from "./routes/root/route";
-import RefineInfoRoute from "./routes/refine/route";
 
 const router = createBrowserRouter(
   [
@@ -12,17 +11,7 @@ const router = createBrowserRouter(
       children: [
         {
           index: true,
-          Component: CraftInfoRoute,
-        },
-      ],
-    },
-    {
-      path: "/refine",
-      Component: RootLayout,
-      children: [
-        {
-          index: true,
-          Component: RefineInfoRoute,
+          Component: IndexRoute,
         },
       ],
     },
