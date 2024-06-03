@@ -1,6 +1,10 @@
+import {
+  MonsterHunterTalentName,
+  monsterHunterTalents,
+} from "@/data/monster-hunter.mjs";
 import { TalentName, talents } from "@/data/talents.mjs";
 
-const images: Record<TalentName, string> = {
+const talentsImages: Record<TalentName, string> = {
   strength: new URL("@/assets/talents/str.png", import.meta.url).href,
   defense: new URL("@/assets/talents/defense.png", import.meta.url).href,
   agility: new URL("@/assets/talents/speed.png", import.meta.url).href,
@@ -54,14 +58,36 @@ const images: Record<TalentName, string> = {
   pride: new URL("@/assets/talents/trophiehp.png", import.meta.url).href,
 };
 
+const monsterHunterTalentsImages: Record<MonsterHunterTalentName, string> = {
+  necklace: new URL("@/assets/monster-hunter/necklace.png", import.meta.url)
+    .href,
+  heart: new URL("@/assets/monster-hunter/hp.png", import.meta.url).href,
+  instinct: new URL("@/assets/monster-hunter/hunt.png", import.meta.url).href,
+  reflexes: new URL("@/assets/monster-hunter/spd.png", import.meta.url).href,
+  wrath: new URL("@/assets/monster-hunter/dmg.png", import.meta.url).href,
+};
+
 export function Talents() {
   return (
-    <div className="grid grid-cols-5">
-      {Object.keys(talents).map((talent) => (
-        <div className="w-8 h-8" key={talent}>
-          <img src={images[talent as TalentName]} />
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-5">
+        {Object.keys(talents).map((talent) => (
+          <div className="w-8 h-8" key={talent}>
+            <img src={talentsImages[talent as TalentName]} />
+          </div>
+        ))}
+      </div>
+      <div className="grid grid-cols-5">
+        {Object.keys(monsterHunterTalents).map((talent) => (
+          <div className="w-8 h-8" key={talent}>
+            <img
+              src={
+                monsterHunterTalentsImages[talent as MonsterHunterTalentName]
+              }
+            />
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
