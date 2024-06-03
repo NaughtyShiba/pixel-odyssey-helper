@@ -1,7 +1,7 @@
 import "./style.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import IndexRoute from "./routes/index/route";
-import RootLayout from "./routes/root/route";
+import RootLayout, { RootErrorBoundary } from "./routes/root/route";
 
 const router = createBrowserRouter(
   [
@@ -14,6 +14,7 @@ const router = createBrowserRouter(
           Component: IndexRoute,
         },
       ],
+      ErrorBoundary: RootErrorBoundary,
     },
   ],
   { basename: "/" },

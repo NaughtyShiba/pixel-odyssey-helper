@@ -1,7 +1,7 @@
 import { Header } from "@/features/header/header";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import { Outlet } from "react-router-dom";
+import { Outlet, isRouteErrorResponse, useRouteError } from "react-router-dom";
 
 export default function RootLayout() {
   return (
@@ -20,4 +20,14 @@ export default function RootLayout() {
       </main>
     </div>
   );
+}
+
+export function RootErrorBoundary() {
+  const error = useRouteError();
+
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    return <div>Page not found ☠️</div>;
+  }
+
+  return <div>Unknown error</div>;
 }
