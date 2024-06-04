@@ -38,7 +38,12 @@ export type ItemName =
   | "branch"
   | "telescope"
   | "santa_hat"
-  | "bunny_ears";
+  | "bunny_ears"
+  | "silver_greaves"
+  | "volcanic_greaves"
+  | "emberfruit"
+  | "purple_cloak"
+  | "purple_scarab";
 
 export type ItemType =
   | "tool"
@@ -392,4 +397,48 @@ export const items: Record<ItemName, Item> = {
     type: "basic",
     label: "Branch",
   },
-};
+  silver_greaves: {
+    type: "combat_equipment",
+    label: "Silver Greaves",
+    stats: {
+      health: 25,
+      speed: 15,
+    },
+    craft: {
+      volcanic_greaves: 1,
+      silver_ingot: 30,
+    },
+  },
+  volcanic_greaves: {
+    type: "combat_equipment",
+    label: "Volcanic Greaves",
+    stats: {
+      defense: 30,
+      speed: 10,
+    },
+    craft: {
+      iron_ingot: 1,
+      emberfruit: 30,
+      coal: 8,
+    },
+  },
+  emberfruit: {
+    type: "material",
+    label: "Emberfruit",
+  },
+  purple_cloak: {
+    type: "combat_equipment",
+    label: "Purple Cloak",
+    stats: {
+      health: 45,
+      speed: 10,
+    },
+    craft: {
+      purple_scarab: 4,
+    },
+  },
+purple_scarab: {
+  type: "material",
+  label: "Purple Scarab",
+},
+}
