@@ -62,7 +62,7 @@ export function OptimalPerfectRefineTable() {
     return <div>Item is not refinable</div>;
   if (!item || Object.keys(optimalRefine).length === 0) return null;
   return (
-    <Table>
+    <Table key={selectedItem}>
       <TableHeader>
         <TableRow>
           <TableHead colSpan={3}>Refine Info</TableHead>
