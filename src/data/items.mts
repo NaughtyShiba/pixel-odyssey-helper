@@ -43,7 +43,8 @@ export type ItemName =
   | "volcanic_greaves"
   | "emberfruit"
   | "purple_cloak"
-  | "purple_scarab";
+  | "purple_scarab"
+  | "red_gloves";
 
 export type ItemType =
   | "tool"
@@ -51,6 +52,7 @@ export type ItemType =
   | "skill_necklace"
   | "combat_necklace"
   | "combat_equipment"
+  | "gloves"
   | "ingot"
   | "basic"
   | "potion"
@@ -80,6 +82,7 @@ export const itemTypeLabel: Record<ItemType, string> = {
   potion: "Potion",
   ring: "Ring",
   skill_necklace: "Skill Necklace",
+  gloves: "Gloves",
 };
 
 export const items: Record<ItemName, Item> = {
@@ -354,6 +357,14 @@ export const items: Record<ItemName, Item> = {
       shirt: 4,
     },
   },
+  red_gloves: {
+    type: "gloves",
+    label: "Red Gloves",
+    stats: {
+      berry: 15,
+      mush: 15,
+    },
+  },
   iron_ore: {
     type: "ore",
     label: "Iron Ore",
@@ -441,4 +452,4 @@ export const items: Record<ItemName, Item> = {
     type: "material",
     label: "Purple Scarab",
   },
-}
+};
