@@ -437,8 +437,8 @@ export const items: Record<ItemName, Item> = {
       purple_scarab: 4,
     },
   },
-purple_scarab: {
-  type: "material",
-  label: "Purple Scarab",
-},
+  purple_scarab: {
+    type: "material",
+    label: "Purple Scarab",
+  },
 }
