@@ -1,6 +1,7 @@
 import { ActionDispatch, createContext, useContext, useReducer } from "react";
 import { TalentName } from "@/data/talents.mjs";
 import { MonsterHunterTalentName } from "@/data/monster-hunter.mjs";
+import { Item } from "@/data/items.mjs";
 
 interface BuildContextProviderProps {
   children: React.ReactNode;
@@ -13,6 +14,19 @@ interface BuilderState {
   };
   talentsLevels: Record<TalentName, number>;
   monsterHunterTalentsLevels: Record<MonsterHunterTalentName, number>;
+  equipment: {
+    helmet?: Item & { level: number; perfectRefine: boolean };
+    body?: Item & { level: number; perfectRefine: boolean };
+    legs?: Item & { level: number; perfectRefine: boolean };
+    boots?: Item & { level: number; perfectRefine: boolean };
+    earrings?: Item & { level: number; perfectRefine: boolean };
+    necklace?: Item & { level: number; perfectRefine: boolean };
+    mainHand?: Item & { level: number; perfectRefine: boolean };
+    offHand?: Item & { level: number; perfectRefine: boolean };
+    ring?: Item & { level: number; perfectRefine: boolean };
+    amulet?: Item & { level: number; perfectRefine: boolean };
+    tool?: Item & { level: number; perfectRefine: boolean };
+  };
 }
 
 const defaultValue: BuilderState = {
@@ -60,6 +74,7 @@ const defaultValue: BuilderState = {
     reflexes: 0,
     wrath: 0,
   },
+  equipment: {},
 };
 const BuildContext = createContext<{
   state: BuilderState;

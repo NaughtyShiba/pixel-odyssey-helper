@@ -83,7 +83,9 @@ export function Talents() {
             <Input
               type="number"
               min="1"
-              max="99"
+              max={talents[talent as TalentName].maxLvl({
+                talentsLevels: state.talentsLevels,
+              })}
               value={state.talentsLevels[talent as TalentName]}
               onChange={(e) => {
                 dispatch({

@@ -2,6 +2,7 @@ export type StatType =
   | "attack"
   | "defense"
   | "mana"
+  | "mana_regen"
   | "health"
   | "speed"
   | "luck"
@@ -36,6 +37,7 @@ export const stats: Record<StatType, Stat> = {
   health: { label: "Health", refineBonus: 25 },
   luck: { label: "Luck", refineBonus: 25 },
   mana: { label: "Mana", refineBonus: 25 },
+  mana_regen: { label: "Mana Regen", refineBonus: 25 },
   speed: { label: "Speed", refineBonus: 25 },
   water_damage: { label: "Water Damage", refineBonus: 25 },
   water_defense: { label: "Water Defense", refineBonus: 25 },
