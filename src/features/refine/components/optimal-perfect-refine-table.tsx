@@ -35,6 +35,7 @@ const images: Record<StatType, string> = {
   health: new URL("@/assets/icons/hp.png", import.meta.url).href,
   luck: new URL("@/assets/icons/luck.png", import.meta.url).href,
   mana: new URL("@/assets/icons/mana.png", import.meta.url).href,
+  mana_regen: "",
   speed: new URL("@/assets/icons/speed.png", import.meta.url).href,
   water_damage: new URL("@/assets/icons/elements_fire.png", import.meta.url)
     .href,
