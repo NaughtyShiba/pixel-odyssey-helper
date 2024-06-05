@@ -9,20 +9,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import { OptimalPerfectRefineTable } from "@/features/refine/components/optimal-perfect-refine-table";
 import { RefineComparisonTable } from "@/features/refine/components/refine-comparison-table";
+import { ItemsComparisonTable } from "@/features/items/components/compare-against";
+
+type Tabs = "craft" | "refine" | "compare_refine" | "compare_against";
 
 export default function IndexRoute() {
   const { selectedItem } = useItemSelection();
-  const [tab, setTab] = useState<"craft" | "refine" | "compare_refine">(
-    "craft",
-  );
+  const [tab, setTab] = useState<Tabs>("craft");
 
   return (
     <ItemSelectionProvider>
       <Tabs
         key={selectedItem}
-        onValueChange={(tab) =>
-          setTab(tab as "craft" | "refine" | "compare_refine")
-        }
+        onValueChange={(tab) => setTab(tab as Tabs)}
         value={tab}
       >
         <TabsList>
@@ -31,6 +30,7 @@ export default function IndexRoute() {
           <TabsTrigger value="compare_refine">
             Compare Perfect vs Imperfect
           </TabsTrigger>
+          <TabsTrigger value="compare_against">Compare Against</TabsTrigger>
         </TabsList>
         <TabsContent value="craft" className="flex flex-col gap-2">
           <CraftContextProvider>
@@ -43,6 +43,9 @@ export default function IndexRoute() {
         </TabsContent>
         <TabsContent value="compare_refine" className="flex flex-col gap-2">
           <RefineComparisonTable />
+        </TabsContent>
+        <TabsContent value="compare_against" className="flex flex-col gap-2">
+          <ItemsComparisonTable />
         </TabsContent>
       </Tabs>
     </ItemSelectionProvider>

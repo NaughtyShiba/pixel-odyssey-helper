@@ -48,6 +48,7 @@ export function RefineComparisonTable() {
     <Table key={selectedItem}>
       <TableHeader>
         <TableRow>
+          <TableHead rowSpan={2}>Level</TableHead>
           <TableHead colSpan={Object.keys(item.stats!).length}>
             Perfect Refine
           </TableHead>
@@ -87,6 +88,7 @@ export function RefineComparisonTable() {
       <TableBody>
         {Object.entries(optimalRefine).map(([targetLevel, info]) => (
           <TableRow key={targetLevel}>
+            <TableCell>{targetLevel}</TableCell>
             {Object.entries(info.stats).map(([name, stat]) => (
               <TableCell key={name}>{stat}</TableCell>
             ))}
