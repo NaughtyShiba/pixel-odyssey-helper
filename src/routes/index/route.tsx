@@ -11,11 +11,11 @@ import { OptimalPerfectRefineTable } from "@/features/refine/components/optimal-
 import { RefineComparisonTable } from "@/features/refine/components/refine-comparison-table";
 import { ItemsComparisonTable } from "@/features/items/components/compare-against";
 
-type Tabs = "craft" | "refine" | "compare_refine" | "compare_against";
+type Tabs = "sources" | "refine" | "compare_refine" | "compare_against";
 
 export default function IndexRoute() {
   const { selectedItem } = useItemSelection();
-  const [tab, setTab] = useState<Tabs>("craft");
+  const [tab, setTab] = useState<Tabs>("sources");
 
   return (
     <ItemSelectionProvider>
@@ -25,18 +25,23 @@ export default function IndexRoute() {
         value={tab}
       >
         <TabsList>
-          <TabsTrigger value="craft">Craft</TabsTrigger>
+          <TabsTrigger value="sources">Sources</TabsTrigger>
           <TabsTrigger value="refine">Refine</TabsTrigger>
           <TabsTrigger value="compare_refine">
             Compare Perfect vs Imperfect
           </TabsTrigger>
           <TabsTrigger value="compare_against">Compare Against</TabsTrigger>
         </TabsList>
-        <TabsContent value="craft" className="flex flex-col gap-2">
+        <TabsContent value="sources" className="flex flex-col gap-2">
+          <h2 className="text-2xl">Crafting</h2>
           <CraftContextProvider>
             <CraftRequirementsTable />
             <TotalItemsRequirementsTable />
           </CraftContextProvider>
+          <h2 className="text-2xl">Drops</h2>
+          <div></div>
+          <h2 className="text-2xl">Shops</h2>
+          <div></div>
         </TabsContent>
         <TabsContent value="refine" className="flex flex-col gap-2">
           <OptimalPerfectRefineTable />

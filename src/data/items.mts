@@ -1,7 +1,5 @@
+import { ArrayElement } from "@/lib/ts/array-element.mjs";
 import type { StatType } from "../features/stats/types.mjs";
-
-type ArrayElement<ArrayType extends readonly unknown[]> =
-  ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 
 export const oresIDs = [
   "coal",
@@ -31,7 +29,7 @@ export const materialsIDs = [
   "branch",
   "bloodrose",
   "cyclops_hide",
-  "snake_skins",
+  "snake_skin",
   "forest_horror_hide",
   "cyclops_eye",
   "dreamspore",
@@ -582,7 +580,7 @@ export const materials: Record<MaterialsIDs, Item> = {
     type: "monster_drop",
     label: "Cyclops Hide",
   },
-  snake_skins: {
+  snake_skin: {
     type: "monster_drop",
     label: "Snake Skin",
   },
@@ -1274,7 +1272,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
       berry: 10,
     },
     craft: {
-      snake_skins: 15,
+      snake_skin: 15,
     },
   },
   mana_skull: {
