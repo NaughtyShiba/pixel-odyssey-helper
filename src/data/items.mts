@@ -152,6 +152,34 @@ export type LegwearsIDs = ArrayElement<typeof legwearsIDs>;
 export const amuletsIDs = ["sun_demon_amulet"] as const;
 export type AmuletsIDs = ArrayElement<typeof amuletsIDs>;
 
+export const toolsIDs = [
+  "iron_pickaxe",
+  "copper_pickaxe",
+  "gold_pickaxe",
+  "mana_skull",
+  "great_mana_skull",
+  "basic_gloves",
+  "snake_gloves",
+  "red_gloves",
+  "silver_pickaxe",
+  "telescope",
+] as const;
+export type ToolsIDs = ArrayElement<typeof toolsIDs>;
+
+export const footwearIDs = [
+  "wooden_shoes",
+  "gold_boots",
+  "volcanic_boots",
+  "silver_batons",
+  "platinum_boots",
+  "warm_boots",
+  "soldier_boots",
+  "magic_loafers",
+  "sandals",
+  "warm_boots",
+] as const;
+export type FootwearIDs = ArrayElement<typeof footwearIDs>;
+
 export type ItemName =
   | OresIDs
   | IngotsIDs
@@ -164,19 +192,13 @@ export type ItemName =
   | ChestwearsIDs
   | LegwearsIDs
   | AmuletsIDs
-  | "platinum_boots"
-  | "silver_pickaxe"
-  | "golden_pickaxe"
-  | "copper_pickaxe"
+  | ToolsIDs
+  | FootwearIDs
   | "copper_ore"
-  | "iron_pickaxe"
-  | "sandals"
   | "bat_wing"
   | "emerald"
   | "branch"
-  | "telescope"
-  | "purple_scarab"
-  | "red_gloves";
+  | "purple_scarab";
 
 export type ItemType =
   | "tool"
@@ -1038,8 +1060,7 @@ export const amuletEquipment: Record<AmuletsIDs, Item> = {
     },
   },
 };
-
-export const items: Record<ItemName, Item> = {
+export const toolEquipment: Record<ToolsIDs, Item> = {
   telescope: {
     type: "tool",
     label: "Telescope",
@@ -1047,31 +1068,18 @@ export const items: Record<ItemName, Item> = {
       luck: 5,
     },
   },
-  platinum_boots: {
-    type: "combat_equipment",
-    label: "Platinum Boots",
-    stats: {
-      defense: 35,
-      speed: 25,
-    },
-    craft: {
-      platinum_ingot: 12,
-      sandals: 1,
-    },
-  },
-
   silver_pickaxe: {
     type: "tool",
     label: "Silver Pickaxe",
     craft: {
       silver_ingot: 5,
-      golden_pickaxe: 1,
+      gold_pickaxe: 1,
     },
     stats: {
       mining: 18,
     },
   },
-  golden_pickaxe: {
+  gold_pickaxe: {
     type: "tool",
     label: "Golden Pickaxe",
     stats: {
@@ -1112,6 +1120,83 @@ export const items: Record<ItemName, Item> = {
       mush: 15,
     },
   },
+  basic_gloves: {
+    type: "gloves",
+    label: "Gloves",
+    stats: {
+      mush: 10,
+    },
+  },
+  snake_gloves: {
+    type: "gloves",
+    label: "Snake Gloves",
+    stats: {
+      berry: 10,
+    },
+  },
+  mana_skull: {
+    type: "combat_equipment",
+    label: "Mana Skull",
+    stats: {
+      mana: 5,
+    },
+  },
+  great_mana_skull: {
+    type: "combat_equipment",
+    label: "Great Mana Skull",
+    stats: {
+      mana: 11,
+    },
+  },
+};
+export const footwearEquipment: Record<FootwearIDs, Item> = {
+  wooden_shoes: {
+    type: "combat_equipment",
+    label: "Wooden Shoes",
+    stats: { speed: 15 },
+  },
+  gold_boots: {
+    type: "combat_equipment",
+    label: "Gold Boots",
+    stats: { defense: 12, speed: 8 },
+  },
+  volcanic_boots: {
+    type: "combat_equipment",
+    label: "Volcanic Boots",
+    stats: { defense: 20, speed: 15 },
+  },
+  silver_batons: {
+    type: "combat_equipment",
+    label: "Silver Batons",
+    stats: { defense: 20, speed: 15 },
+  },
+  platinum_boots: {
+    type: "combat_equipment",
+    label: "Platinum Boots",
+    stats: {
+      defense: 35,
+      speed: 25,
+    },
+    craft: {
+      platinum_ingot: 12,
+      sandals: 1,
+    },
+  },
+  warm_boots: {
+    type: "combat_equipment",
+    label: "Warm Boots",
+    stats: { defense: 10, fire_defense: 10 },
+  },
+  soldier_boots: {
+    type: "combat_equipment",
+    label: "Soldier Boots",
+    stats: { defense: 17, speed: 8 },
+  },
+  magic_loafers: {
+    type: "combat_equipment",
+    label: "Magic Loafers",
+    stats: { mana: 10, speed: 15 },
+  },
   sandals: {
     type: "combat_equipment",
     label: "Sandals",
@@ -1120,6 +1205,9 @@ export const items: Record<ItemName, Item> = {
       air_damage: 5,
     },
   },
+};
+
+export const items: Record<ItemName, Item> = {
   purple_scarab: {
     type: "material",
     label: "Purple Scarab",
@@ -1135,4 +1223,6 @@ export const items: Record<ItemName, Item> = {
   ...chestwearEquipment,
   ...legwearEquipment,
   ...amuletEquipment,
+  ...toolEquipment,
+  ...footwearEquipment,
 };
