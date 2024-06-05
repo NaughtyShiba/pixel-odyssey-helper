@@ -101,6 +101,27 @@ export const offHandIDs = [
 ] as const;
 export type OffHandIDs = ArrayElement<typeof offHandIDs>;
 
+export const headwearIDs = [
+  "wooden_helmet",
+  "iron_bucket",
+  "gold_helmet",
+  "volcanic_helmet",
+  "silver_helmet",
+  "platinum_helmet",
+  "soldier_helmet",
+  "santa_hat",
+  "bunny_ears",
+] as const;
+export type HeadwearIDs = ArrayElement<typeof headwearIDs>;
+
+export const necklacesIDs = [
+  "cooper_mining_necklace",
+  "gold_mining_necklace",
+  "shroom_seaker",
+  "lioras_necklace",
+] as const;
+export type NecklacesIDs = ArrayElement<typeof necklacesIDs>;
+
 export type ItemName =
   | OresIDs
   | IngotsIDs
@@ -108,12 +129,12 @@ export type ItemName =
   | RingsIDs
   | MainHandIDs
   | OffHandIDs
+  | HeadwearIDs
+  | NecklacesIDs
   | "dracula_cloak"
-  | "platinum_helmet"
   | "platinum_chestplate"
   | "platinum_greaves"
   | "platinum_boots"
-  | "gold_mining_necklace"
   | "silver_pickaxe"
   | "golden_pickaxe"
   | "copper_pickaxe"
@@ -126,10 +147,7 @@ export type ItemName =
   | "emerald"
   | "branch"
   | "telescope"
-  | "santa_hat"
-  | "bunny_ears"
   | "silver_greaves"
-  | "volcanic_helmet"
   | "volcanic_greaves"
   | "purple_cloak"
   | "purple_scarab"
@@ -494,7 +512,7 @@ export const materials: Record<MaterialsIDs, Item> = {
   },
 };
 
-export const mainhand: Record<MainHandIDs, Item> = {
+export const mainhandEquipment: Record<MainHandIDs, Item> = {
   scythe: {
     type: "combat_equipment",
     label: "Scythe",
@@ -661,7 +679,7 @@ export const mainhand: Record<MainHandIDs, Item> = {
   },
 };
 
-export const offhand: Record<OffHandIDs, Item> = {
+export const offhandEquipment: Record<OffHandIDs, Item> = {
   volcanic_shield: {
     type: "combat_equipment",
     label: "Volcanic Shield",
@@ -708,7 +726,7 @@ export const offhand: Record<OffHandIDs, Item> = {
   },
 };
 
-export const items: Record<ItemName, Item> = {
+export const headwearEquipment: Record<HeadwearIDs, Item> = {
   santa_hat: {
     type: "combat_equipment",
     label: "Santa Hat",
@@ -725,6 +743,102 @@ export const items: Record<ItemName, Item> = {
       speed: 20,
     },
   },
+  platinum_helmet: {
+    type: "combat_equipment",
+    label: "Platinum Helmet",
+    stats: {
+      defense: 40,
+      health: 45,
+    },
+    craft: {
+      platinum_ingot: 10,
+      iron_ingot: 20,
+    },
+  },
+  volcanic_helmet: {
+    type: "combat_equipment",
+    label: "Volcanic Helmet",
+    stats: {
+      defense: 60,
+      health: 15,
+    },
+  },
+  gold_helmet: {
+    type: "combat_equipment",
+    label: "Gold Helmet",
+    stats: {
+      defense: 10,
+      health: 15,
+    },
+  },
+  silver_helmet: {
+    type: "combat_equipment",
+    label: "Silver Helmet",
+    stats: {
+      defense: 20,
+      health: 25,
+    },
+  },
+  soldier_helmet: {
+    type: "combat_equipment",
+    label: "Soldier Helmet",
+    stats: {
+      defense: 22,
+      health: 15,
+    },
+  },
+  iron_bucket: {
+    type: "combat_equipment",
+    label: "Iron Bucket",
+    stats: {
+      defense: 15,
+    },
+  },
+  wooden_helmet: {
+    type: "combat_equipment",
+    label: "Wooden Helmet",
+    stats: {
+      defense: 5,
+    },
+  },
+};
+
+export const necklaceEquipment: Record<NecklacesIDs, Item> = {
+  cooper_mining_necklace: {
+    type: "skill_necklace",
+    label: "Cooper Mining Necklace",
+    stats: {
+      mining: 4,
+    },
+  },
+  gold_mining_necklace: {
+    type: "skill_necklace",
+    label: "Gold Mining Necklace",
+    stats: {
+      mining: 7,
+    },
+    craft: {
+      gold_ingot: 40,
+      emerald: 4,
+    },
+  },
+  shroom_seaker: {
+    type: "skill_necklace",
+    label: "Shroom Seeker",
+    stats: {
+      mush: 15,
+    },
+  },
+  lioras_necklace: {
+    type: "combat_necklace",
+    label: "Liora's Necklace",
+    stats: {
+      health: 40,
+    },
+  },
+};
+
+export const items: Record<ItemName, Item> = {
   telescope: {
     type: "tool",
     label: "Telescope",
@@ -740,18 +854,7 @@ export const items: Record<ItemName, Item> = {
       mana: 7,
     },
   },
-  platinum_helmet: {
-    type: "combat_equipment",
-    label: "Platinum Helmet",
-    stats: {
-      defense: 40,
-      health: 45,
-    },
-    craft: {
-      platinum_ingot: 10,
-      iron_ingot: 20,
-    },
-  },
+
   platinum_chestplate: {
     type: "combat_equipment",
     label: "Platinum Chestplate",
@@ -786,17 +889,6 @@ export const items: Record<ItemName, Item> = {
     craft: {
       platinum_ingot: 12,
       sandals: 1,
-    },
-  },
-  gold_mining_necklace: {
-    type: "skill_necklace",
-    label: "Gold Mining Necklace",
-    stats: {
-      mining: 7,
-    },
-    craft: {
-      gold_ingot: 40,
-      emerald: 4,
     },
   },
 
@@ -892,14 +984,7 @@ export const items: Record<ItemName, Item> = {
       silver_ingot: 30,
     },
   },
-  volcanic_helmet: {
-    type: "combat_equipment",
-    label: "Volcanic Helmet",
-    stats: {
-      defense: 60,
-      health: 15,
-    },
-  },
+
   volcanic_greaves: {
     type: "combat_equipment",
     label: "Volcanic Greaves",
@@ -932,6 +1017,8 @@ export const items: Record<ItemName, Item> = {
   ...ingots,
   ...materials,
   ...rings,
-  ...mainhand,
-  ...offhand,
+  ...mainhandEquipment,
+  ...offhandEquipment,
+  ...headwearEquipment,
+  ...necklaceEquipment,
 };
