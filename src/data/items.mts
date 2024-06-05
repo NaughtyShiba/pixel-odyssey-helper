@@ -1144,7 +1144,7 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
     type: "combat_equipment",
     label: "Platinum Greaves",
     stats: {
-      speed: 30,
+      attack: 30,
       defense: 50,
     },
     craft: {
