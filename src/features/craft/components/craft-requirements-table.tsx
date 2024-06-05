@@ -31,7 +31,7 @@ export function CraftRequirementsTable() {
         <TableBody>
           {Object.entries(item.craft).map(([itemName, amount]) => (
             <TableRow key={itemName}>
-              <TableCell>{amount * craftAmount.amount}</TableCell>
+              <TableCell>{amount! * craftAmount.amount}</TableCell>
               <TableCell>{items[itemName as ItemName].label}</TableCell>
             </TableRow>
           ))}
