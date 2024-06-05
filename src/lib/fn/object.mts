@@ -12,3 +12,15 @@ export function mapObject<
     ]),
   ) as Output;
 }
+
+export function filterObject<
+  Key extends string,
+  InputItem,
+  Input extends Record<Key, InputItem>,
+>(input: Input, filterFn: (key: Key, input: InputItem) => boolean): Input {
+  return Object.fromEntries(
+    Object.entries(input).filter(([key, value]) =>
+      filterFn(key as Key, value as InputItem),
+    ),
+  ) as Input;
+}

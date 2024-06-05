@@ -19,6 +19,7 @@ import {
 import { ItemName, ItemType, itemTypeLabel, items } from "@/data/items.mjs";
 import { useMediaQuery } from "@/lib/react/use-media-query.mjs";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { filterObject, mapObject } from "@/lib/fn/object.mjs";
 
 const craftableItems = Object.entries(items)
   .map(([name, item]) => ({
@@ -41,14 +42,31 @@ interface ItemSelectorProps {
 export function ItemSelector(props: ItemSelectorProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+  const [search, setSearch] = React.useState("");
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
+  const filteredGroups = filterObject(
+    mapObject(
+      groupedCraftableItems,
+      (_, items: Array<{ label: string; value: string }>) => {
+        return items.filter((item) =>
+          item.label.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+        );
+      },
+    ),
+    (_, arr: Array<{ label: string; value: string }>) => arr.length > 0,
+  );
+
   const content = (
-    <Command>
-      <CommandInput placeholder="Search for an item..." />
-      <CommandEmpty>No framework found.</CommandEmpty>
+    <Command shouldFilter={false}>
+      <CommandInput
+        placeholder="Search for an item..."
+        value={search}
+        onValueChange={(value) => React.startTransition(() => setSearch(value))}
+      />
+      <CommandEmpty>No Item found</CommandEmpty>
       <CommandList className="max-h-[400px] overflow-y-scroll">
-        {Object.entries(groupedCraftableItems).map(([group, items]) => (
+        {Object.entries(filteredGroups).map(([group, items]) => (
           <CommandGroup heading={itemTypeLabel[group as ItemType]}>
             {items.map((item) => (
               <CommandItem

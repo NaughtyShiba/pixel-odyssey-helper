@@ -1,6 +1,6 @@
 import type { ItemType } from "@/data/items.mjs";
 import { stats } from "@/features/stats/const.mjs";
-import { mapObject } from "@/lib/fn/map-object.mjs";
+import { mapObject } from "@/lib/fn/object.mjs";
 import type { StatType } from "../stats/types.mts";
 
 const MAX_LEVEL = 10;
