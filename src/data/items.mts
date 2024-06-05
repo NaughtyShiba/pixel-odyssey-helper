@@ -1,6 +1,79 @@
 import { StatType } from "./stats.mts";
 
+type ArrayElement<ArrayType extends readonly unknown[]> =
+  ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
+
+export const oresIDs = [
+  "coal",
+  "iron_ore",
+  "copper_ore",
+  "gold_ore",
+  "silver_ore",
+  "platinum_ore",
+] as const;
+export type OresIDs = ArrayElement<typeof oresIDs>;
+
+export const ingotsIDs = [
+  "iron_ingot",
+  "copper_ingot",
+  "gold_ingot",
+  "silver_ingot",
+  "platinum_ingot",
+];
+export type IngotsIDs = ArrayElement<typeof ingotsIDs>;
+
+export const materialsIDs = [
+  "chain",
+  "nail",
+  "emberfruit",
+  "bat_wing",
+  "emerald",
+  "branch",
+];
+export type MaterialsIDs = ArrayElement<typeof materialsIDs>;
+
+export const ringsIDs = [
+  "iron_ring",
+  "air_iron_ring",
+  "earth_iron_ring",
+  "fire_iron_ring",
+  "water_iron_ring",
+  "attack_iron_ring",
+  "crit_dmg_iron_ring",
+  "crit_iron_ring",
+  "flat_iron_ring",
+  "mana_iron_ring",
+  "gold_ring",
+  "air_gold_ring",
+  "earth_gold_ring",
+  "fire_gold_ring",
+  "water_gold_ring",
+  "attack_gold_ring",
+  "crit_dmg_gold_ring",
+  "crit_gold_ring",
+  "flat_gold_ring",
+  "mana_gold_ring",
+  "emerald_ring",
+  "air_emerald_ring",
+  "earth_emerald_ring",
+  "fire_emerald_ring",
+  "water_emerald_ring",
+  "attack_emerald_ring",
+  "crit_dmg_emerald_ring",
+  "crit_emerald_ring",
+  "flat_emerald_ring",
+  "mana_emerald_ring",
+  "platinum_ring",
+  "earth_platinum_ring",
+  "fire_platinum_ring",
+];
+export type RingsIDs = ArrayElement<typeof ringsIDs>;
+
 export type ItemName =
+  | OresIDs
+  | IngotsIDs
+  | MaterialsIDs
+  | RingsIDs
   | "scythe"
   | "vamp_blade_1"
   | "vamp_blade_2"
@@ -11,27 +84,15 @@ export type ItemName =
   | "platinum_chestplate"
   | "platinum_greaves"
   | "platinum_boots"
-  | "platinum_ingot"
-  | "platinum_ore"
   | "gold_mining_necklace"
   | "silver_dagger"
   | "silver_pickaxe"
-  | "silver_ingot"
-  | "silver_ore"
   | "golden_pickaxe"
-  | "gold_ingot"
-  | "gold_ore"
   | "copper_pickaxe"
-  | "copper_ingot"
   | "copper_ore"
   | "iron_pickaxe"
-  | "iron_ingot"
   | "chainmail_shirt"
-  | "iron_ore"
-  | "chain"
   | "shirt"
-  | "coal"
-  | "nail"
   | "sandals"
   | "bat_wing"
   | "emerald"
@@ -40,8 +101,8 @@ export type ItemName =
   | "santa_hat"
   | "bunny_ears"
   | "silver_greaves"
+  | "volcanic_helmet"
   | "volcanic_greaves"
-  | "emberfruit"
   | "purple_cloak"
   | "purple_scarab"
   | "red_gloves";
@@ -59,11 +120,24 @@ export type ItemType =
   | "charm"
   | "ore"
   | "material"
-  | "monster-drop";
+  | "monster_drop";
+
+export type Slot =
+  | "earrings"
+  | "headwear"
+  | "necklace"
+  | "mainhand"
+  | "body"
+  | "offhand"
+  | "ring"
+  | "legwear"
+  | "amulet"
+  | "tool"
+  | "footwear";
 
 export interface Item {
   type: ItemType;
-  icon?: string;
+  slot?: Slot;
   label: string;
   craft?: Partial<Record<ItemName, number>>;
   stats?: Partial<Record<StatType, number>>;
@@ -71,7 +145,7 @@ export interface Item {
 
 export const itemTypeLabel: Record<ItemType, string> = {
   tool: "Tool",
-  "monster-drop": "Monster Drop",
+  monster_drop: "Monster Drop",
   basic: "Basic",
   charm: "Charm",
   combat_equipment: "Combat Equipment",
@@ -83,6 +157,313 @@ export const itemTypeLabel: Record<ItemType, string> = {
   ring: "Ring",
   skill_necklace: "Skill Necklace",
   gloves: "Gloves",
+};
+export const rings: Record<RingsIDs, Item> = {
+  iron_ring: {
+    type: "ring",
+    label: "Ring",
+    stats: {
+      defense: 3,
+    },
+  },
+  air_iron_ring: {
+    type: "ring",
+    label: "Air Iron Ring",
+    stats: {
+      air_defense: 5,
+    },
+  },
+  earth_iron_ring: {
+    type: "ring",
+    label: "Earth Iron Ring",
+    stats: {
+      earth_defense: 5,
+    },
+  },
+  fire_iron_ring: {
+    type: "ring",
+    label: "Fire Iron Ring",
+    stats: {
+      fire_defense: 5,
+    },
+  },
+  water_iron_ring: {
+    type: "ring",
+    label: "Water Iron Ring",
+    stats: {
+      water_defense: 5,
+    },
+  },
+  attack_iron_ring: {
+    type: "ring",
+    label: "Attack Iron Ring",
+    stats: {
+      attack: 5,
+    },
+  },
+  crit_dmg_iron_ring: {
+    type: "ring",
+    label: "Crit Damage Iron Ring",
+    stats: {
+      crit_damage: 5,
+    },
+  },
+  crit_iron_ring: {
+    type: "ring",
+    label: "Crit Iron Ring",
+    stats: {
+      crit_chance: 5,
+    },
+  },
+  flat_iron_ring: {
+    type: "ring",
+    label: "Flat Iron Ring",
+    stats: {
+      defense: 5,
+    },
+  },
+  mana_iron_ring: {
+    type: "ring",
+    label: "Mana Iron Ring",
+    stats: {
+      mana: 3,
+    },
+  },
+  gold_ring: {
+    type: "ring",
+    label: "Gold Ring",
+    stats: {
+      defense: 8,
+    },
+  },
+  air_gold_ring: {
+    type: "ring",
+    label: "Air Gold Ring",
+    stats: {
+      air_defense: 8,
+    },
+  },
+  earth_gold_ring: {
+    type: "ring",
+    label: "Earth Gold Ring",
+    stats: {
+      earth_defense: 8,
+    },
+  },
+  fire_gold_ring: {
+    type: "ring",
+    label: "Fire Gold Ring",
+    stats: {
+      fire_defense: 8,
+    },
+  },
+  water_gold_ring: {
+    type: "ring",
+    label: "Water Gold Ring",
+    stats: {
+      water_defense: 8,
+    },
+  },
+  attack_gold_ring: {
+    type: "ring",
+    label: "Attack Gold Ring",
+    stats: {
+      attack: 8,
+    },
+  },
+  crit_dmg_gold_ring: {
+    type: "ring",
+    label: "Crit Damage Gold Ring",
+    stats: {
+      crit_damage: 8,
+    },
+  },
+  crit_gold_ring: {
+    type: "ring",
+    label: "Crit Gold Ring",
+    stats: {
+      crit_chance: 8,
+    },
+  },
+  flat_gold_ring: {
+    type: "ring",
+    label: "Flat Gold Ring",
+    stats: {
+      defense: 8,
+    },
+  },
+  mana_gold_ring: {
+    type: "ring",
+    label: "Mana Gold Ring",
+    stats: {
+      mana: 5,
+    },
+  },
+  emerald_ring: {
+    type: "ring",
+    label: "Emerald Ring",
+    stats: {
+      defense: 12,
+    },
+  },
+  air_emerald_ring: {
+    type: "ring",
+    label: "Air Emerald Ring",
+    stats: {
+      air_defense: 12,
+    },
+  },
+  earth_emerald_ring: {
+    type: "ring",
+    label: "Earth Emerald Ring",
+    stats: {
+      earth_defense: 12,
+    },
+  },
+  fire_emerald_ring: {
+    type: "ring",
+    label: "Fire Emerald Ring",
+    stats: {
+      fire_defense: 12,
+    },
+  },
+  water_emerald_ring: {
+    type: "ring",
+    label: "Water Emerald Ring",
+    stats: {
+      water_defense: 12,
+    },
+  },
+  attack_emerald_ring: {
+    type: "ring",
+    label: "Attack Emerald Ring",
+    stats: {
+      attack: 12,
+    },
+  },
+  crit_dmg_emerald_ring: {
+    type: "ring",
+    label: "Crit Damage Emerald Ring",
+    stats: {
+      crit_damage: 12,
+    },
+  },
+  crit_emerald_ring: {
+    type: "ring",
+    label: "Crit Emerald Ring",
+    stats: {
+      crit_chance: 12,
+    },
+  },
+  flat_emerald_ring: {
+    type: "ring",
+    label: "Flat Emerald Ring",
+    stats: {
+      defense: 12,
+    },
+  },
+  mana_emerald_ring: {
+    type: "ring",
+    label: "Mana Emerald Ring",
+    stats: {
+      mana: 8,
+    },
+  },
+  platinum_ring: {
+    type: "ring",
+    label: "Platinum Ring",
+    stats: {
+      defense: 20,
+    },
+  },
+  earth_platinum_ring: {
+    type: "ring",
+    label: "Earth Platinum Ring",
+    stats: {
+      earth_defense: 20,
+    },
+  },
+  fire_platinum_ring: {
+    type: "ring",
+    label: "Fire Platinum Ring",
+    stats: {
+      fire_defense: 20,
+    },
+  },
+};
+export const ores: Record<OresIDs, Item> = {
+  coal: {
+    type: "ore",
+    label: "Coal",
+  },
+  platinum_ore: {
+    type: "ore",
+    label: "Platinum Ore",
+  },
+  silver_ore: {
+    type: "ore",
+    label: "Silver Ore",
+  },
+  gold_ore: {
+    type: "ore",
+    label: "Gold Ore",
+  },
+  copper_ore: {
+    type: "ore",
+    label: "Copper Ore",
+  },
+  iron_ore: {
+    type: "ore",
+    label: "Iron Ore",
+  },
+};
+export const ingots: Record<IngotsIDs, Item> = {
+  platinum_ingot: {
+    type: "ingot",
+    label: "Platinum Ingot",
+  },
+  silver_ingot: {
+    type: "ingot",
+    label: "Silver Ingot",
+  },
+  gold_ingot: {
+    type: "ingot",
+    label: "Gold Ingot",
+  },
+  copper_ingot: {
+    type: "ingot",
+    label: "Copper Ingot",
+  },
+  iron_ingot: {
+    type: "ingot",
+    label: "Iron Ingot",
+  },
+};
+export const materials: Record<MaterialsIDs, Item> = {
+  chain: {
+    type: "material",
+    label: "Chain",
+  },
+  nail: {
+    type: "material",
+    label: "Nail",
+  },
+  emberfruit: {
+    type: "material",
+    label: "Emberfruit",
+  },
+  bat_wing: {
+    type: "monster_drop",
+    label: "Bat Wing",
+  },
+  emerald: {
+    type: "basic",
+    label: "Emerald",
+  },
+  branch: {
+    type: "basic",
+    label: "Branch",
+  },
 };
 
 export const items: Record<ItemName, Item> = {
@@ -221,18 +602,6 @@ export const items: Record<ItemName, Item> = {
       sandals: 1,
     },
   },
-  platinum_ingot: {
-    type: "ingot",
-    label: "Platinum Ingot",
-    craft: {
-      platinum_ore: 3,
-      coal: 16,
-    },
-  },
-  platinum_ore: {
-    type: "ore",
-    label: "Platinum Ore",
-  },
   gold_mining_necklace: {
     type: "skill_necklace",
     label: "Gold Mining Necklace",
@@ -267,18 +636,6 @@ export const items: Record<ItemName, Item> = {
       mining: 18,
     },
   },
-  silver_ingot: {
-    type: "ingot",
-    label: "Silver Ingot",
-    craft: {
-      silver_ore: 4,
-      coal: 5,
-    },
-  },
-  silver_ore: {
-    type: "ore",
-    label: "Silver Ore",
-  },
   golden_pickaxe: {
     type: "tool",
     label: "Golden Pickaxe",
@@ -289,18 +646,6 @@ export const items: Record<ItemName, Item> = {
       gold_ingot: 25,
       copper_pickaxe: 2,
     },
-  },
-  gold_ingot: {
-    type: "ingot",
-    label: "Gold Ingot",
-    craft: {
-      gold_ore: 4,
-      coal: 5,
-    },
-  },
-  gold_ore: {
-    type: "ore",
-    label: "Gold Ore",
   },
   copper_pickaxe: {
     type: "tool",
@@ -313,18 +658,6 @@ export const items: Record<ItemName, Item> = {
       copper_ingot: 20,
     },
   },
-  copper_ingot: {
-    type: "ingot",
-    label: "Copper Ingot",
-    craft: {
-      copper_ore: 3,
-      coal: 3,
-    },
-  },
-  copper_ore: {
-    type: "ore",
-    label: "Copper Ore",
-  },
   iron_pickaxe: {
     type: "tool",
     label: "Iron Pickaxe",
@@ -334,14 +667,6 @@ export const items: Record<ItemName, Item> = {
     craft: {
       iron_ingot: 5,
       branch: 5,
-    },
-  },
-  iron_ingot: {
-    type: "ingot",
-    label: "Iron Ingot",
-    craft: {
-      iron_ore: 2,
-      coal: 1,
     },
   },
   chainmail_shirt: {
@@ -365,28 +690,12 @@ export const items: Record<ItemName, Item> = {
       mush: 15,
     },
   },
-  iron_ore: {
-    type: "ore",
-    label: "Iron Ore",
-  },
-  chain: {
-    type: "material",
-    label: "Chain",
-  },
   shirt: {
     type: "combat_equipment",
     label: "Shirt",
     stats: {
       defense: 5,
     },
-  },
-  coal: {
-    type: "ore",
-    label: "Coal",
-  },
-  nail: {
-    type: "material",
-    label: "Nail",
   },
   sandals: {
     type: "combat_equipment",
@@ -395,18 +704,6 @@ export const items: Record<ItemName, Item> = {
       defense: 5,
       air_damage: 5,
     },
-  },
-  bat_wing: {
-    type: "monster-drop",
-    label: "Bat Wing",
-  },
-  emerald: {
-    type: "basic",
-    label: "Emerald",
-  },
-  branch: {
-    type: "basic",
-    label: "Branch",
   },
   silver_greaves: {
     type: "combat_equipment",
@@ -418,6 +715,14 @@ export const items: Record<ItemName, Item> = {
     craft: {
       volcanic_greaves: 1,
       silver_ingot: 30,
+    },
+  },
+  volcanic_helmet: {
+    type: "combat_equipment",
+    label: "Volcanic Helmet",
+    stats: {
+      defense: 60,
+      health: 15,
     },
   },
   volcanic_greaves: {
@@ -432,10 +737,6 @@ export const items: Record<ItemName, Item> = {
       emberfruit: 30,
       coal: 8,
     },
-  },
-  emberfruit: {
-    type: "material",
-    label: "Emberfruit",
   },
   purple_cloak: {
     type: "combat_equipment",
@@ -452,4 +753,8 @@ export const items: Record<ItemName, Item> = {
     type: "material",
     label: "Purple Scarab",
   },
+  ...ores,
+  ...ingots,
+  ...materials,
+  ...rings,
 };
