@@ -19,7 +19,7 @@ export const ingotsIDs = [
   "gold_ingot",
   "silver_ingot",
   "platinum_ingot",
-];
+] as const;
 export type IngotsIDs = ArrayElement<typeof ingotsIDs>;
 
 export const materialsIDs = [
@@ -29,7 +29,7 @@ export const materialsIDs = [
   "bat_wing",
   "emerald",
   "branch",
-];
+] as const;
 export type MaterialsIDs = ArrayElement<typeof materialsIDs>;
 
 export const ringsIDs = [
@@ -66,18 +66,38 @@ export const ringsIDs = [
   "platinum_ring",
   "earth_platinum_ring",
   "fire_platinum_ring",
-];
+] as const;
 export type RingsIDs = ArrayElement<typeof ringsIDs>;
+
+export const mainHandIDs = [
+  "cool_stick",
+  "wooden_sword",
+  "club",
+  "gold_sword",
+  "vamp_blade_1",
+  "vamp_blade_2",
+  "vamp_blade_3",
+  "iron_sword",
+  "volcanic_sword",
+  "silver_sword",
+  "silver_dagger",
+  "platinum_sword",
+  "platinum_dagger",
+  "earth_staff",
+  "goblin_mace",
+  "scythe",
+  "molten_axe",
+  "molten_sword",
+  "soldier_sword",
+] as const;
+export type MainHandIDs = ArrayElement<typeof mainHandIDs>;
 
 export type ItemName =
   | OresIDs
   | IngotsIDs
   | MaterialsIDs
   | RingsIDs
-  | "scythe"
-  | "vamp_blade_1"
-  | "vamp_blade_2"
-  | "vamp_blade_3"
+  | MainHandIDs
   | "dracula_cloak"
   | "platinum_shield"
   | "platinum_helmet"
@@ -85,7 +105,6 @@ export type ItemName =
   | "platinum_greaves"
   | "platinum_boots"
   | "gold_mining_necklace"
-  | "silver_dagger"
   | "silver_pickaxe"
   | "golden_pickaxe"
   | "copper_pickaxe"
@@ -466,30 +485,7 @@ export const materials: Record<MaterialsIDs, Item> = {
   },
 };
 
-export const items: Record<ItemName, Item> = {
-  santa_hat: {
-    type: "combat_equipment",
-    label: "Santa Hat",
-    stats: {
-      defense: 25,
-      luck: 8,
-    },
-  },
-  bunny_ears: {
-    type: "combat_equipment",
-    label: "Bunny Ears",
-    stats: {
-      defense: 15,
-      speed: 20,
-    },
-  },
-  telescope: {
-    type: "tool",
-    label: "Telescope",
-    stats: {
-      luck: 5,
-    },
-  },
+export const mainhand: Record<MainHandIDs, Item> = {
   scythe: {
     type: "combat_equipment",
     label: "Scythe",
@@ -532,6 +528,152 @@ export const items: Record<ItemName, Item> = {
     craft: {
       vamp_blade_2: 2,
       bat_wing: 500,
+    },
+  },
+  silver_dagger: {
+    type: "combat_equipment",
+    label: "Silver Dagger",
+    stats: {
+      attack: 37,
+      speed: 24,
+    },
+    craft: {
+      silver_ingot: 20,
+      copper_ingot: 10,
+    },
+  },
+  cool_stick: {
+    type: "combat_equipment",
+    label: "Cool Stick",
+    stats: {
+      attack: 4,
+    },
+  },
+  wooden_sword: {
+    type: "combat_equipment",
+    label: "Wooden Sword",
+    stats: {
+      attack: 10,
+      defense: 5,
+    },
+  },
+  club: {
+    type: "combat_equipment",
+    label: "Club",
+    stats: {
+      attack: 12,
+    },
+  },
+  gold_sword: {
+    type: "combat_equipment",
+    label: "Gold Sword",
+    stats: {
+      attack: 27,
+    },
+  },
+  iron_sword: {
+    type: "combat_equipment",
+    label: "Iron Sword",
+    stats: {
+      attack: 10,
+      defense: 10,
+    },
+  },
+  volcanic_sword: {
+    type: "combat_equipment",
+    label: "Volcanic Sword",
+    stats: {
+      attack: 46,
+      defense: 21,
+    },
+  },
+  silver_sword: {
+    type: "combat_equipment",
+    label: "Silver Sword",
+    stats: {
+      attack: 49,
+      defense: 40,
+    },
+  },
+  platinum_sword: {
+    type: "combat_equipment",
+    label: "Platinum Sword",
+    stats: {
+      attack: 100,
+      defense: 25,
+    },
+  },
+  platinum_dagger: {
+    type: "combat_equipment",
+    label: "Platinum Dagger",
+    stats: {
+      attack: 30,
+    },
+  },
+  earth_staff: {
+    type: "combat_equipment",
+    label: "Earth Staff",
+    stats: {
+      attack: 30,
+      mana: 15,
+      earth_damage: 10,
+    },
+  },
+  goblin_mace: {
+    type: "combat_equipment",
+    label: "Goblin Mace",
+    stats: {
+      attack: 32,
+    },
+  },
+  molten_sword: {
+    type: "combat_equipment",
+    label: "Molten Sword",
+    stats: {
+      attack: 46,
+      fire_damage: 14,
+    },
+  },
+  molten_axe: {
+    type: "combat_equipment",
+    label: "Molten Axe",
+    stats: {
+      attack: 54,
+      fire_damage: 8,
+    },
+  },
+  soldier_sword: {
+    type: "combat_equipment",
+    label: "Soldier Sword",
+    stats: {
+      attack: 38,
+      crit_chance: 10,
+    },
+  },
+};
+
+export const items: Record<ItemName, Item> = {
+  santa_hat: {
+    type: "combat_equipment",
+    label: "Santa Hat",
+    stats: {
+      defense: 25,
+      luck: 8,
+    },
+  },
+  bunny_ears: {
+    type: "combat_equipment",
+    label: "Bunny Ears",
+    stats: {
+      defense: 15,
+      speed: 20,
+    },
+  },
+  telescope: {
+    type: "tool",
+    label: "Telescope",
+    stats: {
+      luck: 5,
     },
   },
   dracula_cloak: {
@@ -613,18 +755,7 @@ export const items: Record<ItemName, Item> = {
       emerald: 4,
     },
   },
-  silver_dagger: {
-    type: "combat_equipment",
-    label: "Silver Dagger",
-    stats: {
-      attack: 37,
-      speed: 24,
-    },
-    craft: {
-      silver_ingot: 20,
-      copper_ingot: 10,
-    },
-  },
+
   silver_pickaxe: {
     type: "tool",
     label: "Silver Pickaxe",
@@ -757,4 +888,5 @@ export const items: Record<ItemName, Item> = {
   ...ingots,
   ...materials,
   ...rings,
+  ...mainhand,
 };
