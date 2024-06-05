@@ -19,4 +19,15 @@ export default defineConfig({
   define: {
     "import.meta.vitest": "undefined",
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: function manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+    },
+  },
 });
