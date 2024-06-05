@@ -1,4 +1,4 @@
-import { StatType } from "./stats.mts";
+import type { StatType } from "../features/stats/types.mjs";
 
 type ArrayElement<ArrayType extends readonly unknown[]> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never;

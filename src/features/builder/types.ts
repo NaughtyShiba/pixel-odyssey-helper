@@ -1,6 +1,6 @@
 import { Item } from "@/data/items.mjs";
 import { MonsterHunterTalentName } from "@/data/monster-hunter.mjs";
-import { TalentName } from "@/data/talents.mjs";
+import { TalentName } from "@/features/talents/type.mts";
 
 export interface ProfileStats {
   pvpKills: number;

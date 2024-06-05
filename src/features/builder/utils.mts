@@ -1,12 +1,12 @@
-import { StatType } from "@/data/stats.mjs";
+import type { StatType } from "@/features/stats/types.mjs";
 import {
   MonsterHunterTalentsLevels,
   ProfileEquipment,
   ProfileStats,
   TalentsLevels,
 } from "./types";
-import { talents } from "@/data/talents.mjs";
 import { Item } from "@/data/items.mjs";
+import { talents } from "@/features/talents/const.mts";
 
 const BASE_STATS: Record<StatType, number> = {
   defense: 15,

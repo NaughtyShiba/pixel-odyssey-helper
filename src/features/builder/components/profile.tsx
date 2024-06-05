@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { useBuilder } from "../context";
-import { stats } from "@/data/stats.mjs";
+import { stats } from "@/features/stats/const.mjs";
 import {
   Table,
   TableBody,

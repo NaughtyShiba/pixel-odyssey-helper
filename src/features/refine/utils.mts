@@ -1,5 +1,7 @@
-import { ItemType } from "@/data/items.mjs";
-import { StatType, stats } from "@/data/stats.mjs";
+import type { ItemType } from "@/data/items.mjs";
+import { stats } from "@/features/stats/const.mjs";
+import { mapObject } from "@/lib/fn/map-object.mjs";
+import type { StatType } from "../stats/types.mts";
 
 const MAX_LEVEL = 10;
 const MINIMAL_BONUS_INCREASE = 2;
@@ -86,4 +88,30 @@ export function calculateOptimalPerfectRefine(
     };
   }
   return requiredForPerfectRefine;
+}
+
+interface CalculateImperfectRefine {
+  levelOneStats: Partial<Record<StatType, number>>;
+}
+export function calculateImperfectRefine(props: CalculateImperfectRefine) {
+  const statsAtLevel: Record<number, Partial<Record<StatType, number>>> = {
+    1: props.levelOneStats,
+  };
+
+  for (let targetLevel = 2; targetLevel <= 10; targetLevel++) {
+    const tmp = statsAtLevel[targetLevel - 1];
+    const newStats = mapObject(tmp, (stat, val: number) => {
+      return (val! +
+        Math.max(
+          Math.floor(
+            (props.levelOneStats[stat as StatType]! / 100) *
+              getRatePerStatType(stat),
+          ),
+          2,
+        )) as number;
+    });
+    statsAtLevel[targetLevel] = newStats;
+  }
+
+  return statsAtLevel;
 }
