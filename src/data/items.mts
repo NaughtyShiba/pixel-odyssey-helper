@@ -138,6 +138,20 @@ export const chestwearsIDs = [
 ] as const;
 export type ChestwearsIDs = ArrayElement<typeof chestwearsIDs>;
 
+export const legwearsIDs = [
+  "wooden_legwear",
+  "gold_greaves",
+  "volcanic_greaves",
+  "silver_greaves",
+  "platinum_greaves",
+  "wooden_legwear",
+  "soldier_legwear",
+] as const;
+export type LegwearsIDs = ArrayElement<typeof legwearsIDs>;
+
+export const amuletsIDs = ["sun_demon_amulet"] as const;
+export type AmuletsIDs = ArrayElement<typeof amuletsIDs>;
+
 export type ItemName =
   | OresIDs
   | IngotsIDs
@@ -148,7 +162,8 @@ export type ItemName =
   | HeadwearIDs
   | NecklacesIDs
   | ChestwearsIDs
-  | "platinum_greaves"
+  | LegwearsIDs
+  | AmuletsIDs
   | "platinum_boots"
   | "silver_pickaxe"
   | "golden_pickaxe"
@@ -160,8 +175,6 @@ export type ItemName =
   | "emerald"
   | "branch"
   | "telescope"
-  | "silver_greaves"
-  | "volcanic_greaves"
   | "purple_scarab"
   | "red_gloves";
 
@@ -523,7 +536,6 @@ export const materials: Record<MaterialsIDs, Item> = {
     label: "Branch",
   },
 };
-
 export const mainhandEquipment: Record<MainHandIDs, Item> = {
   scythe: {
     type: "combat_equipment",
@@ -690,7 +702,6 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
 };
-
 export const offhandEquipment: Record<OffHandIDs, Item> = {
   volcanic_shield: {
     type: "combat_equipment",
@@ -737,7 +748,6 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     },
   },
 };
-
 export const headwearEquipment: Record<HeadwearIDs, Item> = {
   santa_hat: {
     type: "combat_equipment",
@@ -814,7 +824,6 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
 };
-
 export const necklaceEquipment: Record<NecklacesIDs, Item> = {
   cooper_mining_necklace: {
     type: "skill_necklace",
@@ -849,7 +858,6 @@ export const necklaceEquipment: Record<NecklacesIDs, Item> = {
     },
   },
 };
-
 export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
   draculas_cloak: {
     type: "combat_equipment",
@@ -958,16 +966,30 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
 };
-
-export const items: Record<ItemName, Item> = {
-  telescope: {
-    type: "tool",
-    label: "Telescope",
+export const legwearEquipment: Record<LegwearsIDs, Item> = {
+  wooden_legwear: {
+    type: "combat_equipment",
+    label: "Wooden Legwear",
     stats: {
-      luck: 5,
+      defense: 5,
     },
   },
-
+  gold_greaves: {
+    type: "combat_equipment",
+    label: "Gold Greaves",
+    stats: {
+      defense: 10,
+      speed: 5,
+    },
+  },
+  soldier_legwear: {
+    type: "combat_equipment",
+    label: "Soldier Greaves",
+    stats: {
+      health: 25,
+      speed: 10,
+    },
+  },
   platinum_greaves: {
     type: "combat_equipment",
     label: "Platinum Greaves",
@@ -978,6 +1000,51 @@ export const items: Record<ItemName, Item> = {
     craft: {
       platinum_ingot: 8,
       nail: 10,
+    },
+  },
+  volcanic_greaves: {
+    type: "combat_equipment",
+    label: "Volcanic Greaves",
+    stats: {
+      defense: 30,
+      speed: 10,
+    },
+    craft: {
+      iron_ingot: 1,
+      emberfruit: 30,
+      coal: 8,
+    },
+  },
+  silver_greaves: {
+    type: "combat_equipment",
+    label: "Silver Greaves",
+    stats: {
+      health: 25,
+      speed: 15,
+    },
+    craft: {
+      volcanic_greaves: 1,
+      silver_ingot: 30,
+    },
+  },
+};
+export const amuletEquipment: Record<AmuletsIDs, Item> = {
+  sun_demon_amulet: {
+    type: "combat_equipment",
+    label: "Sun Demon Amulet",
+    stats: {
+      fire_damage: 7,
+      fire_defense: 14,
+    },
+  },
+};
+
+export const items: Record<ItemName, Item> = {
+  telescope: {
+    type: "tool",
+    label: "Telescope",
+    stats: {
+      luck: 5,
     },
   },
   platinum_boots: {
@@ -1045,39 +1112,12 @@ export const items: Record<ItemName, Item> = {
       mush: 15,
     },
   },
-
   sandals: {
     type: "combat_equipment",
     label: "Sandals",
     stats: {
       defense: 5,
       air_damage: 5,
-    },
-  },
-  silver_greaves: {
-    type: "combat_equipment",
-    label: "Silver Greaves",
-    stats: {
-      health: 25,
-      speed: 15,
-    },
-    craft: {
-      volcanic_greaves: 1,
-      silver_ingot: 30,
-    },
-  },
-
-  volcanic_greaves: {
-    type: "combat_equipment",
-    label: "Volcanic Greaves",
-    stats: {
-      defense: 30,
-      speed: 10,
-    },
-    craft: {
-      iron_ingot: 1,
-      emberfruit: 30,
-      coal: 8,
     },
   },
   purple_scarab: {
@@ -1093,4 +1133,6 @@ export const items: Record<ItemName, Item> = {
   ...headwearEquipment,
   ...necklaceEquipment,
   ...chestwearEquipment,
+  ...legwearEquipment,
+  ...amuletEquipment,
 };
