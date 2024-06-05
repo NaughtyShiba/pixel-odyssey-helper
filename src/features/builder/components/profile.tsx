@@ -1,7 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { useBuilder } from "../context";
-import { StatType, stats } from "@/data/stats.mjs";
-import { talents } from "@/data/talents.mjs";
+import { stats } from "@/data/stats.mjs";
 import {
   Table,
   TableBody,
@@ -10,77 +9,25 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { calculateStats } from "../utils.mts";
+import { Slot } from "@/data/items.mjs";
 
-const BASE_STATS: Record<StatType, number> = {
-  defense: 15,
-  mana: 25,
-  mana_regen: 2,
-  attack: 10,
-  health: 50,
-  speed: 1,
-  crit_chance: 2,
-  crit_damage: 100,
-
-  air_damage: 0,
-  air_defense: 0,
-  berry: 0,
-  earth_damage: 0,
-  earth_defense: 0,
-  fire_damage: 0,
-  fire_defense: 0,
-  luck: 0,
-  mining: 0,
-  mush: 0,
-  water_damage: 0,
-  water_defense: 0,
+const shadowsImages: Record<Slot, string> = {
+  earrings: new URL("@/assets/icons/earrings_shadow.png", import.meta.url).href,
+  headwear: new URL("@/assets/icons/helmet_shadow.png", import.meta.url).href,
+  necklace: new URL("@/assets/icons/necklace_shadow.png", import.meta.url).href,
+  mainhand: new URL("@/assets/icons/sword_shadow.png", import.meta.url).href,
+  body: new URL("@/assets/icons/chestplate_shadow.png", import.meta.url).href,
+  offhand: new URL("@/assets/icons/shield_shadow.png", import.meta.url).href,
+  ring: new URL("@/assets/icons/ring_shadow.png", import.meta.url).href,
+  legwear: new URL("@/assets/icons/legwear_shadow.png", import.meta.url).href,
+  amulet: new URL("@/assets/icons/amulet_shadow.png", import.meta.url).href,
+  tool: new URL("@/assets/icons/tool_shadow.png", import.meta.url).href,
+  footwear: new URL("@/assets/icons/shoe_shadow.png", import.meta.url).href,
 };
 
 export function Profile() {
   const { state, dispatch } = useBuilder();
-
-  const baseStats = structuredClone(BASE_STATS);
-  const statsPercentageBonus: Partial<Record<StatType, number>> = {};
-
-  // Add Equipments stats
-  Object.values(state.equipment).forEach((item) => {
-    if (!item || !item.stats) return;
-    Object.entries(item.stats).forEach(([stat, value]) => {
-      baseStats[stat as StatType] += value;
-    });
-  });
-
-  // Percentage bonuses from monster hunter
-  statsPercentageBonus.speed = state.monsterHunterTalentsLevels.reflexes * 0.5;
-
-  // Add non-percent monster hunter stats
-  baseStats.attack += state.monsterHunterTalentsLevels.wrath * 0.5;
-  baseStats.health += state.monsterHunterTalentsLevels.heart;
-  baseStats.defense += state.monsterHunterTalentsLevels.necklace;
-
-  // Percentage bonuses from talents
-  statsPercentageBonus.defense = state.talentsLevels.defense_expertise;
-  statsPercentageBonus.health = state.talentsLevels.hp_expertise;
-  statsPercentageBonus.mana = state.talentsLevels.mana_expertise;
-  statsPercentageBonus.attack =
-    state.talentsLevels.willpower *
-    0.2 *
-    talents.willpower.multiplier(state.profile);
-  statsPercentageBonus.attack +=
-    state.talentsLevels.damage_per_kill *
-    0.25 *
-    talents.damage_per_kill.multiplier(state.profile);
-  statsPercentageBonus.health +=
-    state.talentsLevels.pride * 0.02 * talents.pride.multiplier(state.profile);
-
-  // Add stats bonuses from talentts
-  baseStats.attack += state.talentsLevels.strength;
-  baseStats.defense += state.talentsLevels.defense;
-  baseStats.speed += state.talentsLevels.agility * 1.5;
-  baseStats.luck += state.talentsLevels.luck;
-  baseStats.mana += state.talentsLevels.mana * 0.25;
-  baseStats.crit_chance += state.talentsLevels.critical_chance * 0.5;
-  baseStats.mana_regen += state.talentsLevels.mana_regen * 0.2;
-  baseStats.crit_damage += state.talentsLevels.critical_damage * 2;
 
   return (
     <div className="flex flex-col gap-4">
@@ -88,6 +35,8 @@ export function Profile() {
         <Input
           type="number"
           placeholder="Coliseum Trophies"
+          label="Coliseum Trophies"
+          id="coliseum-trophies"
           value={state.profile.coliseumTrophies}
           onChange={(e) => {
             dispatch({
@@ -100,6 +49,8 @@ export function Profile() {
         <Input
           type="number"
           placeholder="PVP Kills"
+          label="PVP Kills"
+          id="pvp-kills"
           value={state.profile.pvpKills}
           onChange={(e) => {
             dispatch({
@@ -112,6 +63,8 @@ export function Profile() {
         <Input
           type="number"
           placeholder="Wisdom"
+          label="Wisdom"
+          id="wisdom"
           value={state.profile.wisdom}
           onChange={(e) => {
             dispatch({
@@ -121,6 +74,46 @@ export function Profile() {
             });
           }}
         />
+      </div>
+      <div>
+        <div className="grid grid-cols-3 gap-4 w-32">
+          <div>
+            <img src={shadowsImages.earrings} className="w-8 h-8" />
+          </div>
+          <div>
+            <img src={shadowsImages.headwear} className="w-8 h-8" />
+          </div>
+          <div>
+            <img src={shadowsImages.necklace} className="w-8 h-8" />
+          </div>
+
+          <div>
+            <img src={shadowsImages.mainhand} className="w-8 h-8" />
+          </div>
+          <div>
+            <img src={shadowsImages.body} className="w-8 h-8" />
+          </div>
+          <div>
+            <img src={shadowsImages.offhand} className="w-8 h-8" />
+          </div>
+
+          <div>
+            <img src={shadowsImages.ring} className="w-8 h-8" />
+          </div>
+          <div>
+            <img src={shadowsImages.legwear} className="w-8 h-8" />
+          </div>
+          <div>
+            <img src={shadowsImages.amulet} className="w-8 h-8" />
+          </div>
+
+          <div>
+            <img src={shadowsImages.tool} className="w-8 h-8" />
+          </div>
+          <div>
+            <img src={shadowsImages.footwear} className="w-8 h-8" />
+          </div>
+        </div>
       </div>
       <div>
         <Table>
@@ -133,17 +126,12 @@ export function Profile() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {Object.entries(baseStats).map(([statName, baseValue]) => (
-              <TableRow key={statName}>
-                <TableCell>{stats[statName as StatType].label}</TableCell>
-                <TableCell>{baseValue}</TableCell>
-                <TableCell>
-                  {statsPercentageBonus[statName as StatType]}
-                </TableCell>
-                <TableCell>
-                  {baseValue *
-                    (1 + (statsPercentageBonus[statName as StatType] ?? 1))}
-                </TableCell>
+            {calculateStats(state).map((stat) => (
+              <TableRow key={stat.name}>
+                <TableCell>{stats[stat.name].label}</TableCell>
+                <TableCell>{stat.base}</TableCell>
+                <TableCell>{stat.bonus}</TableCell>
+                <TableCell>{stat.total}</TableCell>
               </TableRow>
             ))}
           </TableBody>

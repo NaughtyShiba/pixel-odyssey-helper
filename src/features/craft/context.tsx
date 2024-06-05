@@ -22,10 +22,11 @@ export function CraftContextProvider({ children }: CraftContextProviderProps) {
         {item?.craft ? (
           <div className="flex flex-col md:flex-row gap-4">
             <Input
+              id="amount"
               type="number"
               min="1"
-              className="flex-basis-1/2 w-full md:w-1/2"
               placeholder="Amount to craft (defaults to 1)"
+              label="Amount to craft (defaults to 1)"
               value={amount}
               onChange={(e) => {
                 const amount = parseInt(e.target.value);

@@ -81,6 +81,7 @@ export function Talents() {
               src={talentsImages[talent as TalentName]}
             />
             <Input
+              id={talent}
               type="number"
               min="1"
               max={talents[talent as TalentName].maxLvl({
@@ -108,6 +109,7 @@ export function Talents() {
               }
             />
             <Input
+              id={talent}
               type="number"
               min="1"
               max="99"

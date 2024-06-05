@@ -1,32 +1,19 @@
 import { ActionDispatch, createContext, useContext, useReducer } from "react";
-import { TalentName } from "@/data/talents.mjs";
-import { MonsterHunterTalentName } from "@/data/monster-hunter.mjs";
-import { Item } from "@/data/items.mjs";
+import {
+  MonsterHunterTalentsLevels,
+  ProfileEquipment,
+  ProfileStats,
+  TalentsLevels,
+} from "./types";
 
 interface BuildContextProviderProps {
   children: React.ReactNode;
 }
 interface BuilderState {
-  profile: {
-    pvpKills: number;
-    wisdom: number;
-    coliseumTrophies: number;
-  };
-  talentsLevels: Record<TalentName, number>;
-  monsterHunterTalentsLevels: Record<MonsterHunterTalentName, number>;
-  equipment: {
-    helmet?: Item & { level: number; perfectRefine: boolean };
-    body?: Item & { level: number; perfectRefine: boolean };
-    legs?: Item & { level: number; perfectRefine: boolean };
-    boots?: Item & { level: number; perfectRefine: boolean };
-    earrings?: Item & { level: number; perfectRefine: boolean };
-    necklace?: Item & { level: number; perfectRefine: boolean };
-    mainHand?: Item & { level: number; perfectRefine: boolean };
-    offHand?: Item & { level: number; perfectRefine: boolean };
-    ring?: Item & { level: number; perfectRefine: boolean };
-    amulet?: Item & { level: number; perfectRefine: boolean };
-    tool?: Item & { level: number; perfectRefine: boolean };
-  };
+  profile: ProfileStats;
+  talentsLevels: TalentsLevels;
+  monsterHunterTalentsLevels: MonsterHunterTalentsLevels;
+  equipment: ProfileEquipment;
 }
 
 const defaultValue: BuilderState = {
@@ -74,7 +61,19 @@ const defaultValue: BuilderState = {
     reflexes: 0,
     wrath: 0,
   },
-  equipment: {},
+  equipment: {
+    helmet: null,
+    body: null,
+    legs: null,
+    boots: null,
+    earrings: null,
+    necklace: null,
+    mainHand: null,
+    offHand: null,
+    ring: null,
+    amulet: null,
+    tool: null,
+  },
 };
 const BuildContext = createContext<{
   state: BuilderState;
