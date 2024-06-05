@@ -92,14 +92,23 @@ export const mainHandIDs = [
 ] as const;
 export type MainHandIDs = ArrayElement<typeof mainHandIDs>;
 
+export const offHandIDs = [
+  "volcanic_shield",
+  "platinum_shield",
+  "goblin_shield",
+  "pink_shield",
+  "soldier_shield",
+] as const;
+export type OffHandIDs = ArrayElement<typeof offHandIDs>;
+
 export type ItemName =
   | OresIDs
   | IngotsIDs
   | MaterialsIDs
   | RingsIDs
   | MainHandIDs
+  | OffHandIDs
   | "dracula_cloak"
-  | "platinum_shield"
   | "platinum_helmet"
   | "platinum_chestplate"
   | "platinum_greaves"
@@ -652,6 +661,53 @@ export const mainhand: Record<MainHandIDs, Item> = {
   },
 };
 
+export const offhand: Record<OffHandIDs, Item> = {
+  volcanic_shield: {
+    type: "combat_equipment",
+    label: "Volcanic Shield",
+    stats: {
+      defense: 64,
+      health: 20,
+    },
+  },
+  platinum_shield: {
+    type: "combat_equipment",
+    label: "Platinum Shield",
+    stats: {
+      defense: 99,
+      mana: 10,
+    },
+    craft: {
+      coal: 10,
+      platinum_ingot: 25,
+    },
+  },
+  goblin_shield: {
+    type: "combat_equipment",
+    label: "Goblin Shield",
+    stats: {
+      attack: 5,
+      defense: 35,
+    },
+  },
+  pink_shield: {
+    type: "combat_equipment",
+    label: "Pink Shield",
+    stats: {
+      defense: 20,
+      air_defense: 10,
+    },
+  },
+  soldier_shield: {
+    type: "combat_equipment",
+    label: "Soldier Shield",
+    stats: {
+      defense: 18,
+      fire_defense: 10,
+    },
+  },
+};
+
 export const items: Record<ItemName, Item> = {
   santa_hat: {
     type: "combat_equipment",
@@ -682,18 +738,6 @@ export const items: Record<ItemName, Item> = {
     stats: {
       defense: 40,
       mana: 7,
-    },
-  },
-  platinum_shield: {
-    type: "combat_equipment",
-    label: "Platinum Shield",
-    stats: {
-      defense: 99,
-      mana: 10,
-    },
-    craft: {
-      coal: 10,
-      platinum_ingot: 25,
     },
   },
   platinum_helmet: {
@@ -889,4 +933,5 @@ export const items: Record<ItemName, Item> = {
   ...materials,
   ...rings,
   ...mainhand,
+  ...offhand,
 };
