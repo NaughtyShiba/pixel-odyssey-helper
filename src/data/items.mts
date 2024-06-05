@@ -29,6 +29,12 @@ export const materialsIDs = [
   "bat_wing",
   "emerald",
   "branch",
+  "bloodrose",
+  "cyclops_hide",
+  "snake_skins",
+  "forest_horror_hide",
+  "cyclops_eye",
+  "dreamspore",
 ] as const;
 export type MaterialsIDs = ArrayElement<typeof materialsIDs>;
 
@@ -115,7 +121,7 @@ export const headwearIDs = [
 export type HeadwearIDs = ArrayElement<typeof headwearIDs>;
 
 export const necklacesIDs = [
-  "cooper_mining_necklace",
+  "copper_mining_necklace",
   "gold_mining_necklace",
   "shroom_seaker",
   "lioras_necklace",
@@ -213,7 +219,8 @@ export type ItemType =
   | "charm"
   | "ore"
   | "material"
-  | "monster_drop";
+  | "monster_drop"
+  | "mushroom";
 
 export type Slot =
   | "earrings"
@@ -250,6 +257,7 @@ export const itemTypeLabel: Record<ItemType, string> = {
   ring: "Ring",
   skill_necklace: "Skill Necklace",
   gloves: "Gloves",
+  mushroom: "Mushroom",
 };
 export const rings: Record<RingsIDs, Item> = {
   iron_ring: {
@@ -514,22 +522,27 @@ export const ingots: Record<IngotsIDs, Item> = {
   platinum_ingot: {
     type: "ingot",
     label: "Platinum Ingot",
+    craft: { platinum_ore: 3, coal: 5 },
   },
   silver_ingot: {
     type: "ingot",
     label: "Silver Ingot",
+    craft: { silver_ore: 4, coal: 5 },
   },
   gold_ingot: {
     type: "ingot",
     label: "Gold Ingot",
+    craft: { gold_ore: 4, coal: 5 },
   },
   copper_ingot: {
     type: "ingot",
     label: "Copper Ingot",
+    craft: { copper_ore: 3, coal: 3 },
   },
   iron_ingot: {
     type: "ingot",
     label: "Iron Ingot",
+    craft: { iron_ore: 2, coal: 1 },
   },
 };
 export const materials: Record<MaterialsIDs, Item> = {
@@ -556,6 +569,30 @@ export const materials: Record<MaterialsIDs, Item> = {
   branch: {
     type: "basic",
     label: "Branch",
+  },
+  bloodrose: {
+    type: "basic",
+    label: "Bloodrose",
+  },
+  cyclops_eye: {
+    type: "monster_drop",
+    label: "Eyeball",
+  },
+  cyclops_hide: {
+    type: "monster_drop",
+    label: "Cyclops Hide",
+  },
+  snake_skins: {
+    type: "monster_drop",
+    label: "Snake Skin",
+  },
+  forest_horror_hide: {
+    type: "monster_drop",
+    label: "Forrest Horro Hide",
+  },
+  dreamspore: {
+    type: "mushroom",
+    label: "Dreamspore",
   },
 };
 export const mainhandEquipment: Record<MainHandIDs, Item> = {
@@ -621,6 +658,9 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     stats: {
       attack: 4,
     },
+    craft: {
+      branch: 5,
+    },
   },
   wooden_sword: {
     type: "combat_equipment",
@@ -629,6 +669,9 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
       attack: 10,
       defense: 5,
     },
+    craft: {
+      branch: 25,
+    },
   },
   club: {
     type: "combat_equipment",
@@ -636,12 +679,20 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     stats: {
       attack: 12,
     },
+    craft: {
+      branch: 15,
+      nail: 5,
+    },
   },
   gold_sword: {
     type: "combat_equipment",
     label: "Gold Sword",
     stats: {
       attack: 27,
+    },
+    craft: {
+      gold_ingot: 15,
+      emerald: 3,
     },
   },
   iron_sword: {
@@ -651,6 +702,10 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
       attack: 10,
       defense: 10,
     },
+    craft: {
+      wooden_sword: 2,
+      iron_ingot: 25,
+    },
   },
   volcanic_sword: {
     type: "combat_equipment",
@@ -658,6 +713,12 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     stats: {
       attack: 46,
       defense: 21,
+    },
+    craft: {
+      iron_sword: 2,
+      iron_ingot: 10,
+      emberfruit: 15,
+      coal: 10,
     },
   },
   silver_sword: {
@@ -667,6 +728,10 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
       attack: 49,
       defense: 40,
     },
+    craft: {
+      iron_sword: 1,
+      silver_ingot: 25,
+    },
   },
   platinum_sword: {
     type: "combat_equipment",
@@ -675,12 +740,19 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
       attack: 100,
       defense: 25,
     },
+    craft: {
+      platinum_ingot: 15,
+    },
   },
   platinum_dagger: {
     type: "combat_equipment",
     label: "Platinum Dagger",
     stats: {
       attack: 30,
+    },
+    craft: {
+      platinum_ingot: 10,
+      bloodrose: 5,
     },
   },
   earth_staff: {
@@ -731,6 +803,11 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     stats: {
       defense: 64,
       health: 20,
+    },
+    craft: {
+      iron_ingot: 15,
+      emberfruit: 10,
+      coal: 8,
     },
   },
   platinum_shield: {
@@ -806,6 +883,11 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
       defense: 60,
       health: 15,
     },
+    craft: {
+      iron_ingot: 15,
+      emberfruit: 10,
+      coal: 8,
+    },
   },
   gold_helmet: {
     type: "combat_equipment",
@@ -814,6 +896,9 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
       defense: 10,
       health: 15,
     },
+    craft: {
+      gold_ingot: 15,
+    },
   },
   silver_helmet: {
     type: "combat_equipment",
@@ -821,6 +906,10 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     stats: {
       defense: 20,
       health: 25,
+    },
+    craft: {
+      gold_helmet: 1,
+      silver_ingot: 20,
     },
   },
   soldier_helmet: {
@@ -837,6 +926,11 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     stats: {
       defense: 15,
     },
+    craft: {
+      wooden_helmet: 4,
+      iron_ingot: 15,
+      coal: 5,
+    },
   },
   wooden_helmet: {
     type: "combat_equipment",
@@ -844,14 +938,21 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     stats: {
       defense: 5,
     },
+    craft: {
+      branch: 50,
+    },
   },
 };
 export const necklaceEquipment: Record<NecklacesIDs, Item> = {
-  cooper_mining_necklace: {
+  copper_mining_necklace: {
     type: "skill_necklace",
     label: "Cooper Mining Necklace",
     stats: {
       mining: 4,
+    },
+    craft: {
+      copper_ingot: 25,
+      emerald: 3,
     },
   },
   gold_mining_necklace: {
@@ -870,6 +971,10 @@ export const necklaceEquipment: Record<NecklacesIDs, Item> = {
     label: "Shroom Seeker",
     stats: {
       mush: 15,
+    },
+    craft: {
+      dreamspore: 25,
+      iron_ingot: 15,
     },
   },
   lioras_necklace: {
@@ -947,6 +1052,10 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
       defense: 20,
       health: 25,
     },
+    craft: {
+      chainmail_shirt: 5,
+      gold_ingot: 20,
+    },
   },
   long_sleeve_shirt: {
     type: "combat_equipment",
@@ -962,6 +1071,10 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     stats: {
       defense: 60,
       health: 25,
+    },
+    craft: {
+      chainmail_shirt: 1,
+      silver_ingot: 35,
     },
   },
   soldier_chest: {
@@ -979,12 +1092,22 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
       defense: 45,
       health: 32,
     },
+    craft: {
+      gold_chestplate: 2,
+      iron_ingot: 15,
+      emberfruit: 20,
+      coal: 12,
+    },
   },
   wooden_chestplate: {
     type: "combat_equipment",
     label: "Wooden Chestplate",
     stats: {
       health: 20,
+    },
+    craft: {
+      branch: 20,
+      iron_ingot: 4,
     },
   },
 };
@@ -995,6 +1118,10 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
     stats: {
       defense: 5,
     },
+    craft: {
+      branch: 30,
+      iron_ingot: 4,
+    },
   },
   gold_greaves: {
     type: "combat_equipment",
@@ -1002,6 +1129,9 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
     stats: {
       defense: 10,
       speed: 5,
+    },
+    craft: {
+      gold_ingot: 20,
     },
   },
   soldier_legwear: {
@@ -1067,6 +1197,10 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     stats: {
       luck: 5,
     },
+    craft: {
+      gold_ingot: 25,
+      cyclops_eye: 2,
+    },
   },
   silver_pickaxe: {
     type: "tool",
@@ -1119,6 +1253,9 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
       berry: 15,
       mush: 15,
     },
+    craft: {
+      forest_horror_hide: 20,
+    },
   },
   basic_gloves: {
     type: "gloves",
@@ -1126,12 +1263,18 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     stats: {
       mush: 10,
     },
+    craft: {
+      cyclops_hide: 10,
+    },
   },
   snake_gloves: {
     type: "gloves",
     label: "Snake Gloves",
     stats: {
       berry: 10,
+    },
+    craft: {
+      snake_skins: 15,
     },
   },
   mana_skull: {
@@ -1159,16 +1302,26 @@ export const footwearEquipment: Record<FootwearIDs, Item> = {
     type: "combat_equipment",
     label: "Gold Boots",
     stats: { defense: 12, speed: 8 },
+    craft: { gold_ingot: 20 },
   },
   volcanic_boots: {
     type: "combat_equipment",
     label: "Volcanic Boots",
     stats: { defense: 20, speed: 15 },
+    craft: {
+      iron_ingot: 12,
+      emberfruit: 5,
+      coal: 5,
+    },
   },
   silver_batons: {
     type: "combat_equipment",
     label: "Silver Batons",
     stats: { defense: 20, speed: 15 },
+    craft: {
+      warm_boots: 1,
+      silver_ingot: 15,
+    },
   },
   platinum_boots: {
     type: "combat_equipment",
