@@ -10,6 +10,7 @@ import { useState } from "react";
 import { OptimalPerfectRefineTable } from "@/features/refine/components/optimal-perfect-refine-table";
 import { RefineComparisonTable } from "@/features/refine/components/refine-comparison-table";
 import { ItemsComparisonTable } from "@/features/items/components/compare-against";
+import { ItemsDropTable } from "@/features/items/components/drop-table";
 
 type Tabs = "sources" | "refine" | "compare_refine" | "compare_against";
 
@@ -39,7 +40,7 @@ export default function IndexRoute() {
             <TotalItemsRequirementsTable />
           </CraftContextProvider>
           <h2 className="text-2xl">Drops</h2>
-          <div></div>
+          <ItemsDropTable />
           <h2 className="text-2xl">Shops</h2>
           <div></div>
         </TabsContent>
