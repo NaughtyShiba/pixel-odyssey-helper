@@ -122,6 +122,22 @@ export const necklacesIDs = [
 ] as const;
 export type NecklacesIDs = ArrayElement<typeof necklacesIDs>;
 
+export const chestwearsIDs = [
+  "wooden_chestplate",
+  "chainmail_shirt",
+  "gold_chestplate",
+  "volcanic_chestplate",
+  "silver_chestplate",
+  "platinum_chestplate",
+  "draculas_cloak",
+  "dark_blue_cloak",
+  "long_sleeve_shirt",
+  "purple_cloak",
+  "soldier_chest",
+  "shirt",
+] as const;
+export type ChestwearsIDs = ArrayElement<typeof chestwearsIDs>;
+
 export type ItemName =
   | OresIDs
   | IngotsIDs
@@ -131,8 +147,7 @@ export type ItemName =
   | OffHandIDs
   | HeadwearIDs
   | NecklacesIDs
-  | "dracula_cloak"
-  | "platinum_chestplate"
+  | ChestwearsIDs
   | "platinum_greaves"
   | "platinum_boots"
   | "silver_pickaxe"
@@ -140,8 +155,6 @@ export type ItemName =
   | "copper_pickaxe"
   | "copper_ore"
   | "iron_pickaxe"
-  | "chainmail_shirt"
-  | "shirt"
   | "sandals"
   | "bat_wing"
   | "emerald"
@@ -149,7 +162,6 @@ export type ItemName =
   | "telescope"
   | "silver_greaves"
   | "volcanic_greaves"
-  | "purple_cloak"
   | "purple_scarab"
   | "red_gloves";
 
@@ -173,7 +185,7 @@ export type Slot =
   | "headwear"
   | "necklace"
   | "mainhand"
-  | "body"
+  | "chestwear"
   | "offhand"
   | "ring"
   | "legwear"
@@ -529,7 +541,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
       health: 50,
     },
     craft: {
-      dracula_cloak: 1,
+      draculas_cloak: 1,
       bat_wing: 100,
     },
   },
@@ -838,15 +850,8 @@ export const necklaceEquipment: Record<NecklacesIDs, Item> = {
   },
 };
 
-export const items: Record<ItemName, Item> = {
-  telescope: {
-    type: "tool",
-    label: "Telescope",
-    stats: {
-      luck: 5,
-    },
-  },
-  dracula_cloak: {
+export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
+  draculas_cloak: {
     type: "combat_equipment",
     label: "Dracula's Cloak",
     stats: {
@@ -854,7 +859,6 @@ export const items: Record<ItemName, Item> = {
       mana: 7,
     },
   },
-
   platinum_chestplate: {
     type: "combat_equipment",
     label: "Platinum Chestplate",
@@ -867,6 +871,103 @@ export const items: Record<ItemName, Item> = {
       platinum_ingot: 10,
     },
   },
+  chainmail_shirt: {
+    type: "combat_equipment",
+    label: "Chainmail Shirt",
+    stats: {
+      defense: 10,
+      health: 15,
+    },
+    craft: {
+      coal: 5,
+      chain: 15,
+      shirt: 4,
+    },
+  },
+  shirt: {
+    type: "combat_equipment",
+    label: "Shirt",
+    stats: {
+      defense: 5,
+    },
+  },
+  purple_cloak: {
+    type: "combat_equipment",
+    label: "Purple Cloak",
+    stats: {
+      health: 45,
+      speed: 10,
+    },
+    craft: {
+      purple_scarab: 4,
+    },
+  },
+  dark_blue_cloak: {
+    type: "combat_equipment",
+    label: "Dark Blue Cloak",
+    stats: {
+      defense: 10,
+      earth_defense: 20,
+    },
+  },
+  gold_chestplate: {
+    type: "combat_equipment",
+    label: "Gold Chestplate",
+    stats: {
+      defense: 20,
+      health: 25,
+    },
+  },
+  long_sleeve_shirt: {
+    type: "combat_equipment",
+    label: "Long Sleeve Shirt",
+    stats: {
+      defense: 11,
+      air_defense: 5,
+    },
+  },
+  silver_chestplate: {
+    type: "combat_equipment",
+    label: "Silver Chestplate",
+    stats: {
+      defense: 60,
+      health: 25,
+    },
+  },
+  soldier_chest: {
+    type: "combat_equipment",
+    label: "Soldier Chest",
+    stats: {
+      defense: 30,
+      health: 20,
+    },
+  },
+  volcanic_chestplate: {
+    type: "combat_equipment",
+    label: "Volcanic Chestplate",
+    stats: {
+      defense: 45,
+      health: 32,
+    },
+  },
+  wooden_chestplate: {
+    type: "combat_equipment",
+    label: "Wooden Chestplate",
+    stats: {
+      health: 20,
+    },
+  },
+};
+
+export const items: Record<ItemName, Item> = {
+  telescope: {
+    type: "tool",
+    label: "Telescope",
+    stats: {
+      luck: 5,
+    },
+  },
+
   platinum_greaves: {
     type: "combat_equipment",
     label: "Platinum Greaves",
@@ -936,19 +1037,6 @@ export const items: Record<ItemName, Item> = {
       branch: 5,
     },
   },
-  chainmail_shirt: {
-    type: "combat_equipment",
-    label: "Chainmail Shirt",
-    stats: {
-      defense: 10,
-      health: 15,
-    },
-    craft: {
-      coal: 5,
-      chain: 15,
-      shirt: 4,
-    },
-  },
   red_gloves: {
     type: "gloves",
     label: "Red Gloves",
@@ -957,13 +1045,7 @@ export const items: Record<ItemName, Item> = {
       mush: 15,
     },
   },
-  shirt: {
-    type: "combat_equipment",
-    label: "Shirt",
-    stats: {
-      defense: 5,
-    },
-  },
+
   sandals: {
     type: "combat_equipment",
     label: "Sandals",
@@ -998,17 +1080,6 @@ export const items: Record<ItemName, Item> = {
       coal: 8,
     },
   },
-  purple_cloak: {
-    type: "combat_equipment",
-    label: "Purple Cloak",
-    stats: {
-      health: 45,
-      speed: 10,
-    },
-    craft: {
-      purple_scarab: 4,
-    },
-  },
   purple_scarab: {
     type: "material",
     label: "Purple Scarab",
@@ -1021,4 +1092,5 @@ export const items: Record<ItemName, Item> = {
   ...offhandEquipment,
   ...headwearEquipment,
   ...necklaceEquipment,
+  ...chestwearEquipment,
 };

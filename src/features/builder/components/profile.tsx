@@ -17,7 +17,8 @@ const shadowsImages: Record<Slot, string> = {
   headwear: new URL("@/assets/icons/helmet_shadow.png", import.meta.url).href,
   necklace: new URL("@/assets/icons/necklace_shadow.png", import.meta.url).href,
   mainhand: new URL("@/assets/icons/sword_shadow.png", import.meta.url).href,
-  body: new URL("@/assets/icons/chestplate_shadow.png", import.meta.url).href,
+  chestwear: new URL("@/assets/icons/chestplate_shadow.png", import.meta.url)
+    .href,
   offhand: new URL("@/assets/icons/shield_shadow.png", import.meta.url).href,
   ring: new URL("@/assets/icons/ring_shadow.png", import.meta.url).href,
   legwear: new URL("@/assets/icons/legwear_shadow.png", import.meta.url).href,
@@ -91,7 +92,7 @@ export function Profile() {
             <img src={shadowsImages.mainhand} className="w-8 h-8" />
           </div>
           <div>
-            <img src={shadowsImages.body} className="w-8 h-8" />
+            <img src={shadowsImages.chestwear} className="w-8 h-8" />
           </div>
           <div>
             <img src={shadowsImages.offhand} className="w-8 h-8" />
