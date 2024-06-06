@@ -1,6 +1,3 @@
-import { CraftRequirementsTable } from "@/features/craft/components/craft-requirements-table";
-import { TotalItemsRequirementsTable } from "@/features/craft/components/total-items-requirements-table";
-import { CraftContextProvider } from "@/features/craft/context";
 import {
   ItemSelectionProvider,
   useItemSelection,
@@ -11,6 +8,7 @@ import { OptimalPerfectRefineTable } from "@/features/refine/components/optimal-
 import { RefineComparisonTable } from "@/features/refine/components/refine-comparison-table";
 import { ItemsComparisonTable } from "@/features/items/components/compare-against";
 import { ItemsDropTable } from "@/features/items/components/drop-table";
+import { CraftDetails } from "@/features/craft/components/details";
 
 type Tabs = "sources" | "refine" | "compare_refine" | "compare_against";
 
@@ -34,15 +32,8 @@ export default function IndexRoute() {
           <TabsTrigger value="compare_against">Compare Against</TabsTrigger>
         </TabsList>
         <TabsContent value="sources" className="flex flex-col gap-2">
-          <h2 className="text-2xl">Crafting</h2>
-          <CraftContextProvider>
-            <CraftRequirementsTable />
-            <TotalItemsRequirementsTable />
-          </CraftContextProvider>
-          <h2 className="text-2xl">Drops</h2>
+          <CraftDetails />
           <ItemsDropTable />
-          <h2 className="text-2xl">Shops</h2>
-          <div></div>
         </TabsContent>
         <TabsContent value="refine" className="flex flex-col gap-2">
           <OptimalPerfectRefineTable />

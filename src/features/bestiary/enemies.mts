@@ -55,12 +55,12 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   pink_slime: {
-    name: "pink_slime",
+    name: "Pink Slime",
     image: new URL("@/assets/enemies/pink-slime.png", import.meta.url).href,
     drops: [],
   },
   spawn_camper: {
-    name: "spawn_camper",
+    name: "Spawn Camper",
     image: new URL("@/assets/enemies/spawn-camper.png", import.meta.url).href,
     drops: [
       {
@@ -70,7 +70,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   colossal_bloom: {
-    name: "colossal_bloom",
+    name: "Colossal Bloom",
     image: new URL("@/assets/enemies/colossal-bloom.png", import.meta.url).href,
     drops: [
       {
@@ -80,7 +80,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   tree_trunker: {
-    name: "tree_trunker",
+    name: "Tree Trunker",
     image: new URL("@/assets/enemies/tree-trunker.png", import.meta.url).href,
     drops: [
       {
@@ -94,7 +94,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   soil_serpent: {
-    name: "soil_serpent",
+    name: "Soil Serpent",
     image: new URL("@/assets/enemies/soil-serpent.png", import.meta.url).href,
     drops: [
       {
@@ -104,7 +104,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   snake: {
-    name: "snake",
+    name: "Snake",
     image: new URL("@/assets/enemies/snake.png", import.meta.url).href,
     drops: [
       {
@@ -118,7 +118,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   baby_cyclops: {
-    name: "baby_cyclops",
+    name: "Baby Cyclops",
     image: new URL("@/assets/enemies/baby-cyclops.png", import.meta.url).href,
     drops: [
       {
@@ -136,7 +136,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   goblin_mage: {
-    name: "goblin_mage",
+    name: "Goblin Mage",
     image: new URL("@/assets/enemies/goblin-mage.png", import.meta.url).href,
     drops: [
       {
@@ -150,7 +150,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   jungle_spider: {
-    name: "jungle_spider",
+    name: "Jungle Spider",
     image: new URL("@/assets/enemies/jungle-spider.png", import.meta.url).href,
     drops: [
       {
@@ -160,7 +160,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   goblin_warrior: {
-    name: "goblin_warrior",
+    name: "Goblin Warrior",
     image: new URL("@/assets/enemies/goblin-warrior.png", import.meta.url).href,
     drops: [
       {
@@ -178,7 +178,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   undead_guard: {
-    name: "undead_guard",
+    name: "Undead Guard",
     image: new URL("@/assets/enemies/undead-guard.png", import.meta.url).href,
     drops: [
       {
@@ -192,7 +192,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   undead: {
-    name: "undead",
+    name: "Undead",
     image: new URL("@/assets/enemies/undead.png", import.meta.url).href,
     drops: [
       {
@@ -202,7 +202,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   undead_hulk: {
-    name: "undead_hulk",
+    name: "Undead Hulk",
     image: new URL("@/assets/enemies/undead-hulk.png", import.meta.url).href,
     drops: [
       {
@@ -212,7 +212,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   bat: {
-    name: "bat",
+    name: "Bat",
     image: new URL("@/assets/enemies/bat.png", import.meta.url).href,
     drops: [
       {
@@ -226,7 +226,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   tummy: {
-    name: "tummy",
+    name: "Tummy",
     image: new URL("@/assets/enemies/tummy.png", import.meta.url).href,
     drops: [
       {
@@ -236,7 +236,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   ice_dragon: {
-    name: "ice_dragon",
+    name: "Ice Dragon",
     image: new URL("@/assets/enemies/ice-dragon.png", import.meta.url).href,
     drops: [
       {
@@ -246,7 +246,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   ice_fly: {
-    name: "ice_fly",
+    name: "Ice Fly",
     image: new URL("@/assets/enemies/ice-fly.png", import.meta.url).href,
     drops: [
       {
@@ -256,7 +256,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   peaks_dweller: {
-    name: "peaks_dweller",
+    name: "Peaks Dweller",
     image: new URL("@/assets/enemies/peaks-dweller.png", import.meta.url).href,
     drops: [
       {
@@ -266,7 +266,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   well_guardian: {
-    name: "well_guardian",
+    name: "Well Guardian",
     image: new URL("@/assets/enemies/well-guardian.png", import.meta.url).href,
     drops: [
       {
@@ -276,7 +276,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   smiler: {
-    name: "smiler",
+    name: "Smiler",
     image: new URL("@/assets/enemies/smiler.png", import.meta.url).href,
     drops: [
       {
@@ -286,7 +286,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   jellyfish: {
-    name: "jellyfish",
+    name: "Jellyfish",
     image: new URL("@/assets/enemies/jellyfish.png", import.meta.url).href,
     drops: [
       {
@@ -296,7 +296,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   half_dead: {
-    name: "half_dead",
+    name: "Half Dead",
     image: new URL("@/assets/enemies/half-dead.png", import.meta.url).href,
     drops: [
       {
@@ -306,7 +306,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   minotaur: {
-    name: "minotaur",
+    name: "Minotaur",
     image: new URL("@/assets/enemies/minotaur.png", import.meta.url).href,
     drops: [
       {
@@ -316,7 +316,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   lava_eater: {
-    name: "lava_eater",
+    name: "Lava Eater",
     image: new URL("@/assets/enemies/lava-eater.png", import.meta.url).href,
     drops: [
       {
@@ -326,7 +326,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   guardling: {
-    name: "guardling",
+    name: "Guardling",
     image: new URL("@/assets/enemies/guardling.png", import.meta.url).href,
     drops: [
       {
@@ -336,7 +336,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   dracula: {
-    name: "dracula",
+    name: "Dracula",
     image: new URL("@/assets/enemies/dracula.png", import.meta.url).href,
     drops: [
       {
@@ -358,7 +358,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   tiny_caster: {
-    name: "tiny_caster",
+    name: "Tiny Caster",
     image: new URL("@/assets/enemies/tiny-caster.png", import.meta.url).href,
     drops: [
       {
@@ -368,7 +368,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   golem: {
-    name: "golem",
+    name: "Golem",
     image: new URL("@/assets/enemies/golem.png", import.meta.url).href,
     drops: [
       {
@@ -378,7 +378,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   forest_horror: {
-    name: "forest_horror",
+    name: "Forest Horror",
     image: new URL("@/assets/enemies/forest-horror.png", import.meta.url).href,
     drops: [
       {
@@ -392,7 +392,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   undead_shaman: {
-    name: "undead_shaman",
+    name: "Undead Shaman",
     image: new URL("@/assets/enemies/undead-shaman.png", import.meta.url).href,
     drops: [
       {
@@ -406,7 +406,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   angry_tree: {
-    name: "angry_tree",
+    name: "Angry Tree",
     image: new URL("@/assets/enemies/angry-tree.png", import.meta.url).href,
     drops: [
       {
@@ -420,7 +420,7 @@ export const enemies: Record<EnemiesIDs, Enemy> = {
     ],
   },
   winged_undead: {
-    name: "winged_undead",
+    name: "Winged Undead",
     image: new URL("@/assets/enemies/winged-undead.png", import.meta.url).href,
     drops: [
       {
