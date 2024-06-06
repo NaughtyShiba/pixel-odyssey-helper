@@ -34,7 +34,7 @@ export function CraftRequirementsTable() {
               <TableCell className="flex gap-2 items-center">
                 {items[itemName as ItemName].image ? (
                   <img
-                    src={items[itemName as ItemName].image}
+                    src={items[itemName as ItemName].image!}
                     className="h-8 w-8"
                   />
                 ) : null}
