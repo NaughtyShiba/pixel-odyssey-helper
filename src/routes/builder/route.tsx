@@ -16,7 +16,8 @@ export default function BuilderRoute() {
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Feature under construction</AlertTitle>
           <AlertDescription>
-            Builder (equipment + talents) feature in progress
+            Builder (equipment + talents) feature in progress. It's more likely
+            to be unstable than stable, but feel free to play around
           </AlertDescription>
         </Alert>
 

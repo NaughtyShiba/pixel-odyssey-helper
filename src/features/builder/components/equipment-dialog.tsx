@@ -33,11 +33,11 @@ export function EquipmentDialog(props: EquipmentDialogProps) {
       <DialogTrigger>
         <img src={image!} className="w-8 h-8 cursor-pointer" />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] flex flex-col gap-4">
         <DialogHeader>
           <DialogTitle>{props.title}</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className="flex flex-col gap-2">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Name
@@ -53,27 +53,23 @@ export function EquipmentDialog(props: EquipmentDialogProps) {
               }}
             />
           </div>
-          <div className="flex gap-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="level" className="text-right">
-                Level
-              </Label>
-              <Input
-                type="number"
-                id="level"
-                defaultValue={1}
-                className="col-span-3"
-                min={1}
-                max={10}
-                onChange={(e) => {
-                  dispatch({
-                    type: "set_equipment_level",
-                    property: props.equipmentSlot,
-                    value: parseInt(e.target.value),
-                  });
-                }}
-              />
-            </div>
+          <div className="flex flex-row gap-2">
+            <Input
+              label="Level"
+              type="number"
+              id="level"
+              defaultValue={1}
+              className="col-span-3"
+              min={1}
+              max={10}
+              onChange={(e) => {
+                dispatch({
+                  type: "set_equipment_level",
+                  property: props.equipmentSlot,
+                  value: parseInt(e.target.value),
+                });
+              }}
+            />
             <div className="flex items-center space-x-2">
               <Switch
                 id="perfect-refine"

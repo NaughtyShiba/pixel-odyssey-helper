@@ -10,17 +10,21 @@ import { ItemName, items } from "@/data/items.mjs";
 import { calculateOptimalPerfectRefine } from "@/features/refine/utils.mjs";
 import { stats } from "@/features/stats/const.mjs";
 import { StatType } from "@/features/stats/types.mjs";
-import { Maybe } from "@/lib/fn/maybe.mjs";
-import { useState } from "react";
 import { useItemSelection } from "../context";
 import { ItemSelector } from "./item-selector";
+import { useSafeSearchParams } from "@/lib/use-search-params/hooks.mjs";
+import { null_, string, union } from "valibot";
 
 export function ItemsComparisonTable() {
-  const [compareAgainst, setCompareAgainst] = useState<Maybe<ItemName>>(null);
+  const [compareAgainst, setCompareAgainst] = useSafeSearchParams({
+    key: "compareAgainst",
+    defaultValue: null,
+    validation: union([string(), null_()]),
+  });
   const { selectedItem } = useItemSelection();
 
   const leftItem = selectedItem ? items[selectedItem] : null;
-  const rightItem = compareAgainst ? items[compareAgainst] : null;
+  const rightItem = compareAgainst ? items[compareAgainst as ItemName] : null;
 
   const leftOptimalRefine =
     leftItem?.type && leftItem?.stats
@@ -103,6 +107,7 @@ export function ItemsComparisonTable() {
   return (
     <div className="flex flex-col gap-4">
       <ItemSelector
+        defaultValue={compareAgainst as any}
         onChange={setCompareAgainst}
         className="flex-basis-1/2 w-1/2"
       />

@@ -23,13 +23,14 @@ import { useMediaQuery } from "@/lib/react/use-media-query.mjs";
 import { cn } from "@/lib/utils";
 
 interface ItemSelectorProps {
+  defaultValue?: Maybe<ItemName>;
   onChange(itemName: Maybe<ItemName>): void;
   className?: string;
   ids?: readonly string[];
 }
 export function ItemSelector(props: ItemSelectorProps) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(props.defaultValue ?? "");
   const [search, setSearch] = React.useState("");
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -61,7 +62,7 @@ export function ItemSelector(props: ItemSelectorProps) {
     ),
     (_, arr: Array<{ label: string; value: string }>) => arr.length > 0,
   );
-
+  console.log({ props });
   const content = (
     <Command shouldFilter={false}>
       <CommandInput
