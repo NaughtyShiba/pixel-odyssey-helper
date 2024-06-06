@@ -5,8 +5,12 @@ import {
   ProfileStats,
   TalentsLevels,
 } from "./types";
-import { Item } from "@/data/items.mjs";
+import { items } from "@/data/items.mjs";
 import { talents } from "@/features/talents/const.mts";
+import {
+  calculateImperfectRefine,
+  calculateOptimalPerfectRefine,
+} from "../refine/utils.mts";
 
 const BASE_STATS: Record<StatType, number> = {
   defense: 15,
@@ -44,14 +48,6 @@ export function calculateStats(
   const baseStats = structuredClone(BASE_STATS);
   const statsPercentageBonus: Partial<Record<StatType, number>> = {};
 
-  // Add Equipments stats
-  Object.values(props.equipment).forEach((item: Item | null) => {
-    if (!item || !item.stats) return;
-    Object.entries(item.stats).forEach(([stat, value]) => {
-      baseStats[stat as StatType] += value;
-    });
-  });
-
   // Percentage bonuses from monster hunter
   statsPercentageBonus.speed = props.monsterHunterTalentsLevels.reflexes * 0.5;
 
@@ -84,6 +80,23 @@ export function calculateStats(
   baseStats.crit_chance += props.talentsLevels.critical_chance * 0.5;
   baseStats.mana_regen += props.talentsLevels.mana_regen * 0.2;
   baseStats.crit_damage += props.talentsLevels.critical_damage * 2;
+
+  Object.values(props.equipment).forEach((equipment) => {
+    if (!equipment.item) return;
+    const item = items[equipment.item];
+
+    const stats = equipment.perfectRefine
+      ? calculateOptimalPerfectRefine({
+          levelOneStats: item.stats!,
+          type: "combat_equipment",
+        })[equipment.level].stats
+      : calculateImperfectRefine({ levelOneStats: item.stats! })[
+          equipment.level
+        ];
+    Object.entries(stats).forEach(([statName, value]) => {
+      baseStats[statName as StatType] += value ?? 0;
+    });
+  });
 
   return Object.entries(baseStats).map(([statType, baseStat]) => ({
     name: statType as StatType,

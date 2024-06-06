@@ -5,6 +5,7 @@ import {
   ProfileStats,
   TalentsLevels,
 } from "./types";
+import { ItemName } from "@/data/items.mjs";
 
 interface BuildContextProviderProps {
   children: React.ReactNode;
@@ -62,17 +63,17 @@ const defaultValue: BuilderState = {
     wrath: 0,
   },
   equipment: {
-    helmet: null,
-    body: null,
-    legs: null,
-    boots: null,
-    earrings: null,
-    necklace: null,
-    mainHand: null,
-    offHand: null,
-    ring: null,
-    amulet: null,
-    tool: null,
+    headwear: { item: null, level: 1, perfectRefine: true },
+    chestwear: { item: null, level: 1, perfectRefine: true },
+    legwear: { item: null, level: 1, perfectRefine: true },
+    footwear: { item: null, level: 1, perfectRefine: true },
+    earrings: { item: null, level: 1, perfectRefine: true },
+    necklace: { item: null, level: 1, perfectRefine: true },
+    mainhand: { item: null, level: 1, perfectRefine: true },
+    offhand: { item: null, level: 1, perfectRefine: true },
+    ring: { item: null, level: 1, perfectRefine: true },
+    amulet: { item: null, level: 1, perfectRefine: true },
+    tool: { item: null, level: 1, perfectRefine: true },
   },
 };
 const BuildContext = createContext<{
@@ -95,6 +96,21 @@ type Actions =
       type: "set_monster_hunter";
       property: keyof BuilderState["monsterHunterTalentsLevels"];
       value: number;
+    }
+  | {
+      type: "set_equipment_item";
+      property: keyof BuilderState["equipment"];
+      item: ItemName | null;
+    }
+  | {
+      type: "set_equipment_level";
+      property: keyof BuilderState["equipment"];
+      value: number;
+    }
+  | {
+      type: "set_equipment_is_perfect";
+      property: keyof BuilderState["equipment"];
+      value: boolean;
     };
 
 function reducer(state: BuilderState, action: Actions) {
@@ -123,6 +139,42 @@ function reducer(state: BuilderState, action: Actions) {
         monsterHunterTalentsLevels: {
           ...state.monsterHunterTalentsLevels,
           [action.property]: action.value,
+        },
+      };
+    }
+    case "set_equipment_item": {
+      return {
+        ...state,
+        equipment: {
+          ...state.equipment,
+          [action.property]: {
+            ...state.equipment[action.property],
+            item: action.item,
+          },
+        },
+      };
+    }
+    case "set_equipment_level": {
+      return {
+        ...state,
+        equipment: {
+          ...state.equipment,
+          [action.property]: {
+            ...state.equipment[action.property],
+            level: action.value,
+          },
+        },
+      };
+    }
+    case "set_equipment_is_perfect": {
+      return {
+        ...state,
+        equipment: {
+          ...state.equipment,
+          [action.property]: {
+            ...state.equipment[action.property],
+            perfectRefine: action.value,
+          },
         },
       };
     }

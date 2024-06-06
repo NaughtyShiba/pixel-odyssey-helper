@@ -21,23 +21,10 @@ import { useMediaQuery } from "@/lib/react/use-media-query.mjs";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { filterObject, mapObject } from "@/lib/fn/object.mjs";
 
-const craftableItems = Object.entries(items)
-  .map(([name, item]) => ({
-    value: name,
-    label: item.label,
-    category: item.type,
-  }))
-  .sort((a, b) => a.category.localeCompare(b.category))
-  .sort((a, b) => a.label.localeCompare(b.label));
-
-const groupedCraftableItems = Object.groupBy(
-  craftableItems,
-  (item) => item.category,
-);
-
 interface ItemSelectorProps {
   onChange(itemName: ItemName | null): void;
   className?: string;
+  ids?: readonly string[];
 }
 export function ItemSelector(props: ItemSelectorProps) {
   const [open, setOpen] = React.useState(false);
@@ -45,6 +32,23 @@ export function ItemSelector(props: ItemSelectorProps) {
   const [search, setSearch] = React.useState("");
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
+  const craftableItems = Object.entries(
+    props.ids
+      ? filterObject(items, (key) => props.ids!.indexOf(key) >= 0)
+      : items,
+  )
+    .map(([name, item]) => ({
+      value: name,
+      label: item.label,
+      category: item.type,
+    }))
+    .sort((a, b) => a.category.localeCompare(b.category))
+    .sort((a, b) => a.label.localeCompare(b.label));
+
+  const groupedCraftableItems = Object.groupBy(
+    craftableItems,
+    (item) => item.category,
+  );
   const filteredGroups = filterObject(
     mapObject(
       groupedCraftableItems,

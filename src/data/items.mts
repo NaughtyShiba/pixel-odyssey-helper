@@ -883,7 +883,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
 };
 export const offhandEquipment: Record<OffHandIDs, Item> = {
   volcanic_shield: {
-    image: new URL("@/assets/images/volcanic_shield.png", import.meta.url).href,
+    image: new URL("@/assets/items/volcanic_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Volcanic Shield",
     stats: {
@@ -897,7 +897,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     },
   },
   platinum_shield: {
-    image: new URL("@/assets/images/platinum_shield.png", import.meta.url).href,
+    image: new URL("@/assets/items/platinum_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Platinum Shield",
     stats: {
@@ -910,7 +910,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     },
   },
   goblin_shield: {
-    image: new URL("@/assets/images/goblin_shield.png", import.meta.url).href,
+    image: new URL("@/assets/items/goblin_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Goblin Shield",
     stats: {
@@ -919,7 +919,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     },
   },
   pink_shield: {
-    image: new URL("@/assets/images/pink_shield.png", import.meta.url).href,
+    image: new URL("@/assets/items/pink_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Pink Shield",
     stats: {
@@ -928,7 +928,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     },
   },
   soldier_shield: {
-    image: new URL("@/assets/images/soldier_shield.png", import.meta.url).href,
+    image: new URL("@/assets/items/soldier_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Soldier Shield",
     stats: {
@@ -939,7 +939,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
 };
 export const headwearEquipment: Record<HeadwearIDs, Item> = {
   santa_hat: {
-    image: new URL("@/assets/images/santa_hat.png", import.meta.url).href,
+    image: new URL("@/assets/items/santa_hat.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Santa Hat",
     stats: {
@@ -957,7 +957,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   platinum_helmet: {
-    image: new URL("@/assets/images/platinum_helmet.png", import.meta.url).href,
+    image: new URL("@/assets/items/platinum_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Platinum Helmet",
     stats: {
@@ -970,7 +970,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   volcanic_helmet: {
-    image: new URL("@/assets/images/volcanic_helmet.png", import.meta.url).href,
+    image: new URL("@/assets/items/volcanic_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Volcanic Helmet",
     stats: {
@@ -984,7 +984,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   gold_helmet: {
-    image: new URL("@/assets/images/gold_helmet.png", import.meta.url).href,
+    image: new URL("@/assets/items/gold_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Gold Helmet",
     stats: {
@@ -996,7 +996,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   silver_helmet: {
-    image: new URL("@/assets/images/silver_helmet.png", import.meta.url).href,
+    image: new URL("@/assets/items/silver_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Silver Helmet",
     stats: {
@@ -1009,7 +1009,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   soldier_helmet: {
-    image: new URL("@/assets/images/soldier_helmet.png", import.meta.url).href,
+    image: new URL("@/assets/items/soldier_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Soldier Helmet",
     stats: {
@@ -1018,7 +1018,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   iron_bucket: {
-    image: new URL("@/assets/images/iron_bucket.png", import.meta.url).href,
+    image: new URL("@/assets/items/iron_bucket.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Iron Bucket",
     stats: {
@@ -1031,7 +1031,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   wooden_helmet: {
-    image: new URL("@/assets/images/wooden_helmet.png", import.meta.url).href,
+    image: new URL("@/assets/items/wooden_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Wooden Helmet",
     stats: {

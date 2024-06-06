@@ -10,7 +10,20 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { calculateStats } from "../utils.mts";
-import { Slot } from "@/data/items.mjs";
+import {
+  Slot,
+  amuletsIDs,
+  chestwearsIDs,
+  footwearIDs,
+  headwearIDs,
+  legwearsIDs,
+  mainHandIDs,
+  necklacesIDs,
+  offHandIDs,
+  ringsIDs,
+  toolsIDs,
+} from "@/data/items.mjs";
+import { EquipmentDialog } from "./equipment-dialog";
 
 const shadowsImages: Record<Slot, string> = {
   earrings: new URL("@/assets/icons/earrings_shadow.png", import.meta.url).href,
@@ -79,40 +92,95 @@ export function Profile() {
       <div>
         <div className="grid grid-cols-3 gap-4 w-32">
           <div>
-            <img src={shadowsImages.earrings} className="w-8 h-8" />
+            <EquipmentDialog
+              equipmentSlot="earrings"
+              title="Select Earrings"
+              shadowImage={shadowsImages.earrings}
+              itemsIDs={[]}
+            />
           </div>
           <div>
-            <img src={shadowsImages.headwear} className="w-8 h-8" />
+            <EquipmentDialog
+              equipmentSlot="headwear"
+              title="Select Headwear"
+              shadowImage={shadowsImages.headwear}
+              itemsIDs={headwearIDs}
+            />
           </div>
           <div>
-            <img src={shadowsImages.necklace} className="w-8 h-8" />
-          </div>
-
-          <div>
-            <img src={shadowsImages.mainhand} className="w-8 h-8" />
-          </div>
-          <div>
-            <img src={shadowsImages.chestwear} className="w-8 h-8" />
-          </div>
-          <div>
-            <img src={shadowsImages.offhand} className="w-8 h-8" />
-          </div>
-
-          <div>
-            <img src={shadowsImages.ring} className="w-8 h-8" />
-          </div>
-          <div>
-            <img src={shadowsImages.legwear} className="w-8 h-8" />
-          </div>
-          <div>
-            <img src={shadowsImages.amulet} className="w-8 h-8" />
+            <EquipmentDialog
+              equipmentSlot="necklace"
+              title="Select Necklace"
+              shadowImage={shadowsImages.necklace}
+              itemsIDs={necklacesIDs}
+            />
           </div>
 
           <div>
-            <img src={shadowsImages.tool} className="w-8 h-8" />
+            <EquipmentDialog
+              equipmentSlot="mainhand"
+              title="Select Mainhand Item"
+              shadowImage={shadowsImages.mainhand}
+              itemsIDs={mainHandIDs}
+            />
           </div>
           <div>
-            <img src={shadowsImages.footwear} className="w-8 h-8" />
+            <EquipmentDialog
+              equipmentSlot="chestwear"
+              title="Select Chestwear"
+              shadowImage={shadowsImages.chestwear}
+              itemsIDs={chestwearsIDs}
+            />
+          </div>
+          <div>
+            <EquipmentDialog
+              equipmentSlot="offhand"
+              title="Select Offhand Item"
+              shadowImage={shadowsImages.offhand}
+              itemsIDs={offHandIDs}
+            />
+          </div>
+
+          <div>
+            <EquipmentDialog
+              equipmentSlot="ring"
+              title="Select Ring"
+              shadowImage={shadowsImages.ring}
+              itemsIDs={ringsIDs}
+            />
+          </div>
+          <div>
+            <EquipmentDialog
+              equipmentSlot="legwear"
+              title="Select Legwear"
+              shadowImage={shadowsImages.legwear}
+              itemsIDs={legwearsIDs}
+            />
+          </div>
+          <div>
+            <EquipmentDialog
+              equipmentSlot="amulet"
+              title="Select Amulet"
+              shadowImage={shadowsImages.amulet}
+              itemsIDs={amuletsIDs}
+            />
+          </div>
+
+          <div>
+            <EquipmentDialog
+              equipmentSlot="tool"
+              title="Select Tool"
+              shadowImage={shadowsImages.tool}
+              itemsIDs={toolsIDs}
+            />
+          </div>
+          <div>
+            <EquipmentDialog
+              equipmentSlot="footwear"
+              title="Select Footwear"
+              shadowImage={shadowsImages.footwear}
+              itemsIDs={footwearIDs}
+            />
           </div>
         </div>
       </div>
