@@ -32,7 +32,7 @@ export function EnemyDropsTable() {
             <TableRow key={item.item}>
               <TableCell className="flex gap-2 items-center">
                 {items[item.item].image ? (
-                  <img src={items[item.item].image} className="h-8 w-8" />
+                  <img src={items[item.item].image!} className="h-8 w-8" />
                 ) : null}
                 <span>{items[item.item].label}</span>
               </TableCell>
