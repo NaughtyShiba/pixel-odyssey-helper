@@ -1,25 +1,33 @@
 import { ItemName } from "@/data/items.mjs";
 import { assert } from "@/lib/assert/assert.mjs";
 import { Maybe } from "@/lib/fn/maybe.mjs";
-import { ActionDispatch, createContext, useContext, useReducer } from "react";
+import {
+  ActionDispatch,
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 import {
   MonsterHunterTalentsLevels,
   ProfileEquipment,
   ProfileStats,
   TalentsLevels,
 } from "./types";
+import { useSearchParams } from "react-router-dom";
+import { minifyState, unminifyState } from "./utils.mts";
 
 interface BuildContextProviderProps {
   children: React.ReactNode;
 }
-interface BuilderState {
+export interface BuilderState {
   profile: ProfileStats;
   talentsLevels: TalentsLevels;
   monsterHunterTalentsLevels: MonsterHunterTalentsLevels;
   equipment: ProfileEquipment;
 }
 
-const defaultValue: BuilderState = {
+export const defaultValue: BuilderState = {
   profile: {
     coliseumTrophies: 0,
     pvpKills: 0,
@@ -184,7 +192,15 @@ function reducer(state: BuilderState, action: Actions) {
 }
 
 export function BuildProvider({ children }: BuildContextProviderProps) {
-  const [state, dispatch] = useReducer(reducer, defaultValue);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialStateFromSearchParams = searchParams.get("q");
+  const initialState = initialStateFromSearchParams
+    ? unminifyState(initialStateFromSearchParams)
+    : defaultValue;
+  const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect(() => {
+    setSearchParams({ q: minifyState(state) });
+  }, [state]);
   return (
     <BuildContext.Provider value={{ state, dispatch }}>
       {children}

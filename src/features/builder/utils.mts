@@ -1,4 +1,4 @@
-import { items } from "@/data/items.mjs";
+import { Slot, items } from "@/data/items.mjs";
 import type { StatType } from "@/features/stats/types.mjs";
 import { talents } from "@/features/talents/const.mts";
 import {
@@ -11,6 +11,7 @@ import {
   ProfileStats,
   TalentsLevels,
 } from "./types";
+import { BuilderState, defaultValue } from "./context";
 
 const BASE_STATS: Record<StatType, number> = {
   defense: 15,
@@ -106,4 +107,67 @@ export function calculateStats(
       baseStat *
       ((100 + (statsPercentageBonus[statType as StatType] ?? 0)) / 100),
   }));
+}
+
+export function minifyState(state: BuilderState) {
+  const minified = Object.entries(state)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, value]) => {
+      if (key === "equipment") {
+        return Object.entries(value)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([, value]) => [
+            (value as ProfileEquipment[Slot]).item,
+            (value as ProfileEquipment[Slot]).level,
+            (value as ProfileEquipment[Slot]).perfectRefine,
+          ]);
+      } else {
+        return Object.entries(value)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([, value]) => value);
+      }
+    });
+
+  return btoa(JSON.stringify(minified));
+}
+
+export function unminifyState(state: string): BuilderState {
+  const stateFromUrl = JSON.parse(atob(state));
+  return Object.fromEntries(
+    Object.entries(defaultValue)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, value], index) => {
+        if (key === "equipment") {
+          return [
+            key,
+            Object.fromEntries(
+              Object.entries(value)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .map(([key], subIndex) => {
+                  const itemAsArray = stateFromUrl[index][subIndex];
+                  return [
+                    key,
+                    {
+                      item: itemAsArray[0],
+                      level: itemAsArray[1],
+                      perfectRefine: itemAsArray[2],
+                    },
+                  ];
+                }),
+            ),
+          ];
+        } else {
+          return [
+            key,
+            Object.fromEntries(
+              Object.entries(value)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .map(([key], subIndex) => {
+                  return [key, stateFromUrl[index][subIndex]];
+                }),
+            ),
+          ];
+        }
+      }),
+  ) as unknown as BuilderState;
 }
