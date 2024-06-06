@@ -1160,8 +1160,8 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
       speed: 10,
     },
     craft: {
-      iron_ingot: 1,
-      emberfruit: 30,
+      iron_ingot: 15,
+      emberfruit: 10,
       coal: 8,
     },
   },
