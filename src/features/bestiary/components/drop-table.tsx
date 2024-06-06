@@ -31,7 +31,9 @@ export function EnemyDropsTable() {
           {drops.map((item) => (
             <TableRow key={item.item}>
               <TableCell className="flex gap-2 items-center">
-                {/* <img src={item.image} className="h-8 w-8" /> */}
+                {items[item.item].image ? (
+                  <img src={items[item.item].image} className="h-8 w-8" />
+                ) : null}
                 <span>{items[item.item].label}</span>
               </TableCell>
               <TableCell>{item.chance}%</TableCell>

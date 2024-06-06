@@ -24,15 +24,23 @@ export function CraftRequirementsTable() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Amount</TableHead>
             <TableHead>Item</TableHead>
+            <TableHead>Amount</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {Object.entries(item.craft).map(([itemName, amount]) => (
             <TableRow key={itemName}>
+              <TableCell className="flex gap-2 items-center">
+                {items[itemName as ItemName].image ? (
+                  <img
+                    src={items[itemName as ItemName].image}
+                    className="h-8 w-8"
+                  />
+                ) : null}
+                <span>{items[itemName as ItemName].label}</span>
+              </TableCell>
               <TableCell>{amount! * craftAmount.amount}</TableCell>
-              <TableCell>{items[itemName as ItemName].label}</TableCell>
             </TableRow>
           ))}
         </TableBody>

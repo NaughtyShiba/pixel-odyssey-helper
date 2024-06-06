@@ -239,6 +239,7 @@ export interface Item {
   label: string;
   craft?: Partial<Record<ItemName, number>>;
   stats?: Partial<Record<StatType, number>>;
+  image?: string;
 }
 
 export const itemTypeLabel: Record<ItemType, string> = {
@@ -259,6 +260,7 @@ export const itemTypeLabel: Record<ItemType, string> = {
 };
 export const rings: Record<RingsIDs, Item> = {
   iron_ring: {
+    image: new URL("@/assets/items/iron_ring.png", import.meta.url).href,
     type: "ring",
     label: "Ring",
     stats: {
@@ -266,6 +268,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   air_iron_ring: {
+    image: new URL("@/assets/items/air_iron_ring.png", import.meta.url).href,
     type: "ring",
     label: "Air Iron Ring",
     stats: {
@@ -273,6 +276,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   earth_iron_ring: {
+    image: new URL("@/assets/items/earth_iron_ring.png", import.meta.url).href,
     type: "ring",
     label: "Earth Iron Ring",
     stats: {
@@ -280,6 +284,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   fire_iron_ring: {
+    image: new URL("@/assets/items/fire_iron_ring.png", import.meta.url).href,
     type: "ring",
     label: "Fire Iron Ring",
     stats: {
@@ -287,6 +292,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   water_iron_ring: {
+    image: new URL("@/assets/items/water_iron_ring.png", import.meta.url).href,
     type: "ring",
     label: "Water Iron Ring",
     stats: {
@@ -294,6 +300,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   attack_iron_ring: {
+    image: new URL("@/assets/items/attack_iron_ring.png", import.meta.url).href,
     type: "ring",
     label: "Attack Iron Ring",
     stats: {
@@ -301,6 +308,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   crit_dmg_iron_ring: {
+    image: new URL("@/assets/items/crit_dmg_iron_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Crit Damage Iron Ring",
     stats: {
@@ -308,6 +317,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   crit_iron_ring: {
+    image: new URL("@/assets/items/crit_iron_ring.png", import.meta.url).href,
     type: "ring",
     label: "Crit Iron Ring",
     stats: {
@@ -315,6 +325,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   flat_iron_ring: {
+    image: new URL("@/assets/items/flat_iron_ring.png", import.meta.url).href,
     type: "ring",
     label: "Flat Iron Ring",
     stats: {
@@ -322,6 +333,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   mana_iron_ring: {
+    image: new URL("@/assets/items/mana_iron_ring.png", import.meta.url).href,
     type: "ring",
     label: "Mana Iron Ring",
     stats: {
@@ -329,6 +341,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   gold_ring: {
+    image: new URL("@/assets/items/gold_ring.png", import.meta.url).href,
     type: "ring",
     label: "Gold Ring",
     stats: {
@@ -336,6 +349,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   air_gold_ring: {
+    image: new URL("@/assets/items/air_gold_ring.png", import.meta.url).href,
     type: "ring",
     label: "Air Gold Ring",
     stats: {
@@ -343,6 +357,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   earth_gold_ring: {
+    image: new URL("@/assets/items/earth_gold_ring.png", import.meta.url).href,
     type: "ring",
     label: "Earth Gold Ring",
     stats: {
@@ -350,6 +365,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   fire_gold_ring: {
+    image: new URL("@/assets/items/fire_gold_ring.png", import.meta.url).href,
     type: "ring",
     label: "Fire Gold Ring",
     stats: {
@@ -357,6 +373,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   water_gold_ring: {
+    image: new URL("@/assets/items/water_gold_ring.png", import.meta.url).href,
     type: "ring",
     label: "Water Gold Ring",
     stats: {
@@ -364,6 +381,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   attack_gold_ring: {
+    image: new URL("@/assets/items/attack_gold_ring.png", import.meta.url).href,
     type: "ring",
     label: "Attack Gold Ring",
     stats: {
@@ -371,6 +389,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   crit_dmg_gold_ring: {
+    image: new URL("@/assets/items/crit_dmg_gold_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Crit Damage Gold Ring",
     stats: {
@@ -378,6 +398,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   crit_gold_ring: {
+    image: new URL("@/assets/items/crit_gold_ring.png", import.meta.url).href,
     type: "ring",
     label: "Crit Gold Ring",
     stats: {
@@ -385,6 +406,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   flat_gold_ring: {
+    image: new URL("@/assets/items/flat_gold_ring.png", import.meta.url).href,
     type: "ring",
     label: "Flat Gold Ring",
     stats: {
@@ -392,6 +414,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   mana_gold_ring: {
+    image: new URL("@/assets/items/mana_gold_ring.png", import.meta.url).href,
     type: "ring",
     label: "Mana Gold Ring",
     stats: {
@@ -399,6 +422,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   emerald_ring: {
+    image: new URL("@/assets/items/emerald_ring.png", import.meta.url).href,
     type: "ring",
     label: "Emerald Ring",
     stats: {
@@ -406,6 +430,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   air_emerald_ring: {
+    image: new URL("@/assets/items/air_emerald_ring.png", import.meta.url).href,
     type: "ring",
     label: "Air Emerald Ring",
     stats: {
@@ -413,6 +438,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   earth_emerald_ring: {
+    image: new URL("@/assets/items/earth_emerald_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Earth Emerald Ring",
     stats: {
@@ -420,6 +447,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   fire_emerald_ring: {
+    image: new URL("@/assets/items/fire_emerald_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Fire Emerald Ring",
     stats: {
@@ -427,6 +456,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   water_emerald_ring: {
+    image: new URL("@/assets/items/water_emerald_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Water Emerald Ring",
     stats: {
@@ -434,6 +465,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   attack_emerald_ring: {
+    image: new URL("@/assets/items/attack_emerald_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Attack Emerald Ring",
     stats: {
@@ -441,6 +474,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   crit_dmg_emerald_ring: {
+    image: new URL("@/assets/items/crit_dmg_emerald_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Crit Damage Emerald Ring",
     stats: {
@@ -448,6 +483,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   crit_emerald_ring: {
+    image: new URL("@/assets/items/crit_emerald_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Crit Emerald Ring",
     stats: {
@@ -455,6 +492,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   flat_emerald_ring: {
+    image: new URL("@/assets/items/flat_emerald_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Flat Emerald Ring",
     stats: {
@@ -462,6 +501,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   mana_emerald_ring: {
+    image: new URL("@/assets/items/mana_emerald_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Mana Emerald Ring",
     stats: {
@@ -469,6 +510,7 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   platinum_ring: {
+    image: new URL("@/assets/items/platinum_ring.png", import.meta.url).href,
     type: "ring",
     label: "Platinum Ring",
     stats: {
@@ -476,6 +518,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   earth_platinum_ring: {
+    image: new URL("@/assets/items/earth_platinum_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Earth Platinum Ring",
     stats: {
@@ -483,6 +527,8 @@ export const rings: Record<RingsIDs, Item> = {
     },
   },
   fire_platinum_ring: {
+    image: new URL("@/assets/items/fire_platinum_ring.png", import.meta.url)
+      .href,
     type: "ring",
     label: "Fire Platinum Ring",
     stats: {
@@ -492,52 +538,63 @@ export const rings: Record<RingsIDs, Item> = {
 };
 export const ores: Record<OresIDs, Item> = {
   coal: {
+    image: new URL("@/assets/items/coal.png", import.meta.url).href,
     type: "ore",
     label: "Coal",
   },
   platinum_ore: {
+    image: new URL("@/assets/items/platinum_ore.png", import.meta.url).href,
     type: "ore",
     label: "Platinum Ore",
   },
   silver_ore: {
+    image: new URL("@/assets/items/silver_ore.png", import.meta.url).href,
     type: "ore",
     label: "Silver Ore",
   },
   gold_ore: {
+    image: new URL("@/assets/items/gold_ore.png", import.meta.url).href,
     type: "ore",
     label: "Gold Ore",
   },
   copper_ore: {
+    image: new URL("@/assets/items/copper_ore.png", import.meta.url).href,
     type: "ore",
     label: "Copper Ore",
   },
   iron_ore: {
+    image: new URL("@/assets/items/iron_ore.png", import.meta.url).href,
     type: "ore",
     label: "Iron Ore",
   },
 };
 export const ingots: Record<IngotsIDs, Item> = {
   platinum_ingot: {
+    image: new URL("@/assets/items/platinum_ingot.png", import.meta.url).href,
     type: "ingot",
     label: "Platinum Ingot",
     craft: { platinum_ore: 3, coal: 5 },
   },
   silver_ingot: {
+    image: new URL("@/assets/items/silver_ingot.png", import.meta.url).href,
     type: "ingot",
     label: "Silver Ingot",
     craft: { silver_ore: 4, coal: 5 },
   },
   gold_ingot: {
+    image: new URL("@/assets/items/gold_ingot.png", import.meta.url).href,
     type: "ingot",
     label: "Gold Ingot",
     craft: { gold_ore: 4, coal: 5 },
   },
   copper_ingot: {
+    image: new URL("@/assets/items/copper_ingot.png", import.meta.url).href,
     type: "ingot",
     label: "Copper Ingot",
     craft: { copper_ore: 3, coal: 3 },
   },
   iron_ingot: {
+    image: new URL("@/assets/items/iron_ingot.png", import.meta.url).href,
     type: "ingot",
     label: "Iron Ingot",
     craft: { iron_ore: 2, coal: 1 },
@@ -545,56 +602,70 @@ export const ingots: Record<IngotsIDs, Item> = {
 };
 export const materials: Record<MaterialsIDs, Item> = {
   chain: {
+    image: new URL("@/assets/items/chain.png", import.meta.url).href,
     type: "material",
     label: "Chain",
   },
   nail: {
+    image: new URL("@/assets/items/nail.png", import.meta.url).href,
     type: "material",
     label: "Nail",
   },
   emberfruit: {
+    image: new URL("@/assets/items/emberfruit.png", import.meta.url).href,
     type: "material",
     label: "Emberfruit",
   },
   bat_wing: {
+    image: new URL("@/assets/items/bat_wing.png", import.meta.url).href,
     type: "monster_drop",
     label: "Bat Wing",
   },
   emerald: {
+    image: new URL("@/assets/items/emerald.png", import.meta.url).href,
     type: "basic",
     label: "Emerald",
   },
   branch: {
+    image: new URL("@/assets/items/branch.png", import.meta.url).href,
     type: "basic",
     label: "Branch",
   },
   bloodrose: {
+    image: new URL("@/assets/items/bloodrose.png", import.meta.url).href,
     type: "basic",
     label: "Bloodrose",
   },
   cyclops_eye: {
+    image: new URL("@/assets/items/cyclops_eye.png", import.meta.url).href,
     type: "monster_drop",
     label: "Eyeball",
   },
   cyclops_hide: {
+    image: new URL("@/assets/items/cyclops_hide.png", import.meta.url).href,
     type: "monster_drop",
     label: "Cyclops Hide",
   },
   snake_skin: {
+    image: new URL("@/assets/items/snake_skin.png", import.meta.url).href,
     type: "monster_drop",
     label: "Snake Skin",
   },
   forest_horror_hide: {
+    image: new URL("@/assets/items/forest_horror_hide.png", import.meta.url)
+      .href,
     type: "monster_drop",
     label: "Forrest Horro Hide",
   },
   dreamspore: {
+    image: new URL("@/assets/items/dreamspore.png", import.meta.url).href,
     type: "mushroom",
     label: "Dreamspore",
   },
 };
 export const mainhandEquipment: Record<MainHandIDs, Item> = {
   scythe: {
+    image: new URL("@/assets/items/scythe.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Scythe",
     stats: {
@@ -603,6 +674,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   vamp_blade_1: {
+    image: new URL("@/assets/items/vamp_blade_1.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Vamp Blade Tier 1",
     stats: {
@@ -615,6 +687,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   vamp_blade_2: {
+    image: new URL("@/assets/items/vamp_blade_2.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Vamp Blade +1",
     stats: {
@@ -627,6 +700,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   vamp_blade_3: {
+    image: new URL("@/assets/items/vamp_blade_3.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Vamp Blade +2",
     stats: {
@@ -639,6 +713,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   silver_dagger: {
+    image: new URL("@/assets/items/silver_dagger.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Silver Dagger",
     stats: {
@@ -651,6 +726,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   cool_stick: {
+    image: new URL("@/assets/items/cool_stick.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Cool Stick",
     stats: {
@@ -661,6 +737,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   wooden_sword: {
+    image: new URL("@/assets/items/wooden_sword.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Wooden Sword",
     stats: {
@@ -672,6 +749,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   club: {
+    image: new URL("@/assets/items/club.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Club",
     stats: {
@@ -683,6 +761,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   gold_sword: {
+    image: new URL("@/assets/items/gold_sword.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Gold Sword",
     stats: {
@@ -694,6 +773,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   iron_sword: {
+    image: new URL("@/assets/items/iron_sword.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Iron Sword",
     stats: {
@@ -706,6 +786,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   volcanic_sword: {
+    image: new URL("@/assets/items/volcanic_sword.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Volcanic Sword",
     stats: {
@@ -720,6 +801,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   silver_sword: {
+    image: new URL("@/assets/items/silver_sword.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Silver Sword",
     stats: {
@@ -732,6 +814,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   platinum_sword: {
+    image: new URL("@/assets/items/platinum_sword.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Platinum Sword",
     stats: {
@@ -743,6 +826,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   platinum_dagger: {
+    image: new URL("@/assets/items/platinum_dagger.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Platinum Dagger",
     stats: {
@@ -754,6 +838,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   earth_staff: {
+    image: new URL("@/assets/items/earth_staff.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Earth Staff",
     stats: {
@@ -763,6 +848,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   goblin_mace: {
+    image: new URL("@/assets/items/goblin_mace.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Goblin Mace",
     stats: {
@@ -770,6 +856,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   molten_sword: {
+    image: new URL("@/assets/items/molten_sword.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Molten Sword",
     stats: {
@@ -778,6 +865,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   molten_axe: {
+    image: new URL("@/assets/items/molten_axe.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Molten Axe",
     stats: {
@@ -786,6 +874,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     },
   },
   soldier_sword: {
+    image: new URL("@/assets/items/soldier_sword.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Soldier Sword",
     stats: {
@@ -796,6 +885,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
 };
 export const offhandEquipment: Record<OffHandIDs, Item> = {
   volcanic_shield: {
+    image: new URL("@/assets/images/volcanic_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Volcanic Shield",
     stats: {
@@ -809,6 +899,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     },
   },
   platinum_shield: {
+    image: new URL("@/assets/images/platinum_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Platinum Shield",
     stats: {
@@ -821,6 +912,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     },
   },
   goblin_shield: {
+    image: new URL("@/assets/images/goblin_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Goblin Shield",
     stats: {
@@ -829,6 +921,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     },
   },
   pink_shield: {
+    image: new URL("@/assets/images/pink_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Pink Shield",
     stats: {
@@ -837,6 +930,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
     },
   },
   soldier_shield: {
+    image: new URL("@/assets/images/soldier_shield.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Soldier Shield",
     stats: {
@@ -847,6 +941,7 @@ export const offhandEquipment: Record<OffHandIDs, Item> = {
 };
 export const headwearEquipment: Record<HeadwearIDs, Item> = {
   santa_hat: {
+    image: new URL("@/assets/images/santa_hat.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Santa Hat",
     stats: {
@@ -863,6 +958,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   platinum_helmet: {
+    image: new URL("@/assets/images/platinum_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Platinum Helmet",
     stats: {
@@ -875,6 +971,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   volcanic_helmet: {
+    image: new URL("@/assets/images/volcanic_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Volcanic Helmet",
     stats: {
@@ -888,6 +985,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   gold_helmet: {
+    image: new URL("@/assets/images/gold_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Gold Helmet",
     stats: {
@@ -899,6 +997,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   silver_helmet: {
+    image: new URL("@/assets/images/silver_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Silver Helmet",
     stats: {
@@ -911,6 +1010,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   soldier_helmet: {
+    image: new URL("@/assets/images/soldier_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Soldier Helmet",
     stats: {
@@ -919,6 +1019,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   iron_bucket: {
+    image: new URL("@/assets/images/iron_bucket.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Iron Bucket",
     stats: {
@@ -931,6 +1032,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   wooden_helmet: {
+    image: new URL("@/assets/images/wooden_helmet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Wooden Helmet",
     stats: {
@@ -943,6 +1045,8 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
 };
 export const necklaceEquipment: Record<NecklacesIDs, Item> = {
   copper_mining_necklace: {
+    image: new URL("@/assets/items/copper_mining_necklace.png", import.meta.url)
+      .href,
     type: "skill_necklace",
     label: "Cooper Mining Necklace",
     stats: {
@@ -954,6 +1058,8 @@ export const necklaceEquipment: Record<NecklacesIDs, Item> = {
     },
   },
   gold_mining_necklace: {
+    image: new URL("@/assets/items/gold_mining_necklace.png", import.meta.url)
+      .href,
     type: "skill_necklace",
     label: "Gold Mining Necklace",
     stats: {
@@ -965,6 +1071,7 @@ export const necklaceEquipment: Record<NecklacesIDs, Item> = {
     },
   },
   shroom_seaker: {
+    image: new URL("@/assets/items/shroom_seaker.png", import.meta.url).href,
     type: "skill_necklace",
     label: "Shroom Seeker",
     stats: {
@@ -976,6 +1083,7 @@ export const necklaceEquipment: Record<NecklacesIDs, Item> = {
     },
   },
   lioras_necklace: {
+    image: new URL("@/assets/items/lioras_necklace.png", import.meta.url).href,
     type: "combat_necklace",
     label: "Liora's Necklace",
     stats: {
@@ -1190,6 +1298,7 @@ export const amuletEquipment: Record<AmuletsIDs, Item> = {
 };
 export const toolEquipment: Record<ToolsIDs, Item> = {
   telescope: {
+    image: new URL("@/assets/items/telescope.png", import.meta.url).href,
     type: "tool",
     label: "Telescope",
     stats: {
@@ -1201,6 +1310,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     },
   },
   silver_pickaxe: {
+    image: new URL("@/assets/items/silver_pickaxe.png", import.meta.url).href,
     type: "tool",
     label: "Silver Pickaxe",
     craft: {
@@ -1212,6 +1322,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     },
   },
   gold_pickaxe: {
+    image: new URL("@/assets/items/gold_pickaxe.png", import.meta.url).href,
     type: "tool",
     label: "Golden Pickaxe",
     stats: {
@@ -1223,6 +1334,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     },
   },
   copper_pickaxe: {
+    image: new URL("@/assets/items/copper_pickaxe.png", import.meta.url).href,
     type: "tool",
     label: "Copper Pickaxe",
     stats: {
@@ -1234,6 +1346,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     },
   },
   iron_pickaxe: {
+    image: new URL("@/assets/items/iron_pickaxe.png", import.meta.url).href,
     type: "tool",
     label: "Iron Pickaxe",
     stats: {
