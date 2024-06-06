@@ -8,13 +8,23 @@ import {
 } from "@/features/items/context";
 import { OptimalPerfectRefineTable } from "@/features/refine/components/optimal-perfect-refine-table";
 import { RefineComparisonTable } from "@/features/refine/components/refine-comparison-table";
-import { useState } from "react";
+import { useSafeSearchParams } from "@/lib/use-search-params/hooks.mjs";
+import { literal, union } from "valibot";
 
 type Tabs = "sources" | "refine" | "compare_refine" | "compare_against";
 
 export default function IndexRoute() {
   const { selectedItem } = useItemSelection();
-  const [tab, setTab] = useState<Tabs>("sources");
+  const [tab, setTab] = useSafeSearchParams({
+    key: "tab",
+    defaultValue: "sources",
+    validation: union([
+      literal("sources"),
+      literal("refine"),
+      literal("compare_refine"),
+      literal("compare_against"),
+    ]),
+  });
 
   return (
     <ItemSelectionProvider>
