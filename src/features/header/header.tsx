@@ -4,22 +4,38 @@ import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ModeToggle } from "../theme/components/mode-toggle";
 
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+const links: NavLink[] = [
+  {
+    href: "/",
+    label: "Items Information",
+  },
+  {
+    href: "/builder",
+    label: "Builder",
+  },
+  {
+    href: "/enemies",
+    label: "Enemies",
+  },
+];
+
 export function Header() {
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 justify-between">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-        <Link
-          to="/"
-          className="text-foreground transition-colors hover:text-foreground"
-        >
-          Items Information
-        </Link>
-        <Link
-          to="/builder"
-          className="text-foreground transition-colors hover:text-foreground"
-        >
-          Builder
-        </Link>
+        {links.map((link) => (
+          <Link
+            to={link.href}
+            className="text-foreground transition-colors hover:text-foreground"
+          >
+            {link.label}
+          </Link>
+        ))}
       </nav>
       <Sheet>
         <SheetTrigger asChild>
@@ -30,12 +46,11 @@ export function Header() {
         </SheetTrigger>
         <SheetContent side="left">
           <nav className="grid gap-6 text-lg font-medium">
-            <Link to="/" className="hover:text-foreground">
-              Items Information
-            </Link>
-            <Link to="/builder" className="hover:text-foreground">
-              Builder
-            </Link>
+            {links.map((link) => (
+              <Link to={link.href} className="hover:text-foreground">
+                {link.label}
+              </Link>
+            ))}
           </nav>
         </SheetContent>
       </Sheet>

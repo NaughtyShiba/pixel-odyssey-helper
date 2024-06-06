@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import IndexRoute from "./routes/index/route";
 import RootLayout, { RootErrorBoundary } from "./routes/root/route";
 import BuilderRoute from "./routes/builder/route";
+import EnemiesRoute from "./routes/enemies/route";
 
 const router = createBrowserRouter(
   [
@@ -17,6 +18,10 @@ const router = createBrowserRouter(
         {
           path: "/builder",
           Component: BuilderRoute,
+        },
+        {
+          path: "/enemies",
+          Component: EnemiesRoute,
         },
       ],
       ErrorBoundary: RootErrorBoundary,
