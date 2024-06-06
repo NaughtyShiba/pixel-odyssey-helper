@@ -1,7 +1,3 @@
-import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
-
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -10,25 +6,21 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useMediaQuery } from "@/lib/react/use-media-query.mjs";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { cn } from "@/lib/utils";
+import { Check, ChevronsUpDown } from "lucide-react";
+import * as React from "react";
 import { EnemiesIDs, enemies } from "../enemies.mts";
-
-const enemiesList = Object.entries(enemies)
-  .map(([name, enemy]) => ({
-    value: name,
-    label: enemy.name,
-    image: enemy.image,
-  }))
-  .sort((a, b) => a.label.localeCompare(b.label));
+import { Maybe } from "@/lib/fn/maybe.mjs";
 
 interface ItemSelectorProps {
-  onChange(itemName: EnemiesIDs | null): void;
+  onChange(itemName: Maybe<EnemiesIDs>): void;
   className?: string;
 }
 export function EnemySelector(props: ItemSelectorProps) {
@@ -37,6 +29,13 @@ export function EnemySelector(props: ItemSelectorProps) {
   const [search, setSearch] = React.useState("");
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
+  const enemiesList = Object.entries(enemies)
+    .map(([name, enemy]) => ({
+      value: name,
+      label: enemy.name,
+      image: enemy.image,
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label));
   const filteredEnemies = enemiesList.filter((enemy) =>
     enemy.label.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
   );

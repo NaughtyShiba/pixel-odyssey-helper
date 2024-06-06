@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/table";
 import type { ItemType } from "@/data/items.mjs";
 import { items } from "@/data/items.mjs";
-import { calculateOptimalPerfectRefine } from "../utils.mts";
 import { useItemSelection } from "@/features/items/context";
 import { stats } from "@/features/stats/const.mjs";
 import { StatType } from "@/features/stats/types.mjs";
+import { calculateOptimalPerfectRefine } from "../utils.mts";
 
 const refinableItemTypes: ItemType[] = [
   "combat_equipment",

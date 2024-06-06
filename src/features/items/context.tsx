@@ -1,19 +1,20 @@
-import { createContext, useContext, useState } from "react";
 import { ItemName } from "@/data/items.mjs";
+import { Maybe } from "@/lib/fn/maybe.mjs";
+import { createContext, useContext, useState } from "react";
 import { ItemSelector } from "./components/item-selector";
 
 type ItemSelectionContextProviderProps = {
   children: React.ReactNode;
 };
 
-const ItemSelectionContext = createContext<{ selectedItem: ItemName | null }>({
+const ItemSelectionContext = createContext<{ selectedItem: Maybe<ItemName> }>({
   selectedItem: null,
 });
 
 export function ItemSelectionProvider({
   children,
 }: ItemSelectionContextProviderProps) {
-  const [selectedItem, selectItem] = useState<ItemName | null>(null);
+  const [selectedItem, selectItem] = useState<Maybe<ItemName>>(null);
 
   return (
     <ItemSelectionContext.Provider value={{ selectedItem }}>

@@ -1,4 +1,4 @@
-import type { StatType, Stat } from "./types.mts";
+import type { Stat, StatType } from "./types.mts";
 
 export const stats: Record<StatType, Stat> = {
   air_damage: {

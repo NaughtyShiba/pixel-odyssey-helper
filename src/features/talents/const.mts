@@ -1,4 +1,4 @@
-import type { TalentName, Talent } from "./type.mts";
+import type { Talent, TalentName } from "./type.mts";
 
 export const talents: Record<TalentName, Talent> = {
   strength: {

@@ -1,14 +1,14 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CraftDetails } from "@/features/craft/components/details";
+import { ItemsComparisonTable } from "@/features/items/components/compare-against";
+import { ItemsDropTable } from "@/features/items/components/drop-table";
 import {
   ItemSelectionProvider,
   useItemSelection,
 } from "@/features/items/context";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
 import { OptimalPerfectRefineTable } from "@/features/refine/components/optimal-perfect-refine-table";
 import { RefineComparisonTable } from "@/features/refine/components/refine-comparison-table";
-import { ItemsComparisonTable } from "@/features/items/components/compare-against";
-import { ItemsDropTable } from "@/features/items/components/drop-table";
-import { CraftDetails } from "@/features/craft/components/details";
+import { useState } from "react";
 
 type Tabs = "sources" | "refine" | "compare_refine" | "compare_against";
 

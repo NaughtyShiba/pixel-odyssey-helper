@@ -1,7 +1,6 @@
-import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
+import * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -11,18 +10,20 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ItemName, ItemType, itemTypeLabel, items } from "@/data/items.mjs";
-import { useMediaQuery } from "@/lib/react/use-media-query.mjs";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { Maybe } from "@/lib/fn/maybe.mjs";
 import { filterObject, mapObject } from "@/lib/fn/object.mjs";
+import { useMediaQuery } from "@/lib/react/use-media-query.mjs";
+import { cn } from "@/lib/utils";
 
 interface ItemSelectorProps {
-  onChange(itemName: ItemName | null): void;
+  onChange(itemName: Maybe<ItemName>): void;
   className?: string;
   ids?: readonly string[];
 }

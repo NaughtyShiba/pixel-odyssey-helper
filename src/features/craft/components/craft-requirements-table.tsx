@@ -7,8 +7,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ItemName, items } from "@/data/items.mjs";
-import { useCraftAmount } from "../context";
 import { useItemSelection } from "@/features/items/context";
+import { useCraftAmount } from "../context";
 
 export function CraftRequirementsTable() {
   const { selectedItem } = useItemSelection();

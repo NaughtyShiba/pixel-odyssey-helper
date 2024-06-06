@@ -1,7 +1,3 @@
-import { ItemName, items } from "@/data/items.mjs";
-import { useItemSelection } from "../context";
-import { ItemSelector } from "./item-selector";
-import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -10,12 +6,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ItemName, items } from "@/data/items.mjs";
 import { calculateOptimalPerfectRefine } from "@/features/refine/utils.mjs";
 import { stats } from "@/features/stats/const.mjs";
 import { StatType } from "@/features/stats/types.mjs";
+import { Maybe } from "@/lib/fn/maybe.mjs";
+import { useState } from "react";
+import { useItemSelection } from "../context";
+import { ItemSelector } from "./item-selector";
 
 export function ItemsComparisonTable() {
-  const [compareAgainst, setCompareAgainst] = useState<ItemName | null>(null);
+  const [compareAgainst, setCompareAgainst] = useState<Maybe<ItemName>>(null);
   const { selectedItem } = useItemSelection();
 
   const leftItem = selectedItem ? items[selectedItem] : null;

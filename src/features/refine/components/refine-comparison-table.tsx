@@ -6,15 +6,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { items } from "@/data/items.mjs";
 import type { ItemType } from "@/data/items.mjs";
+import { items } from "@/data/items.mjs";
+import { useItemSelection } from "@/features/items/context";
+import { stats } from "@/features/stats/const.mjs";
+import type { StatType } from "@/features/stats/types.mjs";
 import {
   calculateImperfectRefine,
   calculateOptimalPerfectRefine,
 } from "../utils.mts";
-import { useItemSelection } from "@/features/items/context";
-import { stats } from "@/features/stats/const.mjs";
-import type { StatType } from "@/features/stats/types.mjs";
 
 const refinableItemTypes: ItemType[] = [
   "combat_equipment",

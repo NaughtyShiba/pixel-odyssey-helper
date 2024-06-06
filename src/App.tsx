@@ -1,9 +1,9 @@
-import "./style.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import IndexRoute from "./routes/index/route";
-import RootLayout, { RootErrorBoundary } from "./routes/root/route";
 import BuilderRoute from "./routes/builder/route";
 import EnemiesRoute from "./routes/enemies/route";
+import IndexRoute from "./routes/index/route";
+import RootLayout, { RootErrorBoundary } from "./routes/root/route";
+import "./style.css";
 
 const router = createBrowserRouter(
   [

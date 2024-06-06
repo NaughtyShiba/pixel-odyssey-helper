@@ -1,6 +1,3 @@
-import { filterObject } from "@/lib/fn/object.mjs";
-import { useItemSelection } from "../context";
-import { Enemy, enemies } from "@/features/bestiary/enemies.mjs";
 import {
   Table,
   TableBody,
@@ -9,6 +6,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Enemy, enemies } from "@/features/bestiary/enemies.mjs";
+import { filterObject } from "@/lib/fn/object.mjs";
+import { useItemSelection } from "../context";
 
 export function ItemsDropTable() {
   const { selectedItem } = useItemSelection();
