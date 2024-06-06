@@ -1,3 +1,5 @@
+import { Maybe } from "@/lib/fn/maybe.mjs";
+
 export type StatType =
   | "attack"
   | "defense"
@@ -23,5 +25,5 @@ export type StatType =
 export interface Stat {
   label: string;
   refineBonus: number;
-  image: string | null;
+  image: Maybe<string>;
 }

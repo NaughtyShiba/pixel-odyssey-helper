@@ -1,3 +1,5 @@
+import { assert } from "@/lib/assert/assert.mjs";
+import { Maybe } from "@/lib/fn/maybe.mjs";
 import { createContext, useContext, useState } from "react";
 import { EnemySelector } from "./components/enemy-selector";
 import { EnemiesIDs } from "./enemies.mts";
@@ -7,7 +9,7 @@ type EnemySelectionContextProviderProps = {
 };
 
 const EnemySelectionContext = createContext<{
-  selectedEnemy: EnemiesIDs | null;
+  selectedEnemy: Maybe<EnemiesIDs>;
 }>({
   selectedEnemy: null,
 });
@@ -15,7 +17,7 @@ const EnemySelectionContext = createContext<{
 export function EnemySelectionProvider({
   children,
 }: EnemySelectionContextProviderProps) {
-  const [selectedEnemy, selectEnemy] = useState<EnemiesIDs | null>(null);
+  const [selectedEnemy, selectEnemy] = useState<Maybe<EnemiesIDs>>(null);
 
   return (
     <EnemySelectionContext.Provider value={{ selectedEnemy }}>
@@ -28,10 +30,10 @@ export function EnemySelectionProvider({
 export const useEnemySelection = () => {
   const context = useContext(EnemySelectionContext);
 
-  if (context === undefined)
-    throw new Error(
-      "useEnemySelection must be used within a EnemySelectionContext",
-    );
+  assert(
+    context !== undefined,
+    "useEnemySelection must be used within a EnemySelectionContext",
+  );
 
   return context;
 };

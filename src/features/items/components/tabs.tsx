@@ -3,8 +3,8 @@ import { CraftRequirementsTable } from "@/features/craft/components/craft-requir
 import { TotalItemsRequirementsTable } from "@/features/craft/components/total-items-requirements-table";
 import { CraftContextProvider } from "@/features/craft/context";
 import { OptimalPerfectRefineTable } from "@/features/refine/components/optimal-perfect-refine-table";
-import { useItemSelection } from "../context";
 import { useState } from "react";
+import { useItemSelection } from "../context";
 
 export function ItemsDetailsTabs() {
   const { selectedItem } = useItemSelection();

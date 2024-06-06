@@ -1,5 +1,3 @@
-import { useEnemySelection } from "../context";
-import { enemies } from "@/features/bestiary/enemies.mjs";
 import {
   Table,
   TableBody,
@@ -9,6 +7,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { items } from "@/data/items.mjs";
+import { enemies } from "@/features/bestiary/enemies.mjs";
+import { useEnemySelection } from "../context";
 
 export function EnemyDropsTable() {
   const { selectedEnemy } = useEnemySelection();

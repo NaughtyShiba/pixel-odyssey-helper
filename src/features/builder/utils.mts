@@ -1,16 +1,16 @@
+import { items } from "@/data/items.mjs";
 import type { StatType } from "@/features/stats/types.mjs";
+import { talents } from "@/features/talents/const.mts";
+import {
+  calculateImperfectRefine,
+  calculateOptimalPerfectRefine,
+} from "../refine/utils.mts";
 import {
   MonsterHunterTalentsLevels,
   ProfileEquipment,
   ProfileStats,
   TalentsLevels,
 } from "./types";
-import { items } from "@/data/items.mjs";
-import { talents } from "@/features/talents/const.mts";
-import {
-  calculateImperfectRefine,
-  calculateOptimalPerfectRefine,
-} from "../refine/utils.mts";
 
 const BASE_STATS: Record<StatType, number> = {
   defense: 15,

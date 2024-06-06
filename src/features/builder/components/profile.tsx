@@ -1,6 +1,4 @@
 import { Input } from "@/components/ui/input";
-import { useBuilder } from "../context";
-import { stats } from "@/features/stats/const.mjs";
 import {
   Table,
   TableBody,
@@ -9,7 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { calculateStats } from "../utils.mts";
 import {
   Slot,
   amuletsIDs,
@@ -23,6 +20,9 @@ import {
   ringsIDs,
   toolsIDs,
 } from "@/data/items.mjs";
+import { stats } from "@/features/stats/const.mjs";
+import { useBuilder } from "../context";
+import { calculateStats } from "../utils.mts";
 import { EquipmentDialog } from "./equipment-dialog";
 
 const shadowsImages: Record<Slot, string> = {

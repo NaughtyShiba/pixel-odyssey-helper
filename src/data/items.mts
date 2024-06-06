@@ -1,3 +1,4 @@
+import { Maybe } from "@/lib/fn/maybe.mjs";
 import { ArrayElement } from "@/lib/ts/array-element.mjs";
 import type { StatType } from "../features/stats/types.mjs";
 
@@ -237,7 +238,7 @@ export interface Item {
   label: string;
   craft?: Partial<Record<ItemName, number>>;
   stats?: Partial<Record<StatType, number>>;
-  image: string | null;
+  image: Maybe<string>;
 }
 
 export const itemTypeLabel: Record<ItemType, string> = {

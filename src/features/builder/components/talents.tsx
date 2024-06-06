@@ -3,9 +3,9 @@ import {
   MonsterHunterTalentName,
   monsterHunterTalents,
 } from "@/data/monster-hunter.mjs";
-import { useBuilder } from "../context";
-import type { TalentName } from "@/features/talents/type.mjs";
 import { talents } from "@/features/talents/const.mjs";
+import type { TalentName } from "@/features/talents/type.mjs";
+import { useBuilder } from "../context";
 
 const talentsImages: Record<TalentName, string> = {
   strength: new URL("@/assets/talents/str.png", import.meta.url).href,

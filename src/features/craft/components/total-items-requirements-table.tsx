@@ -7,9 +7,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ItemName, items } from "@/data/items.mjs";
-import { calculateTotalRequiredItems } from "../utils.mts";
-import { useCraftAmount } from "../context";
 import { useItemSelection } from "@/features/items/context";
+import { useCraftAmount } from "../context";
+import { calculateTotalRequiredItems } from "../utils.mts";
 
 export function TotalItemsRequirementsTable() {
   const { selectedItem } = useItemSelection();

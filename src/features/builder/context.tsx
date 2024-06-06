@@ -1,3 +1,6 @@
+import { ItemName } from "@/data/items.mjs";
+import { assert } from "@/lib/assert/assert.mjs";
+import { Maybe } from "@/lib/fn/maybe.mjs";
 import { ActionDispatch, createContext, useContext, useReducer } from "react";
 import {
   MonsterHunterTalentsLevels,
@@ -5,7 +8,6 @@ import {
   ProfileStats,
   TalentsLevels,
 } from "./types";
-import { ItemName } from "@/data/items.mjs";
 
 interface BuildContextProviderProps {
   children: React.ReactNode;
@@ -100,7 +102,7 @@ type Actions =
   | {
       type: "set_equipment_item";
       property: keyof BuilderState["equipment"];
-      item: ItemName | null;
+      item: Maybe<ItemName>;
     }
   | {
       type: "set_equipment_level";
@@ -193,8 +195,10 @@ export function BuildProvider({ children }: BuildContextProviderProps) {
 export const useBuilder = () => {
   const context = useContext(BuildContext);
 
-  if (context === undefined)
-    throw new Error("useBuilder must be used within a BuildContext");
+  assert(
+    context !== undefined,
+    "useBuilder must be used within a BuildContext",
+  );
 
   return context;
 };
