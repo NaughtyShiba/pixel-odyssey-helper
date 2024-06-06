@@ -148,7 +148,6 @@ export const legwearsIDs = [
   "volcanic_greaves",
   "silver_greaves",
   "platinum_greaves",
-  "wooden_legwear",
   "soldier_legwear",
 ] as const;
 export type LegwearsIDs = ArrayElement<typeof legwearsIDs>;
@@ -201,8 +200,7 @@ export type ItemName =
   | "copper_ore"
   | "bat_wing"
   | "emerald"
-  | "branch"
-  | "purple_scarab";
+  | "branch";
 
 export type ItemType =
   | "tool"
@@ -239,7 +237,7 @@ export interface Item {
   label: string;
   craft?: Partial<Record<ItemName, number>>;
   stats?: Partial<Record<StatType, number>>;
-  image?: string;
+  image: string | null;
 }
 
 export const itemTypeLabel: Record<ItemType, string> = {
@@ -950,6 +948,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   bunny_ears: {
+    image: null,
     type: "combat_equipment",
     label: "Bunny Ears",
     stats: {
@@ -1093,6 +1092,7 @@ export const necklaceEquipment: Record<NecklacesIDs, Item> = {
 };
 export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
   draculas_cloak: {
+    image: new URL("@/assets/items/draculas_cloak.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Dracula's Cloak",
     stats: {
@@ -1101,6 +1101,8 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   platinum_chestplate: {
+    image: new URL("@/assets/items/platinum_chestplate.png", import.meta.url)
+      .href,
     type: "combat_equipment",
     label: "Platinum Chestplate",
     stats: {
@@ -1113,6 +1115,7 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   chainmail_shirt: {
+    image: new URL("@/assets/items/chainmail_shirt.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Chainmail Shirt",
     stats: {
@@ -1126,6 +1129,7 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   shirt: {
+    image: new URL("@/assets/items/shirt.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Shirt",
     stats: {
@@ -1133,17 +1137,16 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   purple_cloak: {
+    image: new URL("@/assets/items/purple_cloak.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Purple Cloak",
     stats: {
       health: 45,
       speed: 10,
     },
-    craft: {
-      purple_scarab: 4,
-    },
   },
   dark_blue_cloak: {
+    image: new URL("@/assets/items/dark_blue_cloak.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Dark Blue Cloak",
     stats: {
@@ -1152,6 +1155,7 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   gold_chestplate: {
+    image: new URL("@/assets/items/gold_chestplate.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Gold Chestplate",
     stats: {
@@ -1164,6 +1168,8 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   long_sleeve_shirt: {
+    image: new URL("@/assets/items/long_sleeve_shirt.png", import.meta.url)
+      .href,
     type: "combat_equipment",
     label: "Long Sleeve Shirt",
     stats: {
@@ -1172,6 +1178,8 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   silver_chestplate: {
+    image: new URL("@/assets/items/silver_chestplate.png", import.meta.url)
+      .href,
     type: "combat_equipment",
     label: "Silver Chestplate",
     stats: {
@@ -1184,6 +1192,7 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   soldier_chest: {
+    image: new URL("@/assets/items/soldier_chest.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Soldier Chest",
     stats: {
@@ -1192,6 +1201,8 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   volcanic_chestplate: {
+    image: new URL("@/assets/items/volcanic_chestplate.png", import.meta.url)
+      .href,
     type: "combat_equipment",
     label: "Volcanic Chestplate",
     stats: {
@@ -1206,6 +1217,8 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
     },
   },
   wooden_chestplate: {
+    image: new URL("@/assets/items/wooden_chestplate.png", import.meta.url)
+      .href,
     type: "combat_equipment",
     label: "Wooden Chestplate",
     stats: {
@@ -1219,6 +1232,7 @@ export const chestwearEquipment: Record<ChestwearsIDs, Item> = {
 };
 export const legwearEquipment: Record<LegwearsIDs, Item> = {
   wooden_legwear: {
+    image: new URL("@/assets/items/wooden_legwear.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Wooden Legwear",
     stats: {
@@ -1230,6 +1244,7 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
     },
   },
   gold_greaves: {
+    image: new URL("@/assets/items/gold_greaves.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Gold Greaves",
     stats: {
@@ -1241,6 +1256,7 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
     },
   },
   soldier_legwear: {
+    image: new URL("@/assets/items/soldier_legwear.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Soldier Greaves",
     stats: {
@@ -1249,6 +1265,7 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
     },
   },
   platinum_greaves: {
+    image: new URL("@/assets/items/platinum_greaves.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Platinum Greaves",
     stats: {
@@ -1261,6 +1278,7 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
     },
   },
   volcanic_greaves: {
+    image: new URL("@/assets/items/volcanic_greaves.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Volcanic Greaves",
     stats: {
@@ -1274,6 +1292,7 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
     },
   },
   silver_greaves: {
+    image: new URL("@/assets/items/silver_greaves.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Silver Greaves",
     stats: {
@@ -1288,6 +1307,7 @@ export const legwearEquipment: Record<LegwearsIDs, Item> = {
 };
 export const amuletEquipment: Record<AmuletsIDs, Item> = {
   sun_demon_amulet: {
+    image: new URL("@/assets/items/sun_demon_amulet.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Sun Demon Amulet",
     stats: {
@@ -1358,6 +1378,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     },
   },
   red_gloves: {
+    image: new URL("@/assets/items/red_gloves.png", import.meta.url).href,
     type: "gloves",
     label: "Red Gloves",
     stats: {
@@ -1369,6 +1390,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     },
   },
   basic_gloves: {
+    image: new URL("@/assets/items/basic_gloves.png", import.meta.url).href,
     type: "gloves",
     label: "Gloves",
     stats: {
@@ -1379,6 +1401,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     },
   },
   snake_gloves: {
+    image: new URL("@/assets/items/snake_gloves.png", import.meta.url).href,
     type: "gloves",
     label: "Snake Gloves",
     stats: {
@@ -1389,6 +1412,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     },
   },
   mana_skull: {
+    image: new URL("@/assets/items/mana_skull.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Mana Skull",
     stats: {
@@ -1396,6 +1420,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     },
   },
   great_mana_skull: {
+    image: new URL("@/assets/items/great_mana_skull.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Great Mana Skull",
     stats: {
@@ -1405,17 +1430,20 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
 };
 export const footwearEquipment: Record<FootwearIDs, Item> = {
   wooden_shoes: {
+    image: new URL("@/assets/items/wooden_shoes.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Wooden Shoes",
     stats: { speed: 15 },
   },
   gold_boots: {
+    image: new URL("@/assets/items/gold_boots.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Gold Boots",
     stats: { defense: 12, speed: 8 },
     craft: { gold_ingot: 20 },
   },
   volcanic_boots: {
+    image: new URL("@/assets/items/volcanic_boots.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Volcanic Boots",
     stats: { defense: 20, speed: 15 },
@@ -1426,6 +1454,7 @@ export const footwearEquipment: Record<FootwearIDs, Item> = {
     },
   },
   silver_batons: {
+    image: new URL("@/assets/items/silver_batons.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Silver Batons",
     stats: { defense: 20, speed: 15 },
@@ -1435,6 +1464,7 @@ export const footwearEquipment: Record<FootwearIDs, Item> = {
     },
   },
   platinum_boots: {
+    image: new URL("@/assets/items/platinum_boots.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Platinum Boots",
     stats: {
@@ -1447,21 +1477,25 @@ export const footwearEquipment: Record<FootwearIDs, Item> = {
     },
   },
   warm_boots: {
+    image: new URL("@/assets/items/warm_boots.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Warm Boots",
     stats: { defense: 10, fire_defense: 10 },
   },
   soldier_boots: {
+    image: new URL("@/assets/items/soldier_boots.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Soldier Boots",
     stats: { defense: 17, speed: 8 },
   },
   magic_loafers: {
+    image: new URL("@/assets/items/magic_loafers.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Magic Loafers",
     stats: { mana: 10, speed: 15 },
   },
   sandals: {
+    image: new URL("@/assets/items/sandals.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Sandals",
     stats: {
@@ -1472,10 +1506,6 @@ export const footwearEquipment: Record<FootwearIDs, Item> = {
 };
 
 export const items: Record<ItemName, Item> = {
-  purple_scarab: {
-    type: "material",
-    label: "Purple Scarab",
-  },
   ...ores,
   ...ingots,
   ...materials,
