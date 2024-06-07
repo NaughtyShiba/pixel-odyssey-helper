@@ -572,7 +572,7 @@ export const ingots: Record<IngotsIDs, Item> = {
     image: new URL("@/assets/items/platinum_ingot.png", import.meta.url).href,
     type: "ingot",
     label: "Platinum Ingot",
-    craft: { platinum_ore: 3, coal: 5 },
+    craft: { platinum_ore: 3, coal: 16 },
   },
   silver_ingot: {
     image: new URL("@/assets/items/silver_ingot.png", import.meta.url).href,
