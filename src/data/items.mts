@@ -949,7 +949,7 @@ export const headwearEquipment: Record<HeadwearIDs, Item> = {
     },
   },
   bunny_ears: {
-    image: null,
+    image: new URL("@/assets/items/bunny_ears.png", import.meta.url).href,
     type: "combat_equipment",
     label: "Bunny Ears",
     stats: {
