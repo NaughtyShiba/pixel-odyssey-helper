@@ -1,6 +1,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Profile } from "@/features/builder/components/profile";
+import { ShareBuild } from "@/features/builder/components/share-build";
 import { Talents } from "@/features/builder/components/talents";
 import { BuildProvider } from "@/features/builder/context";
 import { AlertCircle } from "lucide-react";
@@ -20,6 +21,8 @@ export default function BuilderRoute() {
             to be unstable than stable, but feel free to play around
           </AlertDescription>
         </Alert>
+
+        <ShareBuild />
 
         <Tabs
           onValueChange={(tab) => setTab(tab as "profile" | "talents")}

@@ -1,8 +1,10 @@
 import { assert } from "@/lib/assert/assert.mjs";
 import { Maybe } from "@/lib/fn/maybe.mjs";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 import { EnemySelector } from "./components/enemy-selector";
 import { EnemiesIDs } from "./enemies.mts";
+import { useSafeSearchParams } from "@/lib/use-search-params/hooks.mjs";
+import { null_, string, union } from "valibot";
 
 type EnemySelectionContextProviderProps = {
   children: React.ReactNode;
@@ -17,7 +19,11 @@ const EnemySelectionContext = createContext<{
 export function EnemySelectionProvider({
   children,
 }: EnemySelectionContextProviderProps) {
-  const [selectedEnemy, selectEnemy] = useState<Maybe<EnemiesIDs>>(null);
+  const [selectedEnemy, selectEnemy] = useSafeSearchParams({
+    key: "selectedEnemy",
+    defaultValue: null,
+    validation: union([string(), null_()]),
+  });
 
   return (
     <EnemySelectionContext.Provider value={{ selectedEnemy }}>

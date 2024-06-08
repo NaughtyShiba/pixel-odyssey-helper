@@ -1,13 +1,7 @@
 import { ItemName } from "@/data/items.mjs";
 import { assert } from "@/lib/assert/assert.mjs";
 import { Maybe } from "@/lib/fn/maybe.mjs";
-import {
-  ActionDispatch,
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-} from "react";
+import { ActionDispatch, createContext, useContext, useReducer } from "react";
 import {
   MonsterHunterTalentsLevels,
   ProfileEquipment,
@@ -15,7 +9,7 @@ import {
   TalentsLevels,
 } from "./types";
 import { useSearchParams } from "react-router-dom";
-import { minifyState, unminifyState } from "./utils.mts";
+import { unminifyState } from "./utils.mts";
 
 interface BuildContextProviderProps {
   children: React.ReactNode;
@@ -192,15 +186,13 @@ function reducer(state: BuilderState, action: Actions) {
 }
 
 export function BuildProvider({ children }: BuildContextProviderProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const initialStateFromSearchParams = searchParams.get("q");
   const initialState = initialStateFromSearchParams
     ? unminifyState(initialStateFromSearchParams)
     : defaultValue;
   const [state, dispatch] = useReducer(reducer, initialState);
-  useEffect(() => {
-    setSearchParams({ q: minifyState(state) });
-  }, [state]);
+
   return (
     <BuildContext.Provider value={{ state, dispatch }}>
       {children}

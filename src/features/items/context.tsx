@@ -4,6 +4,7 @@ import { createContext, useContext } from "react";
 import { ItemSelector } from "./components/item-selector";
 import { useSafeSearchParams } from "@/lib/use-search-params/hooks.mjs";
 import { null_, string, union } from "valibot";
+import { assert } from "@/lib/assert/assert.mjs";
 
 type ItemSelectionContextProviderProps = {
   children: React.ReactNode;
@@ -37,10 +38,10 @@ export function ItemSelectionProvider({
 export const useItemSelection = () => {
   const context = useContext(ItemSelectionContext);
 
-  if (context === undefined)
-    throw new Error(
-      "useItemSelection must be used within a ItemSelectionContext",
-    );
+  assert(
+    context !== undefined,
+    "useItemSelection must be used within a ItemSelectionContext",
+  );
 
   return context;
 };

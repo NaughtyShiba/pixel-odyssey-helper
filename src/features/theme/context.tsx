@@ -1,3 +1,4 @@
+import { assert } from "@/lib/assert/assert.mjs";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "dark" | "light" | "system";
@@ -65,9 +66,7 @@ export function ThemeProvider({
 
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
-
-  if (context === undefined)
-    throw new Error("useTheme must be used within a ThemeProvider");
+  assert(context !== undefined, "useTheme must be used within a ThemeProvider");
 
   return context;
 };
