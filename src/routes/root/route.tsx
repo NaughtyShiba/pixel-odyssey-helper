@@ -27,6 +27,20 @@ export function RootErrorBoundary() {
 
   if (isRouteErrorResponse(error) && error.status === 404) {
     return <div>Page not found ☠️</div>;
+  } else if (isRouteErrorResponse(error)) {
+    return (
+      <>
+        <div>{JSON.stringify(error.data)}</div>
+        <div>{JSON.stringify(error.status)}</div>
+      </>
+    );
+  } else if (error instanceof Error) {
+    return (
+      <>
+        <div>{error.message}</div>
+        <div>{error.stack}</div>
+      </>
+    );
   }
 
   return <div>Unknown error</div>;
