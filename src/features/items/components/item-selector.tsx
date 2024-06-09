@@ -21,6 +21,7 @@ import { Maybe } from "@/lib/fn/maybe.mjs";
 import { filterObject, mapObject } from "@/lib/fn/object.mjs";
 import { useMediaQuery } from "@/lib/react/use-media-query.mjs";
 import { cn } from "@/lib/utils";
+import groupBy from "object.groupby";
 
 interface ItemSelectorProps {
   defaultValue?: Maybe<ItemName>;
@@ -47,7 +48,7 @@ export function ItemSelector(props: ItemSelectorProps) {
     .sort((a, b) => a.category.localeCompare(b.category))
     .sort((a, b) => a.label.localeCompare(b.label));
 
-  const groupedCraftableItems = Object.groupBy(
+  const groupedCraftableItems = groupBy(
     craftableItems,
     (item) => item.category,
   );
