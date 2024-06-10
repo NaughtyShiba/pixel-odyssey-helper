@@ -1,64 +1,28 @@
 import { assert } from "@/lib/assert/assert.mjs";
-import { createContext, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useContext, useMemo } from "react";
 
-type Theme = "dark" | "light" | "system";
-
-type ThemeProviderProps = {
-  children: React.ReactNode;
-  defaultTheme?: Theme;
-  storageKey?: string;
-};
+export type Theme = "dark" | "light" | "system";
 
 type ThemeProviderState = {
   theme: Theme;
-  setTheme: (theme: Theme) => void;
 };
 
 const initialState: ThemeProviderState = {
-  theme: "system",
-  setTheme: () => null,
+  theme: "dark",
 };
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
+interface ThemeProviderProps {
+  children: ReactNode;
+  theme: Theme;
+}
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
-  storageKey = "vite-ui-theme",
-  ...props
+  theme = "dark",
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
-  );
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-
-    root.classList.remove("light", "dark");
-
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-
-      root.classList.add(systemTheme);
-      return;
-    }
-
-    root.classList.add(theme);
-  }, [theme]);
-
-  const value = {
-    theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setTheme(theme);
-    },
-  };
-
   return (
-    <ThemeProviderContext.Provider {...props} value={value}>
+    <ThemeProviderContext.Provider value={useMemo(() => ({ theme }), [theme])}>
       {children}
     </ThemeProviderContext.Provider>
   );
@@ -68,5 +32,5 @@ export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
   assert(context !== undefined, "useTheme must be used within a ThemeProvider");
 
-  return context;
+  return context.theme;
 };

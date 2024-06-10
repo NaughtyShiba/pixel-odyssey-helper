@@ -20,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { COOKIES } from "@/core/cookies.mjs";
 
 export function CookiesModal() {
   return (
@@ -45,13 +46,13 @@ export function CookiesModal() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow>
-                    <TableCell>Cookie Banner</TableCell>
-                    <TableCell>cookie_banner</TableCell>
-                    <TableCell>
-                      Stores information that Cookie Banner was closed
-                    </TableCell>
-                  </TableRow>
+                  {Object.values(COOKIES).map((cookie) => (
+                    <TableRow key={cookie.key}>
+                      <TableCell>{cookie.name}</TableCell>
+                      <TableCell>{cookie.key}</TableCell>
+                      <TableCell>{cookie.description}</TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </AccordionContent>

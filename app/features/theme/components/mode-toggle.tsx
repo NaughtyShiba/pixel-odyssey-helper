@@ -7,11 +7,24 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTheme } from "../context";
+import { Theme } from "../context";
+import { Form } from "@remix-run/react";
+
+const ThemeToggleButton = (props: { theme: Theme; label: string }) => {
+  return (
+    <Form method="post" action="/">
+      <input type="hidden" name="intent" value="set_theme" />
+      <input type="hidden" name="theme" value={props.theme} />
+      <DropdownMenuItem asChild>
+        <button className="w-full" type="submit">
+          {props.label}
+        </button>
+      </DropdownMenuItem>
+    </Form>
+  );
+};
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -22,15 +35,9 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
+        <ThemeToggleButton label="Light" theme="light" />
+        <ThemeToggleButton label="Dark" theme="dark" />
+        <ThemeToggleButton label="System" theme="system" />
       </DropdownMenuContent>
     </DropdownMenu>
   );
