@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { items } from "@/data/items.mjs";
 import { calculateOptimalPerfectRefine } from "@/features/refine/utils.mts";
-import { createContext, useContext, useState } from "react";
+import { createContext, memo, useContext, useState } from "react";
 import { useItemSelection } from "../items/context";
 
 type CraftContextProviderProps = {
@@ -11,7 +11,9 @@ type CraftContextProviderProps = {
 
 const CraftContext = createContext<{ amount: number }>({ amount: 1 });
 
-export function CraftContextProvider({ children }: CraftContextProviderProps) {
+export const CraftContextProvider = memo(function CraftContextProvider({
+  children,
+}: CraftContextProviderProps) {
   const [amount, setAmount] = useState(1);
   const { selectedItem } = useItemSelection();
   const item = selectedItem ? items[selectedItem] : null;
@@ -52,7 +54,7 @@ export function CraftContextProvider({ children }: CraftContextProviderProps) {
       </section>
     </CraftContext.Provider>
   );
-}
+});
 
 export const useCraftAmount = () => {
   const context = useContext(CraftContext);

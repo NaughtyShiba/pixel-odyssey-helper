@@ -9,8 +9,9 @@ import {
 import { ItemName, items } from "@/data/items.mjs";
 import { useItemSelection } from "@/features/items/context";
 import { useCraftAmount } from "../context";
+import { memo, useMemo } from "react";
 
-export function CraftRequirementsTable() {
+export const CraftRequirementsTable = memo(function CraftRequirementsTable() {
   const { selectedItem } = useItemSelection();
   const item = selectedItem ? items[selectedItem] : null;
   const craftAmount = useCraftAmount();
@@ -29,22 +30,34 @@ export function CraftRequirementsTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Object.entries(item.craft).map(([itemName, amount]) => (
-            <TableRow key={itemName}>
-              <TableCell className="flex gap-2 items-center">
-                {items[itemName as ItemName].image ? (
-                  <img
-                    src={items[itemName as ItemName].image!}
-                    className="h-8 w-8"
-                  />
-                ) : null}
-                <span>{items[itemName as ItemName].label}</span>
-              </TableCell>
-              <TableCell>{amount! * craftAmount.amount}</TableCell>
-            </TableRow>
-          ))}
+          <TableRows craft={item.craft} craftAmount={craftAmount.amount} />
         </TableBody>
       </Table>
     </section>
   );
+});
+
+interface TableRowsProps {
+  craft: Partial<Record<ItemName, number>>;
+  craftAmount: number;
 }
+const TableRows = memo(function TableRows(props: TableRowsProps) {
+  return useMemo(
+    () =>
+      Object.entries(props.craft).map(([itemName, amount]) => (
+        <TableRow key={itemName}>
+          <TableCell className="flex gap-2 items-center">
+            {items[itemName as ItemName].image ? (
+              <img
+                src={items[itemName as ItemName].image!}
+                className="h-8 w-8"
+              />
+            ) : null}
+            <span>{items[itemName as ItemName].label}</span>
+          </TableCell>
+          <TableCell>{amount! * props.craftAmount}</TableCell>
+        </TableRow>
+      )),
+    [props.craft, props.craftAmount],
+  );
+});

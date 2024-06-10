@@ -21,8 +21,21 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { COOKIES } from "@/core/cookies.mjs";
+import { memo, useMemo } from "react";
 
-export function CookiesModal() {
+export const CookiesModal = memo(function CookiesModal() {
+  const cookiesRows = useMemo(
+    () =>
+      Object.values(COOKIES).map((cookie) => (
+        <TableRow key={cookie.key}>
+          <TableCell>{cookie.name}</TableCell>
+          <TableCell>{cookie.key}</TableCell>
+          <TableCell>{cookie.description}</TableCell>
+        </TableRow>
+      )),
+    [],
+  );
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -45,15 +58,7 @@ export function CookiesModal() {
                     <TableHead>Description</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody>
-                  {Object.values(COOKIES).map((cookie) => (
-                    <TableRow key={cookie.key}>
-                      <TableCell>{cookie.name}</TableCell>
-                      <TableCell>{cookie.key}</TableCell>
-                      <TableCell>{cookie.description}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
+                <TableBody>{cookiesRows}</TableBody>
               </Table>
             </AccordionContent>
           </AccordionItem>
@@ -61,4 +66,4 @@ export function CookiesModal() {
       </DialogContent>
     </Dialog>
   );
-}
+});

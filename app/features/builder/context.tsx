@@ -1,7 +1,7 @@
 import { ItemName } from "@/data/items.mjs";
 import { assert } from "@/lib/assert/assert.mjs";
 import { Maybe } from "@/lib/fn/maybe.mjs";
-import { ActionDispatch, createContext, useContext, useReducer } from "react";
+import { Dispatch, createContext, memo, useContext, useReducer } from "react";
 import {
   MonsterHunterTalentsLevels,
   ProfileEquipment,
@@ -82,7 +82,7 @@ export const defaultValue: BuilderState = {
 };
 const BuildContext = createContext<{
   state: BuilderState;
-  dispatch: ActionDispatch<[action: Actions]>;
+  dispatch: Dispatch<Actions>;
 }>({ state: defaultValue, dispatch: () => {} });
 
 type Actions =
@@ -185,7 +185,9 @@ function reducer(state: BuilderState, action: Actions) {
   }
 }
 
-export function BuildProvider({ children }: BuildContextProviderProps) {
+export const BuildProvider = memo(function BuildProvider({
+  children,
+}: BuildContextProviderProps) {
   const [searchParams] = useSearchParams();
   const initialStateFromSearchParams = searchParams.get("q");
   const initialState = initialStateFromSearchParams
@@ -198,7 +200,7 @@ export function BuildProvider({ children }: BuildContextProviderProps) {
       {children}
     </BuildContext.Provider>
   );
-}
+});
 
 export const useBuilder = () => {
   const context = useContext(BuildContext);

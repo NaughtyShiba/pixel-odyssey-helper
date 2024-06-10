@@ -15,6 +15,7 @@ import {
   calculateImperfectRefine,
   calculateOptimalPerfectRefine,
 } from "../utils.mts";
+import { memo } from "react";
 
 const refinableItemTypes: ItemType[] = [
   "combat_equipment",
@@ -25,7 +26,7 @@ const refinableItemTypes: ItemType[] = [
   "gloves",
 ];
 
-export function RefineComparisonTable() {
+export const RefineComparisonTable = memo(function RefineComparisonTable() {
   const { selectedItem } = useItemSelection();
   const item = selectedItem ? items[selectedItem] : null;
 
@@ -102,4 +103,4 @@ export function RefineComparisonTable() {
       </TableBody>
     </Table>
   );
-}
+});

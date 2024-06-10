@@ -3,10 +3,10 @@ import { CraftRequirementsTable } from "@/features/craft/components/craft-requir
 import { TotalItemsRequirementsTable } from "@/features/craft/components/total-items-requirements-table";
 import { CraftContextProvider } from "@/features/craft/context";
 import { OptimalPerfectRefineTable } from "@/features/refine/components/optimal-perfect-refine-table";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useItemSelection } from "../context";
 
-export function ItemsDetailsTabs() {
+export const ItemsDetailsTabs = memo(function ItemsDetailsTabs() {
   const { selectedItem } = useItemSelection();
   const [tab, setTab] = useState<"craft" | "refine">("craft");
 
@@ -31,4 +31,4 @@ export function ItemsDetailsTabs() {
       </TabsContent>
     </Tabs>
   );
-}
+});

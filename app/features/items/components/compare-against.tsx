@@ -14,8 +14,10 @@ import { useItemSelection } from "../context";
 import { ItemSelector } from "./item-selector";
 import { useSafeSearchParams } from "@/lib/use-search-params/hooks.mjs";
 import { null_, string, union } from "valibot";
+import { memo, useMemo } from "react";
+import { Maybe } from "@/lib/fn/maybe.mjs";
 
-export function ItemsComparisonTable() {
+export const ItemsComparisonTable = memo(function ItemsComparisonTable() {
   const [compareAgainst, setCompareAgainst] = useSafeSearchParams({
     key: "compareAgainst",
     defaultValue: null,
@@ -26,20 +28,26 @@ export function ItemsComparisonTable() {
   const leftItem = selectedItem ? items[selectedItem] : null;
   const rightItem = compareAgainst ? items[compareAgainst as ItemName] : null;
 
-  const leftOptimalRefine =
-    leftItem?.type && leftItem?.stats
-      ? calculateOptimalPerfectRefine({
-          type: leftItem.type,
-          levelOneStats: leftItem.stats,
-        })
-      : {};
-  const rightOptimalRefine =
-    rightItem?.type && rightItem?.stats
-      ? calculateOptimalPerfectRefine({
-          type: rightItem.type,
-          levelOneStats: rightItem.stats,
-        })
-      : {};
+  const leftOptimalRefine = useMemo(
+    () =>
+      leftItem?.type && leftItem?.stats
+        ? calculateOptimalPerfectRefine({
+            type: leftItem.type,
+            levelOneStats: leftItem.stats,
+          })
+        : {},
+    [leftItem?.stats, leftItem?.type],
+  );
+  const rightOptimalRefine = useMemo(
+    () =>
+      rightItem?.type && rightItem?.stats
+        ? calculateOptimalPerfectRefine({
+            type: rightItem.type,
+            levelOneStats: rightItem.stats,
+          })
+        : {},
+    [rightItem?.stats, rightItem?.type],
+  );
 
   let details = null;
   if (!leftItem || !rightItem) details = <div>Please items to compare</div>;
@@ -107,11 +115,11 @@ export function ItemsComparisonTable() {
   return (
     <div className="flex flex-col gap-4">
       <ItemSelector
-        defaultValue={compareAgainst as any}
+        defaultValue={compareAgainst as Maybe<ItemName>}
         onChange={setCompareAgainst}
         className="flex-basis-1/2 w-1/2"
       />
       {details}
     </div>
   );
-}
+});

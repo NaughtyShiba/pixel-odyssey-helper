@@ -29,7 +29,9 @@ interface ItemSelectorProps {
   className?: string;
   ids?: readonly string[];
 }
-export function ItemSelector(props: ItemSelectorProps) {
+export const ItemSelector = React.memo(function ItemSelector(
+  props: ItemSelectorProps,
+) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState(props.defaultValue ?? "");
   const [search, setSearch] = React.useState("");
@@ -137,4 +139,4 @@ export function ItemSelector(props: ItemSelectorProps) {
       </DrawerContent>
     </Drawer>
   );
-}
+});

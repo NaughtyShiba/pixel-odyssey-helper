@@ -9,14 +9,31 @@ import {
 import { Enemy, enemies } from "@/features/bestiary/enemies.mjs";
 import { filterObject } from "@/lib/fn/object.mjs";
 import { useItemSelection } from "../context";
+import { memo, useMemo } from "react";
 
-export function ItemsDropTable() {
+export const ItemsDropTable = memo(function ItemsDropTable() {
   const { selectedItem } = useItemSelection();
   const enemiesDroppingItem = filterObject(enemies, (_, enemy: Enemy) => {
     return Boolean(enemy.drops.find(({ item }) => item === selectedItem));
   });
 
-  if (Object.values(enemiesDroppingItem).length === 0) return;
+  const rows = useMemo(
+    () =>
+      Object.values(enemiesDroppingItem).map((enemy) => (
+        <TableRow key={enemy.name}>
+          <TableCell className="flex gap-2 items-center">
+            <img src={enemy.image} className="h-8 w-8" />
+            <span>{enemy.name}</span>
+          </TableCell>
+          <TableCell>
+            {enemy.drops.find((d) => d.item === selectedItem)?.chance}%
+          </TableCell>
+        </TableRow>
+      )),
+    [enemiesDroppingItem, selectedItem],
+  );
+
+  if (rows.length === 0) return;
 
   return (
     <>
@@ -28,20 +45,8 @@ export function ItemsDropTable() {
             <TableHead>Chance</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
-          {Object.values(enemiesDroppingItem).map((enemy) => (
-            <TableRow key={enemy.name}>
-              <TableCell className="flex gap-2 items-center">
-                <img src={enemy.image} className="h-8 w-8" />
-                <span>{enemy.name}</span>
-              </TableCell>
-              <TableCell>
-                {enemy.drops.find((d) => d.item === selectedItem)?.chance}%
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+        <TableBody>{rows}</TableBody>
       </Table>
     </>
   );
-}
+});

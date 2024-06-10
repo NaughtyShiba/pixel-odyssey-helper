@@ -14,6 +14,7 @@ import { Switch } from "@/components/ui/switch";
 import { Slot, items } from "@/data/items.mjs";
 import { ItemSelector } from "@/features/items/components/item-selector";
 import { useBuilder } from "../context";
+import { memo, useCallback } from "react";
 
 interface EquipmentDialogProps {
   equipmentSlot: Slot;
@@ -21,7 +22,9 @@ interface EquipmentDialogProps {
   title: string;
   itemsIDs: readonly string[];
 }
-export function EquipmentDialog(props: EquipmentDialogProps) {
+export const EquipmentDialog = memo(function EquipmentDialog(
+  props: EquipmentDialogProps,
+) {
   const { state, dispatch } = useBuilder();
 
   const item = state.equipment[props.equipmentSlot].item;
@@ -44,13 +47,16 @@ export function EquipmentDialog(props: EquipmentDialogProps) {
             </Label>
             <ItemSelector
               ids={props.itemsIDs}
-              onChange={(item) => {
-                dispatch({
-                  type: "set_equipment_item",
-                  property: props.equipmentSlot,
-                  item: item,
-                });
-              }}
+              onChange={useCallback(
+                (item) => {
+                  dispatch({
+                    type: "set_equipment_item",
+                    property: props.equipmentSlot,
+                    item: item,
+                  });
+                },
+                [dispatch, props.equipmentSlot],
+              )}
             />
           </div>
           <div className="flex flex-row gap-2">
@@ -94,4 +100,4 @@ export function EquipmentDialog(props: EquipmentDialogProps) {
       </DialogContent>
     </Dialog>
   );
-}
+});

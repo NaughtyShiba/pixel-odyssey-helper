@@ -6,6 +6,7 @@ import {
 import { talents } from "@/features/talents/const.mjs";
 import type { TalentName } from "@/features/talents/type.mjs";
 import { useBuilder } from "../context";
+import { memo, useMemo } from "react";
 
 const talentsImages: Record<TalentName, string> = {
   strength: new URL("@/assets/talents/str.png", import.meta.url).href,
@@ -70,66 +71,70 @@ const monsterHunterTalentsImages: Record<MonsterHunterTalentName, string> = {
   wrath: new URL("@/assets/monster-hunter/dmg.png", import.meta.url).href,
 };
 
-export function Talents() {
+export const Talents = memo(function Talents() {
   const { state, dispatch } = useBuilder();
+
+  const talentsCells = useMemo(
+    () =>
+      Object.keys(talents).map((talent) => (
+        <div className="flex" key={talent}>
+          <img className="w-8 h-8" src={talentsImages[talent as TalentName]} />
+          <Input
+            id={talent}
+            type="number"
+            min="1"
+            max={talents[talent as TalentName].maxLvl({
+              talentsLevels: state.talentsLevels,
+            })}
+            value={state.talentsLevels[talent as TalentName]}
+            onChange={(e) => {
+              dispatch({
+                type: "set_talent",
+                property: talent as TalentName,
+                value: parseInt(e.target.value),
+              });
+            }}
+          />
+        </div>
+      )),
+    [dispatch, state.talentsLevels],
+  );
+
+  const monsterHunterTalentsCells = useMemo(
+    () =>
+      Object.keys(monsterHunterTalents).map((talent) => (
+        <div className="flex" key={talent}>
+          <img
+            className="w-8 h-8"
+            src={monsterHunterTalentsImages[talent as MonsterHunterTalentName]}
+          />
+          <Input
+            id={talent}
+            type="number"
+            min="1"
+            max="99"
+            value={
+              state.monsterHunterTalentsLevels[
+                talent as MonsterHunterTalentName
+              ]
+            }
+            onChange={(e) => {
+              dispatch({
+                type: "set_monster_hunter",
+                property: talent as MonsterHunterTalentName,
+                value: parseInt(e.target.value),
+              });
+            }}
+          />
+        </div>
+      )),
+    [dispatch, state.monsterHunterTalentsLevels],
+  );
+
   return (
     <>
-      <div className="grid grid-cols-5">
-        {Object.keys(talents).map((talent) => (
-          <div className="flex" key={talent}>
-            <img
-              className="w-8 h-8"
-              src={talentsImages[talent as TalentName]}
-            />
-            <Input
-              id={talent}
-              type="number"
-              min="1"
-              max={talents[talent as TalentName].maxLvl({
-                talentsLevels: state.talentsLevels,
-              })}
-              value={state.talentsLevels[talent as TalentName]}
-              onChange={(e) => {
-                dispatch({
-                  type: "set_talent",
-                  property: talent as TalentName,
-                  value: parseInt(e.target.value),
-                });
-              }}
-            />
-          </div>
-        ))}
-      </div>
-      <div className="grid grid-cols-5">
-        {Object.keys(monsterHunterTalents).map((talent) => (
-          <div className="flex" key={talent}>
-            <img
-              className="w-8 h-8"
-              src={
-                monsterHunterTalentsImages[talent as MonsterHunterTalentName]
-              }
-            />
-            <Input
-              id={talent}
-              type="number"
-              min="1"
-              max="99"
-              value={
-                state.monsterHunterTalentsLevels[
-                  talent as MonsterHunterTalentName
-                ]
-              }
-              onChange={(e) => {
-                dispatch({
-                  type: "set_monster_hunter",
-                  property: talent as MonsterHunterTalentName,
-                  value: parseInt(e.target.value),
-                });
-              }}
-            />
-          </div>
-        ))}
-      </div>
+      <div className="grid grid-cols-5">{talentsCells}</div>
+      <div className="grid grid-cols-5">{monsterHunterTalentsCells}</div>
     </>
   );
-}
+});

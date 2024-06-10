@@ -24,6 +24,7 @@ import { stats } from "@/features/stats/const.mjs";
 import { useBuilder } from "../context";
 import { calculateStats } from "../utils.mts";
 import { EquipmentDialog } from "./equipment-dialog";
+import { memo, useMemo } from "react";
 
 const shadowsImages: Record<Slot, string> = {
   earrings: new URL("@/assets/icons/earrings_shadow.png", import.meta.url).href,
@@ -40,7 +41,7 @@ const shadowsImages: Record<Slot, string> = {
   footwear: new URL("@/assets/icons/shoe_shadow.png", import.meta.url).href,
 };
 
-export function Profile() {
+export const Profile = memo(function Profile() {
   const { state, dispatch } = useBuilder();
 
   return (
@@ -195,17 +196,21 @@ export function Profile() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {calculateStats(state).map((stat) => (
-              <TableRow key={stat.name}>
-                <TableCell>{stats[stat.name].label}</TableCell>
-                <TableCell>{stat.base}</TableCell>
-                <TableCell>{stat.bonus}</TableCell>
-                <TableCell>{stat.total}</TableCell>
-              </TableRow>
-            ))}
+            {useMemo(
+              () =>
+                calculateStats(state).map((stat) => (
+                  <TableRow key={stat.name}>
+                    <TableCell>{stats[stat.name].label}</TableCell>
+                    <TableCell>{stat.base}</TableCell>
+                    <TableCell>{stat.bonus}</TableCell>
+                    <TableCell>{stat.total}</TableCell>
+                  </TableRow>
+                )),
+              [state],
+            )}
           </TableBody>
         </Table>
       </div>
     </div>
   );
-}
+});

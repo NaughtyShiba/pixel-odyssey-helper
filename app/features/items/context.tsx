@@ -1,6 +1,6 @@
 import { ItemName } from "@/data/items.mjs";
 import { Maybe } from "@/lib/fn/maybe.mjs";
-import { createContext, useContext } from "react";
+import { createContext, useCallback, useContext } from "react";
 import { ItemSelector } from "./components/item-selector";
 import { useSafeSearchParams } from "@/lib/use-search-params/hooks.mjs";
 import { null_, string, union } from "valibot";
@@ -24,10 +24,15 @@ export function ItemSelectionProvider({
   });
 
   return (
-    <ItemSelectionContext.Provider value={{ selectedItem } as any}>
+    <ItemSelectionContext.Provider
+      value={{ selectedItem } as { selectedItem: ItemName }}
+    >
       <ItemSelector
-        defaultValue={selectedItem as any}
-        onChange={(selectedItem) => setSelectedItem(selectedItem)}
+        defaultValue={selectedItem as ItemName}
+        onChange={useCallback(
+          (selectedItem) => setSelectedItem(selectedItem),
+          [setSelectedItem],
+        )}
         className="flex-basis-1/2 w-1/2"
       />
       {children}

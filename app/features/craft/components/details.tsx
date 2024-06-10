@@ -3,8 +3,9 @@ import { CraftRequirementsTable } from "@/features/craft/components/craft-requir
 import { TotalItemsRequirementsTable } from "@/features/craft/components/total-items-requirements-table";
 import { CraftContextProvider } from "@/features/craft/context";
 import { useItemSelection } from "@/features/items/context";
+import { memo } from "react";
 
-export function CraftDetails() {
+export const CraftDetails = memo(function CraftDetails() {
   const { selectedItem } = useItemSelection();
   const item = selectedItem ? items[selectedItem] : null;
 
@@ -19,4 +20,4 @@ export function CraftDetails() {
       </CraftContextProvider>
     </>
   );
-}
+});

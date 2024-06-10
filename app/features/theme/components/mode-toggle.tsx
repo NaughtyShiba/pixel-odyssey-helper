@@ -9,8 +9,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Theme } from "../context";
 import { Form } from "@remix-run/react";
+import { memo } from "react";
 
-const ThemeToggleButton = (props: { theme: Theme; label: string }) => {
+const ThemeToggleButton = memo(function ThemeToggleButton(props: {
+  theme: Theme;
+  label: string;
+}) {
   return (
     <Form method="post" action="/">
       <input type="hidden" name="intent" value="set_theme" />
@@ -22,9 +26,9 @@ const ThemeToggleButton = (props: { theme: Theme; label: string }) => {
       </DropdownMenuItem>
     </Form>
   );
-};
+});
 
-export function ModeToggle() {
+export const ModeToggle = memo(function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -41,4 +45,4 @@ export function ModeToggle() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+});

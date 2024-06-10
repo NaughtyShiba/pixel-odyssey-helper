@@ -18,12 +18,15 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import * as React from "react";
 import { EnemiesIDs, enemies } from "../enemies.mts";
 import { Maybe } from "@/lib/fn/maybe.mjs";
+import { memo, useMemo } from "react";
 
 interface ItemSelectorProps {
   onChange(itemName: Maybe<EnemiesIDs>): void;
   className?: string;
 }
-export function EnemySelector(props: ItemSelectorProps) {
+export const EnemySelector = memo(function EnemySelector(
+  props: ItemSelectorProps,
+) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const [search, setSearch] = React.useState("");
@@ -40,6 +43,32 @@ export function EnemySelector(props: ItemSelectorProps) {
     enemy.label.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
   );
 
+  const commandItems = useMemo(
+    () =>
+      filteredEnemies.map((item) => (
+        <CommandItem
+          key={item.value}
+          value={item.value}
+          onSelect={(currentValue: string) => {
+            setValue(currentValue === value ? "" : currentValue);
+            props.onChange(
+              currentValue === value ? null : (currentValue as EnemiesIDs),
+            );
+            setOpen(false);
+          }}
+        >
+          <Check
+            className={cn(
+              "mr-2 h-4 w-4",
+              value === item.value ? "opacity-100" : "opacity-0",
+            )}
+          />
+          {item.label}
+        </CommandItem>
+      )),
+    [filteredEnemies, props, value],
+  );
+
   const content = (
     <Command shouldFilter={false}>
       <CommandInput
@@ -49,27 +78,7 @@ export function EnemySelector(props: ItemSelectorProps) {
       />
       <CommandEmpty>No enemy found</CommandEmpty>
       <CommandList className="max-h-[400px] overflow-y-scroll">
-        {filteredEnemies.map((item) => (
-          <CommandItem
-            key={item.value}
-            value={item.value}
-            onSelect={(currentValue: string) => {
-              setValue(currentValue === value ? "" : currentValue);
-              props.onChange(
-                currentValue === value ? null : (currentValue as EnemiesIDs),
-              );
-              setOpen(false);
-            }}
-          >
-            <Check
-              className={cn(
-                "mr-2 h-4 w-4",
-                value === item.value ? "opacity-100" : "opacity-0",
-              )}
-            />
-            {item.label}
-          </CommandItem>
-        ))}
+        {commandItems}
       </CommandList>
     </Command>
   );
@@ -109,4 +118,4 @@ export function EnemySelector(props: ItemSelectorProps) {
       </DrawerContent>
     </Drawer>
   );
-}
+});

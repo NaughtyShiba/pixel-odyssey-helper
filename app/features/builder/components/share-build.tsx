@@ -5,11 +5,12 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { memo } from "react";
 // import { Input } from "@/components/ui/input";
 // import { useBuilder } from "../context";
 // import { minifyState } from "../utils.mts";
 
-export function ShareBuild() {
+export const ShareBuild = memo(function ShareBuild() {
   // const { state } = useBuilder();
   // const shareableUrl = new URL(location.href);
   // shareableUrl.searchParams.set("q", minifyState(state));
@@ -25,4 +26,4 @@ export function ShareBuild() {
       </DialogContent>
     </Dialog>
   );
-}
+});

@@ -8,11 +8,14 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@remix-run/react";
 import { CookiesModal } from "./modal";
+import { memo } from "react";
 
 interface CookiesToastProps {
   visible: boolean;
 }
-export function CookiesToast(props: CookiesToastProps) {
+export const CookiesToast = memo(function CookiesToast(
+  props: CookiesToastProps,
+) {
   return (
     <Card
       className="absolute bottom-0 w-full md:w-auto md:max-w-96 md:bottom-4 md:right-4 opacity-0 translate-y-full data-[state-visible=true]:translate-y-0 data-[state-visible=true]:opacity-100"
@@ -36,4 +39,4 @@ export function CookiesToast(props: CookiesToastProps) {
       </CardFooter>
     </Card>
   );
-}
+});
