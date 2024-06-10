@@ -23,12 +23,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./src/*"
+        "./app/*"
       ]
     },
 
     "types": ["vitest/importMeta"],
   },
-  "include": ["src"],
+  "include": ["app"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

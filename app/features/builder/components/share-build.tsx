@@ -5,14 +5,14 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { useBuilder } from "../context";
-import { minifyState } from "../utils.mts";
+// import { Input } from "@/components/ui/input";
+// import { useBuilder } from "../context";
+// import { minifyState } from "../utils.mts";
 
 export function ShareBuild() {
-  const { state } = useBuilder();
-  const shareableUrl = new URL(location.href);
-  shareableUrl.searchParams.set("q", minifyState(state));
+  // const { state } = useBuilder();
+  // const shareableUrl = new URL(location.href);
+  // shareableUrl.searchParams.set("q", minifyState(state));
 
   return (
     <Dialog>
@@ -21,7 +21,7 @@ export function ShareBuild() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>Copy link below and share your build!</DialogHeader>
-        <Input id="shareable-link" readOnly value={shareableUrl.toString()} />
+        {/* <Input id="shareable-link" readOnly value={shareableUrl.toString()} /> */}
       </DialogContent>
     </Dialog>
   );

@@ -8,5 +8,5 @@ export function useMediaQuery(query: string) {
 
   const getSnapshot = () => matchMedia(query).matches;
 
-  return useSyncExternalStore(subscribe, getSnapshot);
+  return useSyncExternalStore(subscribe, getSnapshot, () => false);
 }
