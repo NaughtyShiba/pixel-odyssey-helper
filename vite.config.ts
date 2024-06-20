@@ -20,6 +20,7 @@ export default defineConfig({
     "import.meta.vitest": "undefined",
   },
   build: {
+    target: "ES2015",
     rollupOptions: {
       output: {
         manualChunks: function manualChunks(id) {
