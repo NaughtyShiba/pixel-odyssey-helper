@@ -42,6 +42,7 @@ export function OptimalPerfectRefineTable() {
         <TableRow>
           <TableHead colSpan={3}>Refine Info</TableHead>
           <TableHead colSpan={Object.keys(item.stats!).length}>Stats</TableHead>
+          <TableHead colSpan={4}>Total needed</TableHead>
         </TableRow>
         <TableRow>
           <TableHead>Target Level</TableHead>
@@ -60,6 +61,10 @@ export function OptimalPerfectRefineTable() {
               </TableHead>
             );
           })}
+          <TableHead>Gold</TableHead>
+          <TableHead>Rabbits Foot</TableHead>
+          <TableHead>Wishbone</TableHead>
+          <TableHead>Clover</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -71,6 +76,10 @@ export function OptimalPerfectRefineTable() {
             {Object.entries(info.stats).map(([name, stat]) => (
               <TableCell key={name}>{stat}</TableCell>
             ))}
+            <TableCell>{info.totalGold}</TableCell>
+            <TableCell>{info.totalCharms.rabbits_foot}</TableCell>
+            <TableCell>{info.totalCharms.wishbone}</TableCell>
+            <TableCell>{info.totalCharms.clover}</TableCell>
           </TableRow>
         ))}
       </TableBody>

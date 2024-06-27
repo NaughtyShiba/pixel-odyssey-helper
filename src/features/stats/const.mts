@@ -83,7 +83,7 @@ export const stats: Record<StatType, Stat> = {
   },
   crit_damage: {
     label: "Crit Damage",
-    refineBonus: 18,
+    refineBonus: 16.25,
     image: null,
   },
   mining: {

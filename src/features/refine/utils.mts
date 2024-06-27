@@ -1,7 +1,8 @@
-import type { ItemType } from "@/data/items.mjs";
+import type { CharmsIDs, ItemType } from "@/data/items.mjs";
 import { stats } from "@/features/stats/const.mjs";
 import { mapObject } from "@/lib/fn/object.mjs";
 import type { StatType } from "../stats/types.mts";
+import { goldPerLevel, optimalCharmPath } from "./consts.mts";
 
 const MAX_LEVEL = 10;
 const MINIMAL_BONUS_INCREASE = 2;
@@ -13,6 +14,15 @@ interface CalculateOptimalPerfectRefineProps {
   levelOneStats: Partial<Record<StatType, number>>;
   type: ItemType;
 }
+
+interface LevelRefineInfo {
+  totalGold: number;
+  totalCharms: Record<CharmsIDs, number>;
+  minimumSourceItemLevelNeeded: string;
+  totalItemsNeeded: number;
+  stats: Partial<Record<StatType, number>>;
+}
+
 export function calculateOptimalPerfectRefine(
   props: CalculateOptimalPerfectRefineProps,
 ) {
@@ -30,20 +40,17 @@ export function calculateOptimalPerfectRefine(
       ]),
     ),
   };
-  const requiredForPerfectRefine: Record<
-    number,
-    {
-      minimumSourceItemLevelNeeded: string;
-      totalItemsNeeded: number;
-      stats: Partial<Record<StatType, number>>;
-    }
-  > = {
+  const requiredForPerfectRefine: Record<number, LevelRefineInfo> = {
     1: {
+      totalGold: 0,
+      totalCharms: { rabbits_foot: 0, wishbone: 0, clover: 0 },
       minimumSourceItemLevelNeeded: "-",
       totalItemsNeeded: 1,
       stats: statsAtLevel[1],
     },
     2: {
+      totalGold: goldPerLevel[2],
+      totalCharms: optimalCharmPath[2],
       minimumSourceItemLevelNeeded: "1",
       totalItemsNeeded,
       stats: statsAtLevel[2],
@@ -82,6 +89,14 @@ export function calculateOptimalPerfectRefine(
         ?.totalItemsNeeded ?? 1;
     statsAtLevel[level] = potentialNewStats;
     requiredForPerfectRefine[level] = {
+      totalGold: goldPerLevel[level]
+        + requiredForPerfectRefine[minimalSourcePerfectRefineLevel].totalGold
+        + requiredForPerfectRefine[level - 1].totalGold,
+      totalCharms: mapObject(optimalCharmPath[level], (key, item) => {
+        return item
+        + requiredForPerfectRefine[minimalSourcePerfectRefineLevel].totalCharms[key]
+        + requiredForPerfectRefine[level - 1].totalCharms[key];
+      }),
       minimumSourceItemLevelNeeded: minimalSourcePerfectRefineLevel.toString(),
       totalItemsNeeded,
       stats: potentialNewStats,

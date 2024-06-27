@@ -2,6 +2,13 @@ import { Maybe } from "@/lib/fn/maybe.mjs";
 import { ArrayElement } from "@/lib/ts/array-element.mjs";
 import type { StatType } from "../features/stats/types.mjs";
 
+export const charmsIDs = [
+  "rabbits_foot",
+  "wishbone",
+  "clover"
+] as const;
+export type CharmsIDs = ArrayElement<typeof charmsIDs>;
+
 export const oresIDs = [
   "coal",
   "iron_ore",
@@ -718,6 +725,7 @@ export const mainhandEquipment: Record<MainHandIDs, Item> = {
     stats: {
       attack: 37,
       speed: 24,
+      crit_damage: 25,
     },
     craft: {
       silver_ingot: 20,
@@ -1506,11 +1514,30 @@ export const footwearEquipment: Record<FootwearIDs, Item> = {
   },
 };
 
+const charms: Record<CharmsIDs, Item> = {
+  rabbits_foot: {
+    image: new URL("@/assets/items/rabbits_foot.png", import.meta.url).href,
+    type: "charm",
+    label: "Rabbits Foot",
+  },
+  wishbone: {
+    image: new URL("@/assets/items/wishbone.png", import.meta.url).href,
+    type: "charm",
+    label: "Wishbone",
+  },
+  clover: {
+    image: new URL("@/assets/items/clover.png", import.meta.url).href,
+    type: "charm",
+    label: "Clover",
+  },
+};
+
 export const items: Record<ItemName, Item> = {
   ...ores,
   ...ingots,
   ...materials,
   ...rings,
+  ...charms,
   ...mainhandEquipment,
   ...offhandEquipment,
   ...headwearEquipment,
