@@ -14,6 +14,7 @@ import { useItemSelection } from "../context";
 import { ItemSelector } from "./item-selector";
 import { useSafeSearchParams } from "@/lib/use-search-params/hooks.mjs";
 import { null_, string, union } from "valibot";
+import { Maybe } from "@/lib/fn/maybe.mjs";
 
 export function ItemsComparisonTable() {
   const [compareAgainst, setCompareAgainst] = useSafeSearchParams({
@@ -107,7 +108,7 @@ export function ItemsComparisonTable() {
   return (
     <div className="flex flex-col gap-4">
       <ItemSelector
-        defaultValue={compareAgainst as any}
+        defaultValue={compareAgainst as Maybe<ItemName>}
         onChange={setCompareAgainst}
         className="flex-basis-1/2 w-1/2"
       />

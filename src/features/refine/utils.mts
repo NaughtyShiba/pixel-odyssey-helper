@@ -89,13 +89,20 @@ export function calculateOptimalPerfectRefine(
         ?.totalItemsNeeded ?? 1;
     statsAtLevel[level] = potentialNewStats;
     requiredForPerfectRefine[level] = {
-      totalGold: goldPerLevel[level]
-        + requiredForPerfectRefine[minimalSourcePerfectRefineLevel].totalGold
-        + requiredForPerfectRefine[level - 1].totalGold,
-      totalCharms: mapObject(optimalCharmPath[level], (key, item) => {
-        return item
-        + requiredForPerfectRefine[minimalSourcePerfectRefineLevel].totalCharms[key]
-        + requiredForPerfectRefine[level - 1].totalCharms[key];
+      totalGold:
+        goldPerLevel[level as keyof typeof goldPerLevel] +
+        requiredForPerfectRefine[minimalSourcePerfectRefineLevel].totalGold +
+        requiredForPerfectRefine[level - 1].totalGold,
+      totalCharms: mapObject(optimalCharmPath[level], (key, item: number) => {
+        return (
+          item +
+          requiredForPerfectRefine[minimalSourcePerfectRefineLevel].totalCharms[
+            key as "rabbits_foot" | "clover" | "wishbone"
+          ] +
+          requiredForPerfectRefine[level - 1].totalCharms[
+            key as "rabbits_foot" | "clover" | "wishbone"
+          ]
+        );
       }),
       minimumSourceItemLevelNeeded: minimalSourcePerfectRefineLevel.toString(),
       totalItemsNeeded,

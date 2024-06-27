@@ -2,11 +2,7 @@ import { Maybe } from "@/lib/fn/maybe.mjs";
 import { ArrayElement } from "@/lib/ts/array-element.mjs";
 import type { StatType } from "../features/stats/types.mjs";
 
-export const charmsIDs = [
-  "rabbits_foot",
-  "wishbone",
-  "clover"
-] as const;
+export const charmsIDs = ["rabbits_foot", "wishbone", "clover"] as const;
 export type CharmsIDs = ArrayElement<typeof charmsIDs>;
 
 export const oresIDs = [

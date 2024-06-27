@@ -24,9 +24,11 @@ export function ItemSelectionProvider({
   });
 
   return (
-    <ItemSelectionContext.Provider value={{ selectedItem } as any}>
+    <ItemSelectionContext.Provider
+      value={{ selectedItem: selectedItem as Maybe<ItemName> }}
+    >
       <ItemSelector
-        defaultValue={selectedItem as any}
+        defaultValue={selectedItem as Maybe<ItemName>}
         onChange={(selectedItem) => setSelectedItem(selectedItem)}
         className="flex-basis-1/2 w-1/2"
       />
