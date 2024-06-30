@@ -78,12 +78,12 @@ export const stats: Record<StatType, Stat> = {
   },
   crit_chance: {
     label: "Crit Chance %",
-    refineBonus: 18,
+    refineBonus: 16.75,
     image: null,
   },
   crit_damage: {
     label: "Crit Damage",
-    refineBonus: 16.25,
+    refineBonus: 16.75,
     image: null,
   },
   mining: {

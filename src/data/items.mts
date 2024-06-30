@@ -1339,7 +1339,7 @@ export const toolEquipment: Record<ToolsIDs, Item> = {
     type: "tool",
     label: "Silver Pickaxe",
     craft: {
-      silver_ingot: 5,
+      silver_ingot: 10,
       gold_pickaxe: 1,
     },
     stats: {
