@@ -58,10 +58,10 @@ export default function ObolsRoute() {
         </TableRow>
         <TableRow>
           <TableCell>5</TableCell>
-          <TableCell>+?</TableCell>
+          <TableCell>+10</TableCell>
           <TableCell>104</TableCell>
           <TableCell>163</TableCell>
-          <TableCell>Purple</TableCell>
+          <TableCell>Amethyst</TableCell>
           <TableCell>163</TableCell>
         </TableRow>
       </TableBody>
