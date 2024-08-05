@@ -23,7 +23,7 @@ const links: NavLink[] = [
     label: "Enemies",
   },
   {
-    href: "/obol",
+    href: "/obols",
     label: "Obols",
   },
 ];

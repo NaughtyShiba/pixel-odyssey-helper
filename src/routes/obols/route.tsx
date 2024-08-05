@@ -1,7 +1,6 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-
-export default function EnemiesRoute() {
+export default function ObolsRoute() {
   return (
     <Table>
       <TableHeader>
