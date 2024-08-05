@@ -1,14 +1,23 @@
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { AlertCircle } from "lucide-react";
 
 export default function ObolsRoute() {
-  return (
+  return (<>
+    <Alert variant="default">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Information still being gathered</AlertTitle>
+          <AlertDescription>
+            Different level Obols provides different amount of points towards power up. Information will be added as it's found out
+          </AlertDescription>
+        </Alert>
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead>Level</TableHead>
-          <TableHead>Stat increease</TableHead>
-          <TableHead>Obols Required</TableHead>
-          <TableHead>Total Obols Required</TableHead>
+          <TableHead>Stat increase</TableHead>
+          <TableHead>Points Required</TableHead>
+          <TableHead>Total Points Required</TableHead>
           <TableHead>Color</TableHead>
         </TableRow>
       </TableHeader>
@@ -43,5 +52,5 @@ export default function ObolsRoute() {
         </TableRow>
       </TableBody>
     </Table>
-  );
+    </>);
 }
