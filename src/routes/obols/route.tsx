@@ -46,7 +46,7 @@ export default function ObolsRoute() {
           <TableCell>14</TableCell>
           <TableCell>18</TableCell>
           <TableCell>Emerald</TableCell>
-          <TableCell>?</TableCell>
+          <TableCell>18</TableCell>
         </TableRow>
         <TableRow>
           <TableCell>4</TableCell>
@@ -54,7 +54,7 @@ export default function ObolsRoute() {
           <TableCell>41</TableCell>
           <TableCell>59</TableCell>
           <TableCell>Ruby</TableCell>
-          <TableCell>?</TableCell>
+          <TableCell>59</TableCell>
         </TableRow>
         <TableRow>
           <TableCell>5</TableCell>
@@ -62,7 +62,7 @@ export default function ObolsRoute() {
           <TableCell>104</TableCell>
           <TableCell>163</TableCell>
           <TableCell>Purple</TableCell>
-          <TableCell>?</TableCell>
+          <TableCell>163</TableCell>
         </TableRow>
       </TableBody>
     </Table>
