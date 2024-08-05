@@ -22,6 +22,10 @@ const links: NavLink[] = [
     href: "/enemies",
     label: "Enemies",
   },
+  {
+    href: "/obol",
+    label: "Obols",
+  },
 ];
 
 export function Header() {
