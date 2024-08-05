@@ -67,9 +67,6 @@ export default function ObolsRoute() {
       </TableBody>
     </Table>
     <h2 className="text-2xl">Drop rates</h2>
-    <div>First time completion is _always_ 100% drop</div>
-    <div>Regular levels - 3x Level Obols - 18</div>
-    <div>Every 5th level - </div>
     <Table>
       <TableHeader>
         <TableRow>
