@@ -66,36 +66,5 @@ export default function ObolsRoute() {
         </TableRow>
       </TableBody>
     </Table>
-    <h2 className="text-2xl">Drop rates</h2>
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Levels</TableHead>
-          <TableHead>Obol Level</TableHead>
-          <TableHead>Drop amount</TableHead>
-          <TableHead>Drop rate on repeated defeat</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>Regular levels</TableCell>
-          <TableCell>1 (Grey)</TableCell>
-          <TableCell>3</TableCell>
-          <TableCell>16%</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Every 5th</TableCell>
-          <TableCell>1 (Grey)</TableCell>
-          <TableCell>2</TableCell>
-          <TableCell>18%</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Every 20th</TableCell>
-          <TableCell>1 (Gold)</TableCell>
-          <TableCell>1</TableCell>
-          <TableCell>20%</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
   </>);
 }
